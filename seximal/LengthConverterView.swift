@@ -18,7 +18,7 @@ struct LengthConverterView: View {
     
     let customUnits = [UnitLength.grandstick, .fetastick, .sticks, .niftistick, .untistick]
     
-    let formatter: MeasurementFormatter = {
+    let unitFormatter: MeasurementFormatter = {
         let formatter = MeasurementFormatter()
         formatter.unitStyle = .long
         formatter.unitOptions = .providedUnit
@@ -30,26 +30,35 @@ struct LengthConverterView: View {
     
     @State var converterText = ""
 
-    var convertedText: String {
-        let ftter = MeasurementFormatter()
-        ftter.unitOptions = .providedUnit
-        
+    let measureFormatter: MeasurementFormatter = {
+        let formatter = MeasurementFormatter()
+        formatter.unitOptions = .providedUnit
+        return formatter
+    }()
+    
+    let numberFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.allowsFloats = true
+        return formatter
+    }()
+    
+    var convertedMesuremnt: Measurement<UnitLength>? {
         let radix = customUnits.contains(unitA) ? 6: 10
-        guard let value = Int(converterText, radix: radix) else {
-            return unitB.symbol
+        guard let value = Double(converterText, radix: radix) else {
+            return nil
         }
         
-        let messuareA = Measurement(value: Double(value), unit: unitA)
+        let messuareA = Measurement(value: value, unit: unitA)
         var result = messuareA.converted(to: unitB)
         
         if customUnits.contains(unitB) {
-            let newStr = String(Int(result.value), radix: 6)
-            guard let newVal = Double(newStr) else {
-                return unitB.symbol
+            let newStr = String(result.value, radix: 6)
+            guard let newVal = Double(newStr, radix: 6) else {
+                return nil
             }
             result.value = newVal
         }
-        return ftter.string(from: result)
+        return result
     }
         
     var body: some View {
@@ -57,9 +66,9 @@ struct LengthConverterView: View {
             Text("A stick is exactly 0.9572 meter or 1.05 yards")
                 .font(.headline)
             
-            Picker("Converter unit: \(formatter.customString(from: unitA))", selection: $unitA) {
+            Picker("Converter unit: \(unitFormatter.customString(from: unitA))", selection: $unitA) {
                 ForEach(allUnits, id: \.self) { unit in
-                    Text(formatter.customString(from: unit))
+                    Text(unitFormatter.customString(from: unit))
                 }
             }
             .pickerStyle(MenuPickerStyle())
@@ -67,8 +76,9 @@ struct LengthConverterView: View {
                 print(didChange)
             }
             Button("Switch Units") {
-                if convertedText != unitB.symbol {
-                    converterText = convertedText
+                if let newValue = convertedMesuremnt?.value {
+                    let radix = customUnits.contains(unitB) ? 6: 10
+                    converterText = String(newValue, radix: radix)
                 }
                 swap(&unitA, &unitB)
             }
@@ -77,13 +87,17 @@ struct LengthConverterView: View {
             .background(Color.gray.opacity(0.5))
             .cornerRadius(10.0)
             .padding(.bottom, 20)
-            Picker("Converted unit: \(formatter.customString(from: unitB))", selection: $unitB) {
+            Picker("Converted unit: \(unitFormatter.customString(from: unitB))", selection: $unitB) {
                 ForEach(allUnits, id: \.self) { unit in
-                    Text(formatter.customString(from: unit))
+                    Text(unitFormatter.customString(from: unit))
                 }
             }
             .pickerStyle(MenuPickerStyle())
-            Text(convertedText)
+            if let measurement = convertedMesuremnt {
+                Text(measureFormatter.string(from: measurement))
+            } else {
+                Text(unitB.symbol)
+            }
             Spacer()
             Text("Pronounciation in Seximal:")
                 .font(.headline)

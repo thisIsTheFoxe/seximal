@@ -57,7 +57,7 @@ extension MeasurementFormatter {
 }
 
 extension StringProtocol {
-    subscript(_ offset: Int)                     -> Element     { self[index(startIndex, offsetBy: offset)] }
+    subscript(_ offset: Int) -> Element { self[index(startIndex, offsetBy: offset)] }
 }
 
 extension String {
@@ -79,7 +79,11 @@ extension String {
         
         fractalPart = fractalPart.replacingOccurrences(of: "0*$", with: "", options: .regularExpression)
         
-        self.init(int + (Locale.current.decimalSeparator ?? "") + fractalPart)
+        if !fractalPart.isEmpty {
+            fractalPart = (Locale.current.decimalSeparator ?? "") + fractalPart
+        }
+        
+        self.init(int + fractalPart)
     }
 }
 

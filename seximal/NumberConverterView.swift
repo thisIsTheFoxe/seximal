@@ -12,8 +12,8 @@ struct NumberConverterView: View {
     @State var baseB: Base = .dec
     @State var converterText: String = ""
 
-    var number: Int? {
-        Int(converterText, radix: baseA.rawValue)
+    var number: Double? {
+        Double(converterText, radix: baseA.rawValue)
     }
     
     var convertedText: String {
@@ -53,8 +53,13 @@ struct NumberConverterView: View {
             Spacer()
             Text("Pronounciation in Seximal:")
                 .font(.headline)
-            Text(number?.spellInSex() ?? "...")
-                .padding()
+            if let num = number, let iNum = Int(num) {
+                Text(iNum.spellInSex())
+                    .padding()
+            } else {
+                Text("...")
+                    .padding()
+            }
             Text("For more information check the About section")
                 .lineLimit(nil)
                 .font(.footnote)
