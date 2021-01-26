@@ -13,12 +13,16 @@ struct ConverterListView: View {
             List {
                 Section(header: Text("Seximal")) {
                     NavigationLink("Numbers", destination: NumberConverterView())
-                    NavigationLink("Time", destination: Text("TIMEE"))
+                    NavigationLink("Time", destination: SexTimeView())
                     NavigationLink("Temperature", destination: Text("TEMP"))
                     NavigationLink("Length", destination: Text("LEN"))
                     NavigationLink("Volume", destination: Text("VOL"))
                 }
-                NavigationLink("CCC", destination: CCCConverterView())
+                Section(header: Text("CCC")) {
+                    NavigationLink("Time", destination: CCCConverterView())
+                    NavigationLink("Length", destination: CCCConverterView())
+                    NavigationLink("Wheight", destination: CCCConverterView())
+                }
             }
         }
     }

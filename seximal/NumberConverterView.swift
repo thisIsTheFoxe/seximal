@@ -56,6 +56,7 @@ struct NumberConverterView: View {
             Text(number?.spellInSex() ?? "...")
                 .padding()
             Text("For more information check the About section")
+                .lineLimit(nil)
                 .font(.footnote)
             Spacer()
         }
