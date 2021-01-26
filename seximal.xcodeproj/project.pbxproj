@@ -19,6 +19,7 @@
 		D5D8BE5D25BF1C3A0066CF30 /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8BE5C25BF1C3A0066CF30 /* Base.swift */; };
 		D5D8BE6025BF1EE90066CF30 /* CCCConverterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8BE5F25BF1EE90066CF30 /* CCCConverterView.swift */; };
 		D5D8BE6325BF2B5E0066CF30 /* Pronounciator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8BE6225BF2B5E0066CF30 /* Pronounciator.swift */; };
+		D5F6BE6125C0396600E37D72 /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F6BE6025C0396600E37D72 /* MonthView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		D5D8BE5C25BF1C3A0066CF30 /* Base.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
 		D5D8BE5F25BF1EE90066CF30 /* CCCConverterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCCConverterView.swift; sourceTree = "<group>"; };
 		D5D8BE6225BF2B5E0066CF30 /* Pronounciator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pronounciator.swift; sourceTree = "<group>"; };
+		D5F6BE6025C0396600E37D72 /* MonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 				D5D8BE6225BF2B5E0066CF30 /* Pronounciator.swift */,
 				D5D8BE4F25BF19450066CF30 /* NumberConverterView.swift */,
 				D572F54C25BF7FE000BD3CE8 /* SexTimeView.swift */,
+				D5F6BE6025C0396600E37D72 /* MonthView.swift */,
 				D5D8BE5825BF1B110066CF30 /* ConverterListView.swift */,
 				D5D8BE5F25BF1EE90066CF30 /* CCCConverterView.swift */,
 				D5D8BE5225BF1A4C0066CF30 /* CalculaturView.swift */,
@@ -162,6 +165,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5F6BE6125C0396600E37D72 /* MonthView.swift in Sources */,
 				D5D8BE5025BF19450066CF30 /* NumberConverterView.swift in Sources */,
 				D5D8BE6325BF2B5E0066CF30 /* Pronounciator.swift in Sources */,
 				D5D8BE5925BF1B110066CF30 /* ConverterListView.swift in Sources */,

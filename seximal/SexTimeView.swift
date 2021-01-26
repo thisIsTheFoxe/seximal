@@ -10,11 +10,28 @@ import Combine
 
 struct SexTimeView: View {
     
+    var colums = {
+        Array(repeating: GridItem(), count: 2)
+    }()
+    
     var cal: Calendar = {
         var cal = Calendar.current
         cal.timeZone = TimeZone(secondsFromGMT: 0)!
         return cal
     }()
+    
+    var dayOfYear: Int {
+        cal.ordinality(of: .day, in: .year, for: date) ?? -1
+    }
+    
+    var ordDay: String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .ordinal
+        let month = dayOfYear / 36
+        let seximalDay = (dayOfYear - month * 36).asSex() //FIXME: not in dec
+        let sexDayAsInt = Int(seximalDay) ?? 0
+        return formatter.string(from: sexDayAsInt as NSNumber) ?? ""
+    }
     
     @State var date = Date()
     
@@ -54,8 +71,16 @@ struct SexTimeView: View {
         lull / 6 + lapse * 6
     }
     
+    var months: [String] = {
+        var result = Calendar.current.monthSymbols
+        result.removeSubrange(6...7)
+        return result
+    }()
+    
+    let weekDays: [String] = ["Sunday", "Monday", "Vensday", "Marsday", "Joday", "Saturday"]
+    
     var body: some View {
-        VStack {
+        ScrollView {
             Text("Current universal time:")
                 .font(.title)
             Text("(there are no time zones in seximal)")
@@ -77,8 +102,20 @@ struct SexTimeView: View {
             Text("Check the number converter for how to pronounce seximal numbers.")
                 .font(.footnote)
                 .padding()
+            Divider()
+            VStack {
+                Text("Today is \(weekDays[dayOfYear % 6 - 1]), the \(ordDay) of \(months[dayOfYear / 36]) ")
+                    .padding()
+                LazyVGrid(columns: colums, content: {
+                    ForEach(0..<months.count) { monthIx in
+                        let monthDay = dayOfYear - monthIx * 36
+                        MonthView(title: months[monthIx], currentDay: monthDay < 0 ? nil : monthDay)
+                    }
+                })
+                .padding(4)
+            }
         }
-        .padding()
+        .padding(.vertical)
         .navigationTitle("Time in Seximal")
         .onAppear { self.subscribe() }
         .onDisappear { self.unsubscribe() }
