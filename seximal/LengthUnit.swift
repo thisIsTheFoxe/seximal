@@ -55,11 +55,35 @@ extension MeasurementFormatter {
         }
     }
 }
+
 extension StringProtocol {
     subscript(_ offset: Int)                     -> Element     { self[index(startIndex, offsetBy: offset)] }
 }
 
-extension Double {
+extension String {
+    public init<T>(_ value: T, radix: Int = 10, uppercase: Bool = false) where T : BinaryFloatingPoint {
+        let dValue = Double(value)
+        let int = String(Int(dValue), radix: radix)
+        
+        var remainder = dValue - Double(Int(dValue))
+        var fractalPart = ""
+        for ix in 1...16 {
+            guard remainder != 0 else { break }
+            let pwr = Double(truncating: NSDecimalNumber(decimal: pow(Decimal(radix), ix)))
+            let newValue = Int(remainder * pwr) //truncation needed
+            let divident =  Double(truncating: NSDecimalNumber(decimal: pow(Decimal(radix), ix)))
+            let ratio = Double(newValue) / divident
+            remainder -= ratio
+            fractalPart += String(newValue, radix: radix, uppercase: uppercase)
+        }
+        
+        fractalPart = fractalPart.replacingOccurrences(of: "0*$", with: "", options: .regularExpression)
+        
+        self.init(int + (Locale.current.decimalSeparator ?? "") + fractalPart)
+    }
+}
+
+extension BinaryFloatingPoint {
     public init?<S>(_ text: S, radix: Int = 10) where S : StringProtocol {
         let comp = text.components(separatedBy: Locale.current.decimalSeparator ?? "")
         guard comp.count <= 2, comp.count > 0 else {
@@ -77,8 +101,8 @@ extension Double {
             for cIx in 0..<fractalPart.count {
                 let char = String(fractalPart[cIx])
                 guard let charAsInt = Int(char, radix: radix) else { return nil }
-                let bPart = Int(truncating: NSDecimalNumber(decimal: pow(Decimal(radix), cIx + 1)))
-                fractal += Double(charAsInt * (1 / bPart))
+                let bPart = Double(truncating: NSDecimalNumber(decimal: pow(Decimal(radix), cIx + 1)))
+                fractal += Double(charAsInt) * (1.0 / bPart)
             }
         }
         
