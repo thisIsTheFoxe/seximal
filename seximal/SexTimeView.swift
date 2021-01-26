@@ -50,21 +50,33 @@ struct SexTimeView: View {
         return Int(htime)
     }
     
+    var span: Int {
+        lull / 6 + lapse * 6
+    }
+    
     var body: some View {
         VStack {
             Text("Current universal time:")
                 .font(.title)
             Text("(there are no time zones in seximal)")
                 .font(.caption)
+            
             Text("\(lapse.asSex(padding: 2)):\(lull.asSex(padding: 2)):\(moment.asSex(padding: 2)).\(snap)")
                 .font(.title2)
-                .padding()
-            Text("Pronounciation:")
-                .font(.headline)
+                .padding(.top)
             Text("\(lapse.asSex()) lapse, \(lull.asSex()) lull, \(moment.asSex()) moment(s), \(snap.asSex()) snap(s)")
-            Text("Check the number converter for how to pronounce numbers.")
-                .font(.footnote)
                 .padding(4)
+            Text("or")
+                .padding(12)
+            Text("\(span.asSex(padding: 3)) span(s)")
+                .font(.title2)
+            Text("1 Span is a little less than 11 (DEC7) minutes")
+                .font(.subheadline)
+                .padding(4)
+            
+            Text("Check the number converter for how to pronounce seximal numbers.")
+                .font(.footnote)
+                .padding()
         }
         .padding()
         .navigationTitle("Time in Seximal")
