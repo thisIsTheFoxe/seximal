@@ -43,8 +43,7 @@ struct LengthConverterView: View {
     }()
     
     var convertedMesuremnt: Measurement<UnitLength>? {
-        let radix = customUnits.contains(unitA) ? 6: 10
-        guard let value = Double(converterText, radix: radix) else {
+        guard let value = Double(converterText, radix: radix(for: unitA)) else {
             return nil
         }
         
@@ -63,7 +62,7 @@ struct LengthConverterView: View {
         
     var body: some View {
         VStack {
-            Text("A stick is exactly 0.9572 meter or 1.05 yards")
+            Text("A stick is exactly 0\(Locale.current.decimalSeparator ?? ".")9572 meter or 1\(Locale.current.decimalSeparator ?? ".")05 yards")
                 .font(.headline)
             
             Picker("Converter unit: \(unitFormatter.customString(from: unitA))", selection: $unitA) {
@@ -77,8 +76,7 @@ struct LengthConverterView: View {
             }
             Button("Switch Units") {
                 if let newValue = convertedMesuremnt?.value {
-                    let radix = customUnits.contains(unitB) ? 6: 10
-                    converterText = String(newValue, radix: radix)
+                    converterText = String(newValue, radix: radix(for: unitB))
                 }
                 swap(&unitA, &unitB)
             }
@@ -94,23 +92,22 @@ struct LengthConverterView: View {
             }
             .pickerStyle(MenuPickerStyle())
             if let measurement = convertedMesuremnt {
-                Text(measureFormatter.string(from: measurement))
+                Text(String(measurement.value, radix: radix(for: unitB)) + " " + unitB.symbol)
             } else {
                 Text(unitB.symbol)
             }
             Spacer()
-            Text("Pronounciation in Seximal:")
-                .font(.headline)
-//            Text(number?.spellInSex() ?? "...")
-//                .padding()
-            Text("For more information check the About section")
-                .lineLimit(nil)
+            Text("For more information about other prefixes and pronouciation check the About section.")
                 .font(.footnote)
             Spacer()
         }
         .padding()
         .navigationTitle("Lengths in Seximal")
         
+    }
+    
+    func radix(for unit: UnitLength) -> Int {
+        return customUnits.contains(unit) ? 6: 10
     }
 }
 

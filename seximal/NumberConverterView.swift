@@ -60,7 +60,7 @@ struct NumberConverterView: View {
                 Text("...")
                     .padding()
             }
-            Text("For more information check the About section")
+            Text("For more information check the About section.")
                 .lineLimit(nil)
                 .font(.footnote)
             Spacer()
