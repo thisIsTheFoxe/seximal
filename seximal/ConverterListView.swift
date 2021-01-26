@@ -14,8 +14,7 @@ struct ConverterListView: View {
                 Section(header: Text("Seximal")) {
                     NavigationLink("Numbers", destination: NumberConverterView())
                     NavigationLink("Time", destination: SexTimeView())
-                    NavigationLink("Temperature", destination: Text("TEMP"))
-                    NavigationLink("Length", destination: Text("LEN"))
+                    NavigationLink("Length", destination: LengthConverterView())
                     NavigationLink("Volume", destination: Text("VOL"))
                 }
                 Section(header: Text("CCC")) {
