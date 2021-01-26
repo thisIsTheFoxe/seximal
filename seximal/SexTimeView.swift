@@ -21,7 +21,8 @@ struct SexTimeView: View {
     }()
     
     var dayOfYear: Int {
-        cal.ordinality(of: .day, in: .year, for: date) ?? -1
+        //day / year doesn't update
+        cal.ordinality(of: .day, in: .year, for: dayDate) ?? -1
     }
     
     var ordDay: String {
@@ -34,6 +35,8 @@ struct SexTimeView: View {
     }
     
     @State var date = Date()
+    
+    @State var dayDate = Date()
     
     @State
     private var timerSubscription: Cancellable? = nil
@@ -125,6 +128,12 @@ struct SexTimeView: View {
         timerSubscription =
             Timer.publish(every: 0.05, on: .main, in: .common)
             .autoconnect()
+            .map({
+                if !cal.isDate($0, inSameDayAs: dayDate) {
+                    dayDate = $0
+                }
+                return $0
+            })
             .assign(to: \.date, on: self)
     }
     
