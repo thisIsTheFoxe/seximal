@@ -50,7 +50,8 @@ enum CalculatorOperation: CaseIterable, Hashable, Identifiable {
         case .pow: return "x²"
         case .sqrt: return "√"
         case .comma: return Locale.current.decimalSeparator ?? "."
-        default: return "X"
+        case .clear: return "AC"
+        default: return "?"
         }
     }
     

@@ -54,13 +54,21 @@ enum CalculatorLogic {
             return "Error"
         }
         
-        let resString = String(value, radix: 6)
+        var resString = String(value, radix: 6)
+        
+        if let grSeperator = Locale.current.groupingSeparator, let decSeperator = Locale.current.decimalSeparator {
+            let parts = resString.components(separatedBy: decSeperator)
+            if let int = parts.first, int.count >= 5, parts.count <= 2 {
+                let rest = parts.count == 2 ? decSeperator + parts[1] : ""
+                resString = parts[0].split(by: 4).joined(separator: grSeperator) + rest
+            }
+        }
         
         if result.containsDot && !resString.containsDot {
-            return resString.applyDot()
-        } else {
-            return resString
+            resString = resString.applyDot()
         }
+        
+        return resString
     }
 
     private func apply(num: Int) -> CalculatorLogic {
@@ -147,36 +155,6 @@ enum CalculatorLogic {
             return self
         }
     }
-    
-//
-//    private func apply(command: CalculatorButtonItem.Command) -> CalculatorLogic {
-//        switch command {
-//        case .clear:
-//            return .left("0")
-//        case .flip:
-//            switch self {
-//            case .left(let left):
-//                return .left(left.flipped())
-//            case .leftOp(let left, let op):
-//                return .leftOpRight(left: left, op: op, right: "-0")
-//            case .leftOpRight(left: let left, let op, let right):
-//                return .leftOpRight(left: left, op: op, right: right.flipped())
-//            case .error:
-//                return .left("-0")
-//            }
-//        case .percent:
-//            switch self {
-//            case .left(let left):
-//                return .left(left.percentaged())
-//            case .leftOp:
-//                return self
-//            case .leftOpRight(left: let left, let op, let right):
-//                return .leftOpRight(left: left, op: op, right: right.percentaged())
-//            case .error:
-//                return .left("-0")
-//            }
-//        }
-//    }
 }
 
 var formatter: NumberFormatter = {

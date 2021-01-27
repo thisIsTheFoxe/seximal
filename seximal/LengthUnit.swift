@@ -32,6 +32,13 @@ extension UnitLength {
         let converter = UnitConverterLinear(coefficient: 0.9572 * 36 * 36)
         return UnitLength(symbol: NSLocalizedString("grdst", comment: "grandstick"), converter: converter)
     }
+    
+    var grouping: Int {
+        switch self {
+        case .sticks, .untistick, .fetastick, .niftistick, .grandstick: return 4
+        default: return 3
+        }
+    }
 }
 
 extension Measurement where UnitType == UnitLength {
@@ -61,10 +68,28 @@ extension StringProtocol {
 }
 
 extension String {
-    public init<T>(_ value: T, radix: Int = 10, uppercase: Bool = false) where T : BinaryFloatingPoint {
+    func split(by length: Int) -> [String] {
+        var endIx = self.endIndex
+        var results = [Substring]()
+
+        while endIx > self.startIndex {
+            let startIx = self.index(endIx, offsetBy: -length, limitedBy: self.startIndex) ?? self.startIndex
+            results.append(self[startIx..<endIx])
+            endIx = startIx
+        }
+        
+        return results.reversed().map { String($0) }
+    }
+}
+
+extension String {
+    public init<T>(_ value: T, radix: Int = 10, grouping: Int? = nil, uppercase: Bool = false) where T : BinaryFloatingPoint {
         let dValue = Double(value)
         //FIXME: int overflow
-        let int = String(Int(dValue), radix: radix)
+        var int = String(Int(dValue), radix: radix, uppercase: uppercase)
+        if let grouping = grouping, int.count >= grouping {
+            int = int.split(by: grouping).joined(separator: Locale.current.groupingSeparator ?? "")
+        }
         
         var remainder = dValue - Double(Int(dValue))
         var fractalPart = ""
@@ -95,7 +120,11 @@ extension BinaryFloatingPoint {
             return nil
         }
         
-        let intPart = comp[0]
+        var intPart = comp[0]
+        if let groupSeperator = Locale.current.groupingSeparator {
+            intPart = intPart.replacingOccurrences(of: groupSeperator, with: "")
+        }
+        
         guard let int = Int(intPart, radix: radix) else {
             return nil
         }

@@ -20,7 +20,7 @@ struct NumberConverterView: View {
         guard let number = number else {
             return baseB.abbreviatedName
         }
-        return String(number, radix: baseB.rawValue)
+        return String(number, radix: baseB.rawValue, grouping: baseB.grouping)
     }
     
     var body: some View {

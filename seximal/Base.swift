@@ -12,6 +12,14 @@ enum Base: Int, CaseIterable, Identifiable {
     
     case dec = 10, sex = 6, bin = 2, doz = 12, oct = 8, hex = 16
     
+    var grouping: Int? {
+        switch self {
+        case .dec: return 3
+        case .sex: return 4
+        default: return nil
+        }
+    }
+    
     var baseName : String {
         switch self {
         case .bin: return "Binary"

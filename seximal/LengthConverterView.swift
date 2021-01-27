@@ -92,7 +92,7 @@ struct LengthConverterView: View {
             }
             .pickerStyle(MenuPickerStyle())
             if let measurement = convertedMesuremnt {
-                Text(String(measurement.value, radix: radix(for: unitB)) + " " + unitB.symbol)
+                Text(String(measurement.value, radix: radix(for: unitB), grouping: unitB.grouping) + " " + unitB.symbol)
             } else {
                 Text(unitB.symbol)
             }
