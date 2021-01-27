@@ -16,6 +16,7 @@ struct ContentView: View {
                     Text("Converter")
                 }
             CalculaturView()
+                .environmentObject(Calculator())
                 .tabItem {
                     Image(systemName: "number.square.fill")
                 Text("Calculator")

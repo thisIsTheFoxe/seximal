@@ -7,14 +7,164 @@
 
 import SwiftUI
 
+enum OperationResult {
+    case newText(String)
+    case newOp(op: CalculatorOperation, newText: String = "0")
+    case err
+    case clear
+}
+
+enum CalculatorOperation: CaseIterable, Hashable, Identifiable {
+    var id: CalculatorOperation { self }
+        
+    static var allCases: [CalculatorOperation] = [
+        .number(i: 0), .number(i: 1), .clear,
+        .number(i: 2), .number(i: 3), .equal,
+        .number(i: 4), .number(i: 5), .comma,
+        .plus, .minus, .pow,
+        .mult, .div, .sqrt,
+    ]
+    
+    case number(i: Int), plus, minus, mult, div, equal, pow, sqrt, comma, clear
+    
+    var sfSymbolName: String? {
+        switch self {
+        case .plus: return "plus"
+        case .minus: return "minus"
+        case .mult: return "multiply"
+        case .div: return "divide"
+        case .equal: return "equal"
+        case .sqrt: return "x.squareroot"
+        default: return nil
+        }
+    }
+    
+    var displayName: String {
+        switch self {
+        case .number(let i): return String(i)
+        case .plus: return "+"
+        case .minus: return "-"
+        case .mult: return "*"
+        case .div: return "/"
+        case .equal: return "="
+        case .pow: return "x²"
+        case .sqrt: return "√"
+        case .comma: return Locale.current.decimalSeparator ?? "."
+        default: return "X"
+        }
+    }
+    
+    var backgoundColor: Color {
+        switch self {
+        case .number, .comma:
+            return Color.gray.opacity(0.25)
+        case .plus, .minus, .mult, .div, .equal:
+            return .orange
+        default:
+            return Color.gray.opacity(0.125)
+        }
+    }
+    
+    private var hashId: Int {
+        switch self {
+        case .number(i: _): return 0
+        case .plus: return 1
+        case .minus: return 2
+        case .mult: return 3
+        case .div: return 4
+        case .equal: return 5
+        case .pow: return 6
+        case .sqrt: return 7
+        case .comma: return 8
+        default: return 9999
+        }
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        switch self {
+        case .number(let value):
+            hasher.combine(value) // combine with associated value, if it's not `Hashable` map it to some `Hashable` type and then combine result
+            break
+        default: break
+        }
+        hasher.combine(self.hashId)
+    }
+}
+
+extension CalculatorOperation {
+    func calculate(l: String, r: String) -> String? {
+
+        guard let left = Double(l, radix: 6), let right = Double(r, radix: 6) else {
+            return nil
+        }
+        
+        let result: Double?
+        switch self {
+        case .plus: result = left + right
+        case .minus: result = left - right
+        case .mult: result = left * right
+        case .div: result = right == 0 ? nil : left / right
+        case .equal: fatalError()
+        default:
+            return nil
+        }
+        
+        return result ?? { String($0, radix: 6) } | nil
+    }
+}
+
+
 struct CalculaturView: View {
+    
+    @EnvironmentObject var model: Calculator
+    
+    let colums: [GridItem] = Array(repeating: GridItem(spacing: 5), count: 3)
+    
     var body: some View {
-        Text("Hello, World!")
+        NavigationView {
+            VStack {
+                GeometryReader { g in
+                    Text(verbatim: model.logic.output)
+                        .font(.title2)
+                        .frame(width: g.size.width, height: g.size.height)
+                        .background(Color(UIColor.secondarySystemBackground).opacity(0.5))
+                }
+                Spacer(minLength: 18)
+                LazyVGrid(columns: colums, content: {
+                    ForEach(CalculatorOperation.allCases, id: \.self) { op in
+                        CalculatorButton(type: op)
+                    }
+                })
+            }
+            .padding()
+            .navigationTitle("Calculator")
+        }
     }
 }
 
 struct CalculaturView_Previews: PreviewProvider {
     static var previews: some View {
         CalculaturView()
+    }
+}
+
+struct CalculatorButton: View {
+    var type: CalculatorOperation
+    @EnvironmentObject var model: Calculator
+
+    var body: some View {
+        Group {
+            if let sysName = type.sfSymbolName {
+                Image(systemName: sysName)
+            } else {
+                Text(type.displayName)
+            }
+        }
+        .frame(width: 100, height: 65, alignment: .center)
+        .background(type.backgoundColor)
+        .padding(5)
+        .onTapGesture {
+            model.apply(type)
+        }
     }
 }

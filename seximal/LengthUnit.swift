@@ -63,6 +63,7 @@ extension StringProtocol {
 extension String {
     public init<T>(_ value: T, radix: Int = 10, uppercase: Bool = false) where T : BinaryFloatingPoint {
         let dValue = Double(value)
+        //FIXME: int overflow
         let int = String(Int(dValue), radix: radix)
         
         var remainder = dValue - Double(Int(dValue))
