@@ -104,6 +104,8 @@ extension CalculatorOperation {
         case .minus: result = left - right
         case .mult: result = left * right
         case .div: result = right == 0 ? nil : left / right
+        case .pow: result = left * left
+        case .sqrt: result = Darwin.sqrt(left)
         case .equal: fatalError()
         default:
             return nil

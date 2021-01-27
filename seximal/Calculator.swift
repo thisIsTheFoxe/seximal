@@ -97,8 +97,11 @@ enum CalculatorLogic {
         switch self {
         case .left(let left):
             switch op {
-            case .plus, .minus, .mult, .div, .pow, .sqrt:
+            case .plus, .minus, .mult, .div:
                 return .leftOp(left: left, op: op)
+            case .pow, .sqrt:
+                guard let result = op.calculate(l: left, r: left) else { return .error }
+                return .left(result)
             case .equal:
                 return self
             default:
@@ -108,6 +111,9 @@ enum CalculatorLogic {
             switch op {
             case .plus, .minus, .mult, .div:
                 return .leftOp(left: left, op: op)
+            case .pow, .sqrt:
+                guard let result = op.calculate(l: left, r: left) else { return .error }
+                return .leftOp(left: result, op: currentOp)
             case .equal:
                 if let result = currentOp.calculate(l: left, r: left) {
                     return .leftOp(left: result, op: currentOp)
@@ -125,6 +131,9 @@ enum CalculatorLogic {
                 } else {
                     return .error
                 }
+            case .pow, .sqrt:
+                guard let result = op.calculate(l: right, r: right) else { return .error }
+                return .leftOpRight(left: left, op: currentOp, right: result)
             case .equal:
                 if let result = currentOp.calculate(l: left, r: right) {
                     return .left(result)
