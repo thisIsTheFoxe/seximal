@@ -84,14 +84,16 @@ extension String {
 
 extension String {
     public init<T>(_ value: T, radix: Int = 10, grouping: Int? = nil, uppercase: Bool = false) where T : BinaryFloatingPoint {
-        let dValue = Double(value)
-        //FIXME: int overflow
-        var int = String(Int(dValue), radix: radix, uppercase: uppercase)
+        let sign = value < 0 ? "-" : ""
+        let dValue = Double(abs(value))
+        //FIXME: int overflow / can be NaN
+        let iValue = Int(dValue)
+        var int = String(iValue, radix: radix, uppercase: uppercase)
         if let grouping = grouping, int.count >= grouping {
             int = int.split(by: grouping).joined(separator: Locale.current.groupingSeparator ?? "")
         }
         
-        var remainder = dValue - Double(Int(dValue))
+        var remainder = abs(dValue - Double(iValue))
         var fractalPart = ""
         for ix in 1...16 {
             guard remainder != 0 else { break }
@@ -109,7 +111,7 @@ extension String {
             fractalPart = (Locale.current.decimalSeparator ?? "") + fractalPart
         }
         
-        self.init(int + fractalPart)
+        self.init(sign + int + fractalPart)
     }
 }
 
@@ -121,6 +123,13 @@ extension BinaryFloatingPoint {
         }
         
         var intPart = comp[0]
+        var isNegative = false
+        
+        if intPart.first == "-" {
+            _ = intPart.removeFirst()
+            isNegative = true
+        }
+        
         if let groupSeperator = Locale.current.groupingSeparator {
             intPart = intPart.replacingOccurrences(of: groupSeperator, with: "")
         }
@@ -140,6 +149,11 @@ extension BinaryFloatingPoint {
             }
         }
         
-        self.init(Double(int) + fractal)
+        var result = Double(int) + fractal
+        if isNegative {
+            result.negate()
+        }
+        
+        self.init(result)
     }
 }

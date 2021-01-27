@@ -42,7 +42,7 @@ enum CalculatorLogic {
     }
 
     var output: String {
-        let result: String
+        var result: String
         switch self {
         case .left(let left): result = left
         case .leftOp(let left, _): result = left
@@ -50,25 +50,23 @@ enum CalculatorLogic {
         case .error: return "Error"
         }
         
-        guard let value = Double(result, radix: 6) else {
+        guard let _ = Double(result, radix: 6) else {
             return "Error"
         }
-        
-        var resString = String(value, radix: 6)
-        
+                
         if let grSeperator = Locale.current.groupingSeparator, let decSeperator = Locale.current.decimalSeparator {
-            let parts = resString.components(separatedBy: decSeperator)
+            let parts = result.components(separatedBy: decSeperator)
             if let int = parts.first, int.count >= 5, parts.count <= 2 {
                 let rest = parts.count == 2 ? decSeperator + parts[1] : ""
-                resString = parts[0].split(by: 4).joined(separator: grSeperator) + rest
+                result = parts[0].split(by: 4).joined(separator: grSeperator) + rest
             }
         }
         
-        if result.containsDot && !resString.containsDot {
-            resString = resString.applyDot()
+        if result.containsDot && !result.containsDot {
+            result = result.applyDot()
         }
         
-        return resString
+        return result
     }
 
     private func apply(num: Int) -> CalculatorLogic {
