@@ -8,24 +8,29 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var selection = 3
+    
     var body: some View {
-        TabView {
+        TabView(selection: $selection) {
             ConverterListView()
                 .tabItem {
                     Image(systemName: "arrow.left.arrow.right.square")
                     Text("Converter")
                 }
+                .tag(1)
             CalculaturView()
                 .environmentObject(Calculator())
                 .tabItem {
                     Image(systemName: "number.square.fill")
                 Text("Calculator")
                 }
+                .tag(2)
             AboutView()
                 .tabItem {
                     Image(systemName: "questionmark.circle")
                     Text("About")
                 }
+                .tag(3)
         }
     }
 }
