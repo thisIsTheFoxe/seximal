@@ -24,6 +24,7 @@ struct ContentView: View {
             AboutView()
                 .tabItem {
                     Image(systemName: "questionmark.circle")
+                    Text("About")
                 }
         }
     }
