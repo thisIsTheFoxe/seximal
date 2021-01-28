@@ -82,23 +82,40 @@ extension String {
     }
 }
 
+extension UInt64 {
+    init(safely double: Double) {
+        //: int overflow / can be NaN
+        if double.isNaN || double.isInfinite {
+            self = 0
+        } else if double >= Double(UInt64.max) {
+            self = UInt64.max
+        } else if double < Double(UInt64.min) {
+            self = UInt64.min
+        } else {
+            self = UInt64(double)
+        }
+    }
+}
+
 extension String {
     public init<T>(_ value: T, radix: Int = 10, grouping: Int? = nil, uppercase: Bool = false) where T : BinaryFloatingPoint {
         let sign = value < 0 ? "-" : ""
         let dValue = Double(abs(value))
-        //FIXME: int overflow / can be NaN
-        let iValue = Int(dValue)
+        
+        //FIXME: don't use int
+        let iValue = UInt64(safely: dValue)
+        
         var int = String(iValue, radix: radix, uppercase: uppercase)
         if let grouping = grouping, int.count >= grouping {
             int = int.split(by: grouping).joined(separator: Locale.current.groupingSeparator ?? "")
         }
         
-        var remainder = abs(dValue - Double(iValue))
+        var remainder = dValue - floor(dValue)
         var fractalPart = ""
         for ix in 1...16 {
             guard remainder != 0 else { break }
             let pwr = Double(truncating: NSDecimalNumber(decimal: pow(Decimal(radix), ix)))
-            let newValue = Int(remainder * pwr) //truncation needed
+            let newValue = UInt64(safely: remainder * pwr) //truncation needed, to use default String call
             let divident =  Double(truncating: NSDecimalNumber(decimal: pow(Decimal(radix), ix)))
             let ratio = Double(newValue) / divident
             remainder -= ratio
@@ -134,7 +151,7 @@ extension BinaryFloatingPoint {
             intPart = intPart.replacingOccurrences(of: groupSeperator, with: "")
         }
         
-        guard let int = Int(intPart, radix: radix) else {
+        guard let int = UInt64(intPart, radix: radix) else {
             return nil
         }
         
