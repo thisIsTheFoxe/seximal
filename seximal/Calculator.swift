@@ -32,7 +32,6 @@ class Calculator: ObservableObject {
                 return mod.sfSymbolName
             case .equal:
                 return "equal"
-
             default:
                 return nil
             }
@@ -53,11 +52,20 @@ class Calculator: ObservableObject {
             }
         }
         
+        var foregroundColor: Color? {
+            switch self {
+            case .op(_), .equal:
+                return Color(UIColor.systemBackground)
+            default:
+                return nil
+            }
+        }
+        
         var backgoundColor: Color {
             switch self {
             case .mod(let mod):
                 return mod.backgoundColor
-            case .op(_):
+            case .op(_), .equal:
                 return .orange
             default:
                 return Color.gray.opacity(0.125)

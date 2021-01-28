@@ -33,6 +33,9 @@ struct NumberConverterView: View {
             TextField(baseA.abbreviatedName, text: $converterText) { (didChange) in
                 print(didChange)
             }
+            .padding(6)
+            .background(Color.gray.opacity(0.125))
+            .padding()
             Button("Switch Bases") {
                 if convertedText != baseB.abbreviatedName {
                     converterText = convertedText
@@ -43,7 +46,7 @@ struct NumberConverterView: View {
             .padding(20)
             .background(Color.gray.opacity(0.5))
             .cornerRadius(10.0)
-            .padding(.bottom, 20)
+            .padding(.vertical, 20)
             Picker("Converted base: \(baseB.baseName)", selection: $baseB) {
                 ForEach(Base.allCases) { base in
                     Text(base.baseName)

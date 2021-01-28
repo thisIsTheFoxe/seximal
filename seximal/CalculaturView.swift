@@ -7,172 +7,86 @@
 
 import SwiftUI
 
-protocol CalculatorAction: Hashable, Identifiable {
-    var sfSymbolName: String? { get }
-    var displayName: String { get }
-}
-
-enum CalculatorOp: CalculatorAction {
-    case plus, minus, mult, div
-    
-    var id: CalculatorOp { self }
-    
-    var sfSymbolName: String? {
-        switch self {
-        case .plus: return "plus"
-        case .minus: return "minus"
-        case .mult: return "multiply"
-        case .div: return "divide"
-        default: return nil
-        }
-    }
-    
-    var displayName: String {
-        switch self {
-        case .plus: return "+"
-        case .minus: return "-"
-        case .mult: return "*"
-        case .div: return "/"
-        default: return "?"
-        }
-    }
-        
-    func calculate(l: String, r: String) -> String? {
-
-        guard let left = Double(l, radix: 6), let right = Double(r, radix: 6) else {
-            return nil
-        }
-        
-        let result: Double?
-        switch self {
-        case .plus: result = left + right
-        case .minus: result = left - right
-        case .mult: result = left * right
-        case .div: result = right == 0 ? nil : left / right
-        default:
-            return nil
-        }
-        
-        return result ?? { String($0, radix: 6) } | nil
-    }
-}
-
-enum CalculatorModifier: CalculatorAction {
-    case number(i: Int), pow, sqrt, comma, del, negate, rand
-    
-    var id: CalculatorModifier { return self }
-    
-    var sfSymbolName: String? {
-        switch self {
-        case .sqrt: return "x.squareroot"
-        case .del: return "delete.left"
-        case .negate: return "plus.slash.minus"
-        default: return nil
-        }
-    }
-    
-    var displayName: String {
-        switch self {
-        case .number(let i): return String(i)
-        case .pow: return "x²"
-        case .sqrt: return "√"
-        case .comma: return Locale.current.decimalSeparator ?? "."
-        case .del: return "Del"
-        case .negate: return "+/-"
-        case .rand: return "Rand"
-        default: return "?"
-        }
-    }
-    
-    var backgoundColor: Color {
-        switch self {
-        case .number, .comma:
-            return Color.gray.opacity(0.25)
-        default:
-            return Color.gray.opacity(0.125)
-        }
-    }
-    
-    func modify(text: String) -> String? {
-        switch self {
-        case .number(i: let num):
-            return text.apply(num: num)
-        case .pow:
-            guard let left = Double(text, radix: 6) else {
-                return nil
-            }
-            let result = left * left
-            return String(result, radix: 6)
-        case .sqrt:
-            guard let left = Double(text, radix: 6) else {
-                return nil
-            }
-            let result = Darwin.sqrt(left)
-            return String(result, radix: 6)
-        case .comma:
-            return text.applyDecSeperator()
-        case .del:
-            return text.deletingLast()
-        case .negate:
-            return text.negate()
-        case .rand:
-            return String(Double.random(in: 0...1), radix: 6)
-        }
-        return nil
-    }
-}
-
 struct CalculaturView: View {
     
     @EnvironmentObject var model: Calculator
     
-    let colums: [GridItem] = Array(repeating: GridItem(spacing: 5), count: 3)
-        
+    let colums: [GridItem] = [GridItem(spacing: 5, alignment: .trailing),GridItem(spacing: 5, alignment: .center),GridItem(spacing: 5, alignment: .leading)]
+    
     var body: some View {
+        #if targetEnvironment(macCatalyst)
+        content
+        #else
         NavigationView {
-            VStack {
-                GeometryReader { g in
-                    Text(verbatim: model.logic.output)
-                        .font(.title2)
-                        .frame(width: g.size.width, height: g.size.height)
-                        .background(Color(UIColor.secondarySystemBackground).opacity(0.5))
-                }
-                Spacer(minLength: 18)
-                LazyVGrid(columns: colums, content: {
-                    ForEach(Calculator.Action.allCases) { op in
-                        CalculatorButton(type: op)
-                    }
-                })
-            }
-            .padding()
-            .navigationTitle("Calculator")
+            content
         }
+        #endif
+    }
+    
+    var content: some View {
+        VStack {
+            GeometryReader { g in
+                Text(verbatim: model.logic.output)
+                    .font(.title2)
+                    .frame(width: g.size.width, height: g.size.height)
+                    .background(Color(UIColor.secondarySystemBackground).opacity(0.5))
+            }
+            Spacer(minLength: 18)
+            LazyVGrid(columns: colums, content: {
+                ForEach(Calculator.Action.allCases) { op in
+                    CalculatorButton(type: op)
+                        .padding(.top, 5)
+                }
+            })
+        }
+        .padding()
+        .navigationTitle("Calculator")
     }
 }
 
 struct CalculaturView_Previews: PreviewProvider {
     static var previews: some View {
         CalculaturView()
+            .environmentObject(Calculator())
     }
 }
+
 
 struct CalculatorButton: View {
     var type: Calculator.Action
     @EnvironmentObject var model: Calculator
-
+    
+    @State var isTapped = false
+    
     var body: some View {
         Group {
             if let sysName = type.sfSymbolName {
                 Image(systemName: sysName)
+//                    .imageScale(.large)
+                    .font(Font.title3.weight(.bold))
             } else {
                 Text(type.displayName)
+                    .font(.title3)
+                    .bold()
             }
         }
-        .frame(width: 100, height: 65, alignment: .center)
+        .frame(width: 100, height: 60, alignment: .center)
         .background(type.backgoundColor)
-        .padding(5)
-        .onTapGesture {
-            model.apply(type)
-        }
+        .foregroundColor(type.foregroundColor)
+        .opacity(isTapped ? 0.5 : 1)
+        .gesture(DragGesture(minimumDistance: 0).onChanged({ (tap) in
+            self.isTapped = tap.location.distance(to: tap.startLocation) < 60
+        }).onEnded({ (tap) in
+            if isTapped {
+                model.apply(type)
+                isTapped = false
+            }
+        }))
+    }
+}
+
+extension CGPoint {
+    func distance(to point: CGPoint) -> CGFloat {
+        return sqrt(pow(x - point.x, 2) + pow(y - point.y, 2))
     }
 }

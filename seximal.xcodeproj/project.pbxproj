@@ -10,6 +10,7 @@
 		D542ABD525C17F9F0090E4AA /* Optional+Ternary.swift in Sources */ = {isa = PBXBuildFile; fileRef = D542ABD425C17F9F0090E4AA /* Optional+Ternary.swift */; };
 		D542ABDC25C1929E0090E4AA /* Calculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D542ABDB25C1929E0090E4AA /* Calculator.swift */; };
 		D572F54D25BF7FE000BD3CE8 /* SexTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D572F54C25BF7FE000BD3CE8 /* SexTimeView.swift */; };
+		D599104725C32F3500A8C571 /* CalculatorAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D599104625C32F3500A8C571 /* CalculatorAction.swift */; };
 		D5B5725525C05709003087FA /* LengthConverterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B5725425C05709003087FA /* LengthConverterView.swift */; };
 		D5B5725825C058C7003087FA /* LengthUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B5725725C058C7003087FA /* LengthUnit.swift */; };
 		D5D8BE4025BF18F20066CF30 /* seximalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8BE3F25BF18F20066CF30 /* seximalApp.swift */; };
@@ -30,6 +31,8 @@
 		D542ABD425C17F9F0090E4AA /* Optional+Ternary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Ternary.swift"; sourceTree = "<group>"; };
 		D542ABDB25C1929E0090E4AA /* Calculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculator.swift; sourceTree = "<group>"; };
 		D572F54C25BF7FE000BD3CE8 /* SexTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SexTimeView.swift; sourceTree = "<group>"; };
+		D599104625C32F3500A8C571 /* CalculatorAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorAction.swift; sourceTree = "<group>"; };
+		D599104925C3326900A8C571 /* seximal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = seximal.entitlements; sourceTree = "<group>"; };
 		D5B5725425C05709003087FA /* LengthConverterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LengthConverterView.swift; sourceTree = "<group>"; };
 		D5B5725725C058C7003087FA /* LengthUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LengthUnit.swift; sourceTree = "<group>"; };
 		D5D8BE3C25BF18F20066CF30 /* seximal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = seximal.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,6 +81,7 @@
 		D5D8BE3E25BF18F20066CF30 /* seximal */ = {
 			isa = PBXGroup;
 			children = (
+				D599104925C3326900A8C571 /* seximal.entitlements */,
 				D5D8BE3F25BF18F20066CF30 /* seximalApp.swift */,
 				D5D8BE4125BF18F20066CF30 /* ContentView.swift */,
 				D5D8BE5C25BF1C3A0066CF30 /* Base.swift */,
@@ -91,6 +95,7 @@
 				D5D8BE5825BF1B110066CF30 /* ConverterListView.swift */,
 				D5D8BE5F25BF1EE90066CF30 /* CCCConverterView.swift */,
 				D5D8BE5225BF1A4C0066CF30 /* CalculaturView.swift */,
+				D599104625C32F3500A8C571 /* CalculatorAction.swift */,
 				D542ABDB25C1929E0090E4AA /* Calculator.swift */,
 				D5D8BE5525BF1A620066CF30 /* AboutView.swift */,
 				D5D8BE4325BF18F30066CF30 /* Assets.xcassets */,
@@ -186,6 +191,7 @@
 				D5B5725525C05709003087FA /* LengthConverterView.swift in Sources */,
 				D5D8BE5325BF1A4C0066CF30 /* CalculaturView.swift in Sources */,
 				D542ABDC25C1929E0090E4AA /* Calculator.swift in Sources */,
+				D599104725C32F3500A8C571 /* CalculatorAction.swift in Sources */,
 				D5D8BE4025BF18F20066CF30 /* seximalApp.swift in Sources */,
 				D5D8BE6025BF1EE90066CF30 /* CCCConverterView.swift in Sources */,
 				D5D8BE5D25BF1C3A0066CF30 /* Base.swift in Sources */,
@@ -319,6 +325,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = seximal/seximal.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"seximal/Preview Content\"";
 				DEVELOPMENT_TEAM = E3BNAMEWTS;
@@ -329,10 +336,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = me.thisisthefoxe.seximal;
+				PRODUCT_BUNDLE_IDENTIFIER = me.thisIsTheFoxe.seximal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Debug;
 		};
@@ -341,6 +350,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = seximal/seximal.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"seximal/Preview Content\"";
 				DEVELOPMENT_TEAM = E3BNAMEWTS;
@@ -351,10 +361,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = me.thisisthefoxe.seximal;
+				PRODUCT_BUNDLE_IDENTIFIER = me.thisIsTheFoxe.seximal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Release;
 		};

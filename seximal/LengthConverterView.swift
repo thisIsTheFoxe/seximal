@@ -74,6 +74,9 @@ struct LengthConverterView: View {
             TextField(unitA.symbol, text: $converterText) { (didChange) in
                 print(didChange)
             }
+            .padding(6)
+            .background(Color.gray.opacity(0.125))
+            .padding()
             Button("Switch Units") {
                 if let newValue = convertedMesuremnt?.value {
                     converterText = String(newValue, radix: radix(for: unitB))
@@ -84,7 +87,7 @@ struct LengthConverterView: View {
             .padding(20)
             .background(Color.gray.opacity(0.5))
             .cornerRadius(10.0)
-            .padding(.bottom, 20)
+            .padding(.vertical, 20)
             Picker("Converted unit: \(unitFormatter.customString(from: unitB))", selection: $unitB) {
                 ForEach(allUnits, id: \.self) { unit in
                     Text(unitFormatter.customString(from: unit))
@@ -97,7 +100,7 @@ struct LengthConverterView: View {
                 Text(unitB.symbol)
             }
             Spacer()
-            Text("For more information about other prefixes and pronouciation check the About section.")
+            Text("For more information check the About section.")
                 .font(.footnote)
             Spacer()
         }
