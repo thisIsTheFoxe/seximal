@@ -54,7 +54,7 @@ struct NumberConverterView: View {
             }
             Text(convertedText)
             Spacer()
-            Text("Pronounciation in Seximal:")
+            Text("Pronunciation in Seximal:")
                 .font(.headline)
             if let num = number, let iNum = Int(num) {
                 Text(iNum.spellInSex())

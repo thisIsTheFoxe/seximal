@@ -42,13 +42,13 @@ struct LengthConverterView: View {
         return formatter
     }()
     
-    var convertedMesuremnt: Measurement<UnitLength>? {
+    var convertedMeasurement: Measurement<UnitLength>? {
         guard let value = Double(converterText, radix: radix(for: unitA)) else {
             return nil
         }
         
-        let messuareA = Measurement(value: value, unit: unitA)
-        var result = messuareA.converted(to: unitB)
+        let measureA = Measurement(value: value, unit: unitA)
+        var result = measureA.converted(to: unitB)
         
         if customUnits.contains(unitB) {
             let newStr = String(result.value, radix: 6)
@@ -78,7 +78,7 @@ struct LengthConverterView: View {
             .background(Color.gray.opacity(0.125))
             .padding()
             Button("Switch Units") {
-                if let newValue = convertedMesuremnt?.value {
+                if let newValue = convertedMeasurement?.value {
                     converterText = String(newValue, radix: radix(for: unitB))
                 }
                 swap(&unitA, &unitB)
@@ -94,7 +94,7 @@ struct LengthConverterView: View {
                 }
             }
             .pickerStyle(MenuPickerStyle())
-            if let measurement = convertedMesuremnt {
+            if let measurement = convertedMeasurement {
                 Text(String(measurement.value, radix: radix(for: unitB), grouping: unitB.grouping) + " " + unitB.symbol)
             } else {
                 Text(unitB.symbol)

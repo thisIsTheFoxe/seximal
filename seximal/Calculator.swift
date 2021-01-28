@@ -61,10 +61,10 @@ class Calculator: ObservableObject {
             }
         }
         
-        var backgoundColor: Color {
+        var backgroundColor: Color {
             switch self {
             case .mod(let mod):
-                return mod.backgoundColor
+                return mod.backgroundColor
             case .op(_), .equal:
                 return .orange
             default:
@@ -104,16 +104,16 @@ enum CalculatorLogic {
             return "Error"
         }
                 
-        if let grSeperator = Locale.current.groupingSeparator, let decSeperator = Locale.current.decimalSeparator {
-            let parts = result.components(separatedBy: decSeperator)
+        if let grSeparator = Locale.current.groupingSeparator, let decSeparator = Locale.current.decimalSeparator {
+            let parts = result.components(separatedBy: decSeparator)
             if let int = parts.first, int.count >= 5, parts.count <= 2 {
-                let rest = parts.count == 2 ? decSeperator + parts[1] : ""
-                result = parts[0].split(by: 4).joined(separator: grSeperator) + rest
+                let rest = parts.count == 2 ? decSeparator + parts[1] : ""
+                result = parts[0].split(by: 4).joined(separator: grSeparator) + rest
             }
         }
         
-        if result.containsDecSperator && !result.containsDecSperator {
-            result = result.applyDecSeperator()
+        if result.containsDecSeparator && !result.containsDecSeparator {
+            result = result.applyDecSeparator()
         }
         
         return result
@@ -187,7 +187,7 @@ var formatter: NumberFormatter = {
 }()
 
 extension String {
-    var containsDecSperator: Bool {
+    var containsDecSeparator: Bool {
         return contains(Locale.current.decimalSeparator ?? "")
     }
 
@@ -217,8 +217,8 @@ extension String {
         return self == "0" ? "\(num)" : "\(self)\(num)"
     }
 
-    func applyDecSeperator() -> String {
-        return containsDecSperator ? self : self + (Locale.current.decimalSeparator ?? ".")
+    func applyDecSeparator() -> String {
+        return containsDecSeparator ? self : self + (Locale.current.decimalSeparator ?? ".")
     }
 
     func flipped() -> String {

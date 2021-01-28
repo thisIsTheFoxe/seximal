@@ -147,8 +147,8 @@ extension BinaryFloatingPoint {
             isNegative = true
         }
         
-        if let groupSeperator = Locale.current.groupingSeparator {
-            intPart = intPart.replacingOccurrences(of: groupSeperator, with: "")
+        if let groupSeparator = Locale.current.groupingSeparator {
+            intPart = intPart.replacingOccurrences(of: groupSeparator, with: "")
         }
         
         guard let int = UInt64(intPart, radix: radix) else {

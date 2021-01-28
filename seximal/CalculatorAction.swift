@@ -89,7 +89,7 @@ enum CalculatorModifier: CalculatorAction {
         }
     }
     
-    var backgoundColor: Color {
+    var backgroundColor: Color {
         switch self {
         case .number, .comma:
             return Color.gray.opacity(0.25)
@@ -115,7 +115,7 @@ enum CalculatorModifier: CalculatorAction {
             let result = Darwin.sqrt(left)
             return String(result, radix: 6)
         case .comma:
-            return text.applyDecSeperator()
+            return text.applyDecSeparator()
         case .del:
             return text.deletingLast()
         case .negate:

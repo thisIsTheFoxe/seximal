@@ -10,7 +10,7 @@ import Combine
 
 struct SexTimeView: View {
     
-    var colums = {
+    var columns = {
         Array(repeating: GridItem(), count: 2)
     }()
     
@@ -109,7 +109,7 @@ struct SexTimeView: View {
             VStack {
                 Text("Today is \(weekDays[dayOfYear % 6 - 1]), the \(ordDay) of \(months[dayOfYear / 36]) ")
                     .padding()
-                LazyVGrid(columns: colums, content: {
+                LazyVGrid(columns: columns, content: {
                     ForEach(0..<months.count) { monthIx in
                         let monthDay = dayOfYear - monthIx * 36
                         MonthView(title: months[monthIx], currentDay: monthDay < 0 ? nil : monthDay)

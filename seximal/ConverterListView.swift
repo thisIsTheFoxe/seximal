@@ -20,7 +20,7 @@ struct ConverterListView: View {
 //                Section(header: Text("CCC")) {
 //                    NavigationLink("Time", destination: CCCConverterView())
 //                    NavigationLink("Length", destination: CCCConverterView())
-//                    NavigationLink("Wheight", destination: CCCConverterView())
+//                    NavigationLink("Weight", destination: CCCConverterView())
 //                }
             }
             .navigationTitle("Converter")
