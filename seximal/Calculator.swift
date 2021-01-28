@@ -34,6 +34,12 @@ enum CalculatorLogic {
             return applyDot()
         case .clear:
             return applyClear()
+        case .del:
+            return applyDel()
+        case .negate:
+            return negate()
+        case .rand:
+            return applyRand()
         default:
             return apply(op: item)
 //        case .command(let command):
@@ -62,7 +68,7 @@ enum CalculatorLogic {
             }
         }
         
-        if result.containsDot && !result.containsDot {
+        if result.containsDecSperator && !result.containsDecSperator {
             result = result.applyDot()
         }
         
@@ -82,6 +88,32 @@ enum CalculatorLogic {
         }
     }
 
+    private func applyRand() -> CalculatorLogic {
+        switch self {
+        case .left:
+            return .left(String(Double.random(in: 0...1), radix: 6))
+        case .leftOp(left: _, op: let op):
+            return .leftOp(left: String(Double.random(in: 0...1), radix: 6), op: op)
+        case .leftOpRight(left: let left, op: let op, right: _):
+            return .leftOpRight(left: left, op: op, right: String(Double.random(in: 0...1), radix: 6))
+        case .error:
+            return self
+        }
+    }
+    
+    private func negate() -> CalculatorLogic {
+        switch self {
+        case .left(let left):
+            return .left(left.negate())
+        case .leftOp(let left, let op):
+            return .leftOp(left: left.negate(), op: op)
+        case .leftOpRight(let left, let op, let right):
+            return .leftOpRight(left: left, op: op, right: right.negate())
+        case .error:
+            return .left("0".applyDot())
+        }
+    }
+    
     private func applyDot() -> CalculatorLogic {
         switch self {
         case .left(let left):
@@ -97,6 +129,19 @@ enum CalculatorLogic {
     
     private func applyClear() -> CalculatorLogic {
         return .left("0")
+    }
+    
+    private func applyDel() -> CalculatorLogic {
+        switch self {
+        case .left(let left):
+            return .left(left.deletingLast())
+        case .leftOp(left: let left, op: let op):
+            return .leftOp(left: left.deletingLast(), op: op)
+        case .leftOpRight(left: let left, op: let op, right: let right):
+            return .leftOpRight(left: left, op: op, right: right.deletingLast())
+        case .error:
+            return self
+        }
     }
 
     private func apply(op: CalculatorOperation) -> CalculatorLogic {
@@ -164,20 +209,38 @@ var formatter: NumberFormatter = {
 }()
 
 extension String {
-    var containsDot: Bool {
-        return contains(Locale.current.decimalSeparator ?? ".")
+    var containsDecSperator: Bool {
+        return contains(Locale.current.decimalSeparator ?? "")
     }
 
     var startWithNegative: Bool {
         return starts(with: "-")
     }
+    
+    func negate() -> String {
+        if startWithNegative {
+            var s = self
+            s.removeFirst()
+            return s
+        } else {
+            return "-\(self)"
+        }
+    }
 
+    func deletingLast() -> String {
+        var result = self
+        if result != "0" {
+            _ = result.popLast()
+        }
+        return result.isEmpty ? "0" : result
+    }
+    
     func apply(num: Int) -> String {
         return self == "0" ? "\(num)" : "\(self)\(num)"
     }
 
     func applyDot() -> String {
-        return containsDot ? self : self + (Locale.current.decimalSeparator ?? ".")
+        return containsDecSperator ? self : self + (Locale.current.decimalSeparator ?? ".")
     }
 
     func flipped() -> String {

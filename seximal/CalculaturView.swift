@@ -7,25 +7,19 @@
 
 import SwiftUI
 
-enum OperationResult {
-    case newText(String)
-    case newOp(op: CalculatorOperation, newText: String = "0")
-    case err
-    case clear
-}
-
 enum CalculatorOperation: CaseIterable, Hashable, Identifiable {
     var id: CalculatorOperation { self }
         
     static var allCases: [CalculatorOperation] = [
-        .number(i: 0), .number(i: 1), .clear,
-        .number(i: 2), .number(i: 3), .equal,
-        .number(i: 4), .number(i: 5), .comma,
-        .plus, .minus, .pow,
-        .mult, .div, .sqrt,
+        .number(i: 0), .number(i: 1), .comma,
+        .number(i: 2), .number(i: 3), .clear,
+        .number(i: 4), .number(i: 5), .del,
+        .plus, .minus, equal,
+        .mult, .div, .negate,
+        .pow, .sqrt, .rand
     ]
     
-    case number(i: Int), plus, minus, mult, div, equal, pow, sqrt, comma, clear
+    case number(i: Int), plus, minus, mult, div, equal, pow, sqrt, comma, clear, del, negate, rand
     
     var sfSymbolName: String? {
         switch self {
@@ -35,6 +29,8 @@ enum CalculatorOperation: CaseIterable, Hashable, Identifiable {
         case .div: return "divide"
         case .equal: return "equal"
         case .sqrt: return "x.squareroot"
+        case .del: return "delete.left"
+        case .negate: return "plus.slash.minus"
         default: return nil
         }
     }
@@ -51,6 +47,9 @@ enum CalculatorOperation: CaseIterable, Hashable, Identifiable {
         case .sqrt: return "√"
         case .comma: return Locale.current.decimalSeparator ?? "."
         case .clear: return "AC"
+        case .del: return "Del"
+        case .negate: return "+/-"
+        case .rand: return "Rand"
         default: return "?"
         }
     }
@@ -77,6 +76,10 @@ enum CalculatorOperation: CaseIterable, Hashable, Identifiable {
         case .pow: return 6
         case .sqrt: return 7
         case .comma: return 8
+        case .del: return 9
+        case .clear: return 10
+        case .negate: return 11
+        case .rand: return 12
         default: return 9999
         }
     }
@@ -88,6 +91,9 @@ enum CalculatorOperation: CaseIterable, Hashable, Identifiable {
             break
         default: break
         }
+        
+        //not rly needed for some reason, works without
+        //but better safe than sorry...
         hasher.combine(self.hashId)
     }
 }
@@ -134,7 +140,7 @@ struct CalculaturView: View {
                 }
                 Spacer(minLength: 18)
                 LazyVGrid(columns: colums, content: {
-                    ForEach(CalculatorOperation.allCases, id: \.self) { op in
+                    ForEach(CalculatorOperation.allCases) { op in
                         CalculatorButton(type: op)
                     }
                 })
