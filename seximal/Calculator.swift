@@ -6,12 +6,70 @@
 //
 
 import Foundation
+import SwiftUI
 
 class Calculator: ObservableObject {
-    @Published var logic: CalculatorLogic = .left("0")
-    var temporaryKept: [CalculatorOperation] = []
     
-    func apply(_ item: CalculatorOperation) {
+    enum Action: CalculatorAction, CaseIterable {
+        case op(_ op: CalculatorOp), mod(_ mod: CalculatorModifier), clear, equal
+        
+        static var allCases: [Action] = [
+            .mod(.number(i: 0)),    .mod(.number(i: 1)),    .mod(.comma),
+            .mod(.number(i: 2)),    .mod(.number(i: 3)),    .clear,
+            .mod(.number(i: 4)),    .mod(.number(i: 5)),    .mod(.del),
+            .op(.plus),             .op(.minus),            .equal,
+            .op(.mult),             .op(.div),              .mod(.negate),
+            .mod(.pow),             .mod(.sqrt),            .mod(.rand),
+        ]
+        
+        var id: Action { return self }
+        
+        var sfSymbolName: String? {
+            switch self {
+            case .op(let op):
+                return op.sfSymbolName
+            case .mod(let mod):
+                return mod.sfSymbolName
+            case .equal:
+                return "equal"
+
+            default:
+                return nil
+            }
+        }
+        
+        var displayName: String {
+            switch self {
+            case .op(let op):
+                return op.displayName
+            case .mod(let mod):
+                return mod.displayName
+            case .clear:
+                return "AC"
+            case .equal:
+                return "="
+            default:
+                return "?"
+            }
+        }
+        
+        var backgoundColor: Color {
+            switch self {
+            case .mod(let mod):
+                return mod.backgoundColor
+            case .op(_):
+                return .orange
+            default:
+                return Color.gray.opacity(0.125)
+            }
+        }
+    }
+    
+    
+    @Published var logic: CalculatorLogic = .left("0")
+    var temporaryKept: [Action] = []
+    
+    func apply(_ item: Action) {
         logic = logic.apply(item: item)
         temporaryKept.removeAll()
     }
@@ -21,32 +79,10 @@ class Calculator: ObservableObject {
 
 enum CalculatorLogic {
     case left(String)
-    case leftOp(left: String, op: CalculatorOperation)
-    case leftOpRight(left: String, op: CalculatorOperation, right: String)
+    case leftOp(left: String, op: CalculatorOp)
+    case leftOpRight(left: String, op: CalculatorOp, right: String)
     case error
-
-    @discardableResult
-    func apply(item: CalculatorOperation) -> CalculatorLogic {
-        switch item {
-        case .number(let num):
-            return apply(num: num)
-        case .comma:
-            return applyDot()
-        case .clear:
-            return applyClear()
-        case .del:
-            return applyDel()
-        case .negate:
-            return negate()
-        case .rand:
-            return applyRand()
-        default:
-            return apply(op: item)
-//        case .command(let command):
-//            return apply(command: command)
-        }
-    }
-
+    
     var output: String {
         var result: String
         switch self {
@@ -69,132 +105,66 @@ enum CalculatorLogic {
         }
         
         if result.containsDecSperator && !result.containsDecSperator {
-            result = result.applyDot()
+            result = result.applyDecSeperator()
         }
         
         return result
     }
-
-    private func apply(num: Int) -> CalculatorLogic {
-        switch self {
-        case .left(let left):
-            return .left(left.apply(num: num))
-        case .leftOp(let left, let op):
-            return .leftOpRight(left: left, op: op, right: "0".apply(num: num))
-        case .leftOpRight(let left, let op, let right):
-            return .leftOpRight(left: left, op: op, right: right.apply(num: num))
-        case .error:
-            return .left("0".apply(num: num))
-        }
-    }
-
-    private func applyRand() -> CalculatorLogic {
-        switch self {
-        case .left:
-            return .left(String(Double.random(in: 0...1), radix: 6))
-        case .leftOp(left: _, op: let op):
-            return .leftOp(left: String(Double.random(in: 0...1), radix: 6), op: op)
-        case .leftOpRight(left: let left, op: let op, right: _):
-            return .leftOpRight(left: left, op: op, right: String(Double.random(in: 0...1), radix: 6))
-        case .error:
-            return self
+    
+    @discardableResult
+    func apply(item: Calculator.Action) -> CalculatorLogic  {
+        switch item {
+        case .op(let op):
+            return apply(op)
+        case .mod(mod: let mod):
+            return apply(mod)
+        case .clear:
+            return .left("0")
+        case .equal:
+            return applyEqual()
         }
     }
     
-    private func negate() -> CalculatorLogic {
+    private func apply(_ op: CalculatorOp) -> CalculatorLogic {
         switch self {
         case .left(let left):
-            return .left(left.negate())
-        case .leftOp(let left, let op):
-            return .leftOp(left: left.negate(), op: op)
-        case .leftOpRight(let left, let op, let right):
-            return .leftOpRight(left: left, op: op, right: right.negate())
-        case .error:
-            return .left("0".applyDot())
-        }
-    }
-    
-    private func applyDot() -> CalculatorLogic {
-        switch self {
-        case .left(let left):
-            return .left(left.applyDot())
-        case .leftOp(let left, let op):
-            return .leftOpRight(left: left, op: op, right: "0".applyDot())
-        case .leftOpRight(let left, let op, let right):
-            return .leftOpRight(left: left, op: op, right: right.applyDot())
-        case .error:
-            return .left("0".applyDot())
-        }
-    }
-    
-    private func applyClear() -> CalculatorLogic {
-        return .left("0")
-    }
-    
-    private func applyDel() -> CalculatorLogic {
-        switch self {
-        case .left(let left):
-            return .left(left.deletingLast())
-        case .leftOp(left: let left, op: let op):
-            return .leftOp(left: left.deletingLast(), op: op)
-        case .leftOpRight(left: let left, op: let op, right: let right):
-            return .leftOpRight(left: left, op: op, right: right.deletingLast())
-        case .error:
-            return self
-        }
-    }
-
-    private func apply(op: CalculatorOperation) -> CalculatorLogic {
-        switch self {
-        case .left(let left):
-            switch op {
-            case .plus, .minus, .mult, .div:
-                return .leftOp(left: left, op: op)
-            case .pow, .sqrt:
-                guard let result = op.calculate(l: left, r: left) else { return .error }
-                return .left(result)
-            case .equal:
-                return self
-            default:
-                return .error
-            }
-        case .leftOp(left: let left, op: let currentOp):
-            switch op {
-            case .plus, .minus, .mult, .div:
-                return .leftOp(left: left, op: op)
-            case .pow, .sqrt:
-                guard let result = op.calculate(l: left, r: left) else { return .error }
-                return .leftOp(left: result, op: currentOp)
-            case .equal:
-                if let result = currentOp.calculate(l: left, r: left) {
-                    return .leftOp(left: result, op: currentOp)
-                } else {
-                    return .error
-                }
-            default:
-                return .error
-            }
+            return .leftOp(left: left, op: op)
+        case .leftOp(left: let left, op: _):
+            return .leftOp(left: left, op: op)
         case .leftOpRight(left: let left, op: let currentOp, right: let right):
-            switch op {
-            case .plus, .minus, .mult, .div:
-                if let result = currentOp.calculate(l: left, r: right) {
-                    return .leftOp(left: result, op: op)
-                } else {
-                    return .error
-                }
-            case .pow, .sqrt:
-                guard let result = op.calculate(l: right, r: right) else { return .error }
-                return .leftOpRight(left: left, op: currentOp, right: result)
-            case .equal:
-                if let result = currentOp.calculate(l: left, r: right) {
-                    return .left(result)
-                } else {
-                    return .error
-                }
-            default:
-                return .error
-            }
+            guard let result = currentOp.calculate(l: left, r: right) else { return .error }
+            return .leftOp(left: result, op: op)
         case .error:
+            return self
+        }
+    }
+    
+    private func apply(_ mod: CalculatorModifier) -> CalculatorLogic {
+        switch self {
+        case .left(let left):
+            guard let result = mod.modify(text: left) else { return .error }
+            return .left(result)
+        case .leftOp(left: let left, op: let op):
+            guard let result = mod.modify(text: "0") else { return .error }
+            return .leftOpRight(left: left, op: op, right: result)
+        case .leftOpRight(left: let left, op: let op, right: let right):
+            guard let result = mod.modify(text: right) else { return .error }
+            return .leftOpRight(left: left, op: op, right: result)
+        case .error:
+            guard let result = mod.modify(text: "0") else { return .error }
+            return .left(result)
+        }
+    }
+    
+    private func applyEqual() -> CalculatorLogic {
+        switch self {
+        case .leftOp(left: let left, op: let op):
+            guard let result = op.calculate(l: left, r: left) else { return .error }
+            return .leftOp(left: result, op: op)
+        case .leftOpRight(left: let left, op: let op, right: let right):
+            guard let result = op.calculate(l: left, r: right) else { return .error }
+            return .left(result)
+        default:
             return self
         }
     }
@@ -239,7 +209,7 @@ extension String {
         return self == "0" ? "\(num)" : "\(self)\(num)"
     }
 
-    func applyDot() -> String {
+    func applyDecSeperator() -> String {
         return containsDecSperator ? self : self + (Locale.current.decimalSeparator ?? ".")
     }
 
@@ -251,9 +221,5 @@ extension String {
         } else {
             return "-\(self)"
         }
-    }
-
-    func percentaged() -> String {
-        return String(Double(self)! / 100)
     }
 }
