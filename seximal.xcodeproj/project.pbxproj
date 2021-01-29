@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D50E69A525C41BA100B054BB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50E69A425C41BA100B054BB /* SceneDelegate.swift */; };
 		D542ABD525C17F9F0090E4AA /* Optional+Ternary.swift in Sources */ = {isa = PBXBuildFile; fileRef = D542ABD425C17F9F0090E4AA /* Optional+Ternary.swift */; };
 		D542ABDC25C1929E0090E4AA /* Calculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D542ABDB25C1929E0090E4AA /* Calculator.swift */; };
 		D572F54D25BF7FE000BD3CE8 /* SexTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D572F54C25BF7FE000BD3CE8 /* SexTimeView.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D50E69A425C41BA100B054BB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D542ABD425C17F9F0090E4AA /* Optional+Ternary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Ternary.swift"; sourceTree = "<group>"; };
 		D542ABDB25C1929E0090E4AA /* Calculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculator.swift; sourceTree = "<group>"; };
 		D572F54C25BF7FE000BD3CE8 /* SexTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SexTimeView.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 			children = (
 				D599104925C3326900A8C571 /* seximal.entitlements */,
 				D5D8BE3F25BF18F20066CF30 /* seximalApp.swift */,
+				D50E69A425C41BA100B054BB /* SceneDelegate.swift */,
 				D5D8BE4125BF18F20066CF30 /* ContentView.swift */,
 				D5D8BE5C25BF1C3A0066CF30 /* Base.swift */,
 				D542ABD425C17F9F0090E4AA /* Optional+Ternary.swift */,
@@ -197,6 +200,7 @@
 				D5D8BE5D25BF1C3A0066CF30 /* Base.swift in Sources */,
 				D542ABD525C17F9F0090E4AA /* Optional+Ternary.swift in Sources */,
 				D572F54D25BF7FE000BD3CE8 /* SexTimeView.swift in Sources */,
+				D50E69A525C41BA100B054BB /* SceneDelegate.swift in Sources */,
 				D5D8BE5625BF1A620066CF30 /* AboutView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -327,7 +331,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = seximal/seximal.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"seximal/Preview Content\"";
 				DEVELOPMENT_TEAM = E3BNAMEWTS;
 				ENABLE_PREVIEWS = YES;
@@ -353,7 +357,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = seximal/seximal.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"seximal/Preview Content\"";
 				DEVELOPMENT_TEAM = E3BNAMEWTS;
 				ENABLE_PREVIEWS = YES;
