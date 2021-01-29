@@ -11,7 +11,7 @@ struct CalculatorView: View {
     
     @EnvironmentObject var model: Calculator
     
-    let columns: [GridItem] = [GridItem(spacing: 5, alignment: .trailing),GridItem(spacing: 5, alignment: .center),GridItem(spacing: 5, alignment: .leading)]
+    let columns: [GridItem] = [GridItem(spacing: 10, alignment: .trailing),GridItem(spacing: 10, alignment: .center),GridItem(spacing: 10, alignment: .leading)]
     
     var body: some View {
         #if targetEnvironment(macCatalyst)
@@ -20,6 +20,7 @@ struct CalculatorView: View {
         NavigationView {
             content
         }
+        .navigationViewStyle(StackNavigationViewStyle())
         #endif
     }
     
@@ -31,11 +32,12 @@ struct CalculatorView: View {
                     .frame(width: g.size.width, height: g.size.height)
                     .background(Color(UIColor.secondarySystemBackground).opacity(0.5))
             }
-            Spacer(minLength: 18)
-            LazyVGrid(columns: columns, content: {
+            .frame(maxHeight: 100)
+            .padding(.bottom)
+            LazyVGrid(columns: columns, spacing: 10, content: {
                 ForEach(Calculator.Action.allCases) { op in
                     CalculatorButton(type: op)
-                        .padding(.top, 5)
+//                        .padding(.top, 5)
                 }
             })
         }
@@ -70,7 +72,8 @@ struct CalculatorButton: View {
                     .bold()
             }
         }
-        .frame(width: 100, height: 60, alignment: .center)
+        .frame(maxWidth: .infinity, minHeight: 60, maxHeight: .infinity)
+//        .frame(width: 100, height: 60)
         .background(type.backgroundColor)
         .foregroundColor(type.foregroundColor)
         .opacity(isTapped ? 0.5 : 1)

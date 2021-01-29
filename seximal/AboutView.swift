@@ -16,6 +16,7 @@ struct AboutView: View {
         NavigationView {
             content
         }
+        .navigationViewStyle(StackNavigationViewStyle())
         #endif
     }
     
@@ -49,9 +50,9 @@ struct AboutView: View {
             Link("Wikipedia", destination: URL(string: "https://en.wikipedia.org/wiki/Senary")!)
                 .padding(6)
             Link("seximal.net", destination: URL(string: "https://seximal.net")!)
+            Spacer(minLength: 36)
                 .navigationTitle("About Seximal")
                 .padding(6)
-            Spacer(minLength: 36)
         }
     }
 }

@@ -11,7 +11,7 @@ import Combine
 struct SexTimeView: View {
     
     var columns = {
-        Array(repeating: GridItem(), count: 2)
+        Array(repeating: GridItem(spacing: 3), count: 2)
     }()
     
     var cal: Calendar = {
@@ -109,7 +109,7 @@ struct SexTimeView: View {
             VStack {
                 Text("Today is \(weekDays[dayOfYear % 6 - 1]), the \(ordDay) of \(months[dayOfYear / 36]) ")
                     .padding()
-                LazyVGrid(columns: columns, content: {
+                LazyVGrid(columns: columns, spacing: 36, content: {
                     ForEach(0..<months.count) { monthIx in
                         let monthDay = dayOfYear - monthIx * 36
                         MonthView(title: months[monthIx], currentDay: monthDay < 0 ? nil : monthDay)
@@ -117,8 +117,8 @@ struct SexTimeView: View {
                 })
                 .padding(4)
             }
+            .padding(.bottom)
         }
-        .padding(.vertical)
         .navigationTitle("Time in Seximal")
         .onAppear { self.subscribe() }
         .onDisappear { self.unsubscribe() }
