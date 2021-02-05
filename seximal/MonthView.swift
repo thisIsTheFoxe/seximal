@@ -28,7 +28,7 @@ struct MonthView: View {
                         .background(day != currentDay ? Color(UIColor.systemBackground) : Color(UIColor.label))
                 }
             })
-            .border(Color.black, width: 1)
+            .border(Color(UIColor.label), width: 1)
         }
     }
 }

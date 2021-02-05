@@ -107,7 +107,7 @@ struct SexTimeView: View {
                 .padding()
             Divider()
             VStack {
-                Text("Today is \(weekDays[dayOfYear % 6 - 1]), the \(ordDay) of \(months[dayOfYear / 36]) ")
+                Text("Today is \(weekDays[(dayOfYear-1) % 6]), the \(ordDay) of \(months[dayOfYear / 36]) ")
                     .padding()
                 LazyVGrid(columns: columns, spacing: 36, content: {
                     ForEach(0..<months.count) { monthIx in
