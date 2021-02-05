@@ -28,7 +28,7 @@ struct SexTimeView: View {
     var ordDay: String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .ordinal
-        let month = dayOfYear / 36
+        let month = (dayOfYear-1) / 36
         let seximalDay = (dayOfYear - month * 36).asSex() //FIXME: not in dec
         let sexDayAsInt = Int(seximalDay) ?? 0
         return formatter.string(from: sexDayAsInt as NSNumber) ?? ""
@@ -107,7 +107,7 @@ struct SexTimeView: View {
                 .padding()
             Divider()
             VStack {
-                Text("Today is \(weekDays[(dayOfYear-1) % 6]), the \(ordDay) of \(months[dayOfYear / 36]) ")
+                Text("Today is \(weekDays[(dayOfYear-1) % 6]), the \(ordDay) of \(months[(dayOfYear-1) / 36]) ")
                     .padding()
                 LazyVGrid(columns: columns, spacing: 36, content: {
                     ForEach(0..<months.count) { monthIx in
