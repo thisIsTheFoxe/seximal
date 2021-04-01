@@ -44,9 +44,41 @@ struct CalculatorView: View {
                 }
             })
             .toolbar(content: {
-                Menu("Memory") {
-                    ForEach(Calculator.MemoryAction.allCases) { action in
-                        Button(action.displayName, action: { model.applyMemory(action: action) })
+                ToolbarItem(placement: .primaryAction) {
+                    Menu("Memory") {
+                        ForEach(Calculator.MemoryAction.allCases) { action in
+                            Button(action.displayName, action: { model.applyMemory(action: action) })
+                        }
+                    }
+                }
+                ToolbarItem(placement: .principal) {
+                    Menu("Trigonometry") {
+                        Section {
+                            Button("Use " + (model.usesRad ? "Radians" : "Degrees"), action: { model.usesRad.toggle() })
+                        }
+                        ForEach(CalculatorModifier.TrigFunc.allCases) { action in
+                            Button(action.displayName, action: {
+                                model.apply(.mod(.trig(f: action)))
+                            })
+                        }
+                    }
+                }
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Menu("Other") {
+                        Section {
+                            ForEach(CalculatorOp.Other.allCases) { action in
+                                Button(action.displayName, action: {
+                                    model.apply(.op(.other(t: action)))
+                                })
+                            }
+                        }
+                        Section {
+                            ForEach(CalculatorModifier.Other.allCases) { action in
+                                Button(action.displayName, action: {
+                                    model.apply(.mod(.other(t: action)))
+                                })
+                            }
+                        }
                     }
                 }
             })

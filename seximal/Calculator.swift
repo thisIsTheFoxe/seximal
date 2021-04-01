@@ -11,7 +11,7 @@ import SwiftUI
 class Calculator: ObservableObject {
     
     enum MemoryAction: CalculatorAction, CaseIterable {
-        var sfSymbolName: String? { return nil }
+        var sfSymbolName: String? { nil }
         
         var displayName: String {
             switch self {
@@ -22,7 +22,7 @@ class Calculator: ObservableObject {
             }
         }
         
-        var id: MemoryAction { return self }
+        var id: MemoryAction { self }
         
         case clear, add, subtract, read
     }
@@ -39,7 +39,7 @@ class Calculator: ObservableObject {
             .mod(.pow),             .mod(.sqrt),            .mod(.rand),
         ]
         
-        var id: Action { return self }
+        var id: Action { self }
         
         var sfSymbolName: String? {
             switch self {
@@ -91,7 +91,7 @@ class Calculator: ObservableObject {
     }
     
     @Published var logic: CalculatorLogic = .left("0")
-    
+    @Published var usesRad = true
     
     static var Memory_Key = "CALC_MEMORY"
     var memory = UserDefaults.standard.double(forKey: Memory_Key)
