@@ -25,17 +25,18 @@ struct AboutView: View {
             VStack(alignment: .leading) {
                 Group {
                     Text("Seximal").bold() +
-                        Text(" (also senary or heximal) is a numbering system that uses the number six as a base.")
+                        Text(" (also senary or heximal) is a numbering system that uses the number six as its base.")
                 }
+                .fixedSize(horizontal: false, vertical: true)
                 .font(.title2)
                 .padding(.vertical)
-                Text("Most people are very familiar and use the decimal (base-10) numbering system. However, also binary (base-2) or hexadecimal (base-16) systems are used e.g. in computer science. Even in our daily lives we can encounter different numbering systems, like the Roman numeral system on some clocks and base-60 when counting seconds and minutes.")
-                Text("Things that make a base distinct from others are:")
+                Text("Most people are very familiar and use the decimal (base-10) numbering system. However, also binary (base-2) or hexadecimal (base-16) systems are often used e.g. in computer science. Even in our daily lives we can encounter different numbering systems, like the Roman numeral system on some clocks and base-60 when counting seconds and minutes.")
+                Text("Things that distinguish one base from another are:")
                 
                 Text("1. It's size").bold().padding([.leading, .top])
                 Text("The bigger a base, the fewer digits it requires to write larger numbers. But also the more distinct digits are there to remember. Scientists say that the human brain's short-term memory has a capacity of seven (plus/minus two).")
                 Text("2. It's factors").bold().padding([.leading, .top])
-                Text("A base can describe a fraction as a terminating string if it is a composition of it's prime factors. E.g. decimal has the prime-factors one and five, therefore fractions like a half, a fifth, or a tenth (2 * 5) can be represented with only a few digits. On the other hand, 1/3 needs to be described as 0,3333333... recurring. So, the more prime factors a base has, the more terminating fractions it has.")
+                Text("A base can describe a fraction as a terminating string if it is a composition of it's prime factors. E.g. decimal has the prime-factors two and five, therefore fractions like a half, a fifth, or a tenth (2 * 5) can be represented with only a few digits. On the other hand, a third needs to be described as 0,3333333... recurring. So, the more prime factors a base has, the more terminating fractions it has.")
             }
             .padding(.horizontal)
             Divider().padding().padding(.horizontal, 36)
