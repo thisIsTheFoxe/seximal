@@ -28,10 +28,17 @@ struct CalculatorView: View {
         VStack {
             GeometryReader { g in
                 Text(verbatim: model.logic.output)
-                    .font(.title2)
+                    .font(.system(size: 28))
+                    .bold()
+                    .padding()
                     .frame(width: g.size.width, height: g.size.height)
                     .background(Color(UIColor.secondarySystemBackground).opacity(0.5))
             }
+            .contextMenu(ContextMenu(menuItems: {
+                Button("Copy", action: {
+                    UIPasteboard.general.string = model.logic.output
+                })
+            }))
             .frame(maxHeight: 100)
             .padding(.bottom)
             LazyVGrid(columns: columns, spacing: 10, content: {
