@@ -91,6 +91,8 @@ enum CalculatorLogic {
     case leftOpRight(left: String, op: CalculatorOp, right: String)
     case error
     
+    
+    //FIXME: can be optimized, since it's called a lot..?
     var output: String {
         var result: String
         switch self {
@@ -105,16 +107,20 @@ enum CalculatorLogic {
         }
                 
         if let grSeparator = Locale.current.groupingSeparator, let decSeparator = Locale.current.decimalSeparator {
+            let sign = result.startWithNegative ? String(result.removeFirst()) : ""
             let parts = result.components(separatedBy: decSeparator)
+            
             if let int = parts.first, int.count >= 5, parts.count <= 2 {
                 let rest = parts.count == 2 ? decSeparator + parts[1] : ""
+                
                 result = parts[0].split(by: 4).joined(separator: grSeparator) + rest
             }
+            result = sign + result
         }
         
-        if result.containsDecSeparator && !result.containsDecSeparator {
-            result = result.applyDecSeparator()
-        }
+//        if result.containsDecSeparator && !result.containsDecSeparator {
+//            result = result.applyDecSeparator()
+//        }
         
         return result
     }

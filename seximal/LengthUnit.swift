@@ -87,8 +87,8 @@ extension UInt64 {
         //: int overflow / can be NaN
         if double.isNaN || double.isInfinite {
             self = 0
-        } else if double >= Double(UInt64.max) {
-            self = UInt64.max
+        } else if double >= pow(6.0, 20) {
+            self = UInt64(pow(6.0, 20))
         } else if double < Double(UInt64.min) {
             self = UInt64.min
         } else {
@@ -102,16 +102,22 @@ extension String {
         let sign = value < 0 ? "-" : ""
         let dValue = Double(abs(value))
         
-        //FIXME: don't use int
-        let iValue = UInt64(safely: dValue)
-        
-        var int = String(iValue, radix: radix, uppercase: uppercase)
-        if let grouping = grouping, int.count >= grouping {
-            int = int.split(by: grouping).joined(separator: Locale.current.groupingSeparator ?? "")
-        }
+        //fixme: don't use int.... eh, it's fine..
+        var iValue = UInt64(safely: dValue)
+        let roundPlaces: Double = 16
         
         var remainder = dValue - floor(dValue)
+        remainder *= pow(6, roundPlaces)
+        remainder.round()
+        remainder /= pow(6, roundPlaces)
+        
+        if remainder >= 1 {
+            iValue += UInt64(floor(remainder))
+            remainder -= floor(remainder)
+        }
+        
         var fractalPart = ""
+        //FIXME: use UInt64 (or probaly 32 is enough) also for fractal and scale it down..?
         for ix in 1...16 {
             guard remainder != 0 else { break }
             let pwr = Double(truncating: NSDecimalNumber(decimal: pow(Decimal(radix), ix)))
@@ -126,6 +132,11 @@ extension String {
         
         if !fractalPart.isEmpty {
             fractalPart = (Locale.current.decimalSeparator ?? "") + fractalPart
+        }
+        
+        var int = String(iValue, radix: radix, uppercase: uppercase)
+        if let grouping = grouping, int.count >= grouping {
+            int = int.split(by: grouping).joined(separator: Locale.current.groupingSeparator ?? "")
         }
         
         self.init(sign + int + fractalPart)
