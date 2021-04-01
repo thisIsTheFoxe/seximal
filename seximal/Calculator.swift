@@ -10,6 +10,23 @@ import SwiftUI
 
 class Calculator: ObservableObject {
     
+    enum MemoryAction: CalculatorAction, CaseIterable {
+        var sfSymbolName: String? { return nil }
+        
+        var displayName: String {
+            switch self {
+            case .clear: return "Clear (MC)"
+            case .add: return "Add (M+)"
+            case .subtract: return "Subtract (M-)"
+            case .read: return "Read (MR)"
+            }
+        }
+        
+        var id: MemoryAction { return self }
+        
+        case clear, add, subtract, read
+    }
+    
     enum Action: CalculatorAction, CaseIterable {
         case op(_ op: CalculatorOp), mod(_ mod: CalculatorModifier), clear, equal
         
@@ -73,9 +90,28 @@ class Calculator: ObservableObject {
         }
     }
     
-    
     @Published var logic: CalculatorLogic = .left("0")
+    
+    
+    static var Memory_Key = "CALC_MEMORY"
+    var memory = UserDefaults.standard.double(forKey: Memory_Key)
     var temporaryKept: [Action] = []
+    
+    func applyMemory(action: MemoryAction) {
+        switch action {
+        case .clear:
+            memory = 0
+            UserDefaults.standard.setValue(0, forKey: Calculator.Memory_Key)
+        case .add:
+            memory += Double(logic.output, radix: 6) ?? 0
+            UserDefaults.standard.setValue(memory, forKey: Calculator.Memory_Key)
+        case .subtract:
+            memory -= Double(logic.output, radix: 6) ?? 0
+            UserDefaults.standard.setValue(memory, forKey: Calculator.Memory_Key)
+        case .read:
+            logic = logic.readMemory(newValue: memory)
+        }
+    }
     
     func apply(_ item: Action) {
         logic = logic.apply(item: item)
@@ -123,6 +159,17 @@ enum CalculatorLogic {
 //        }
         
         return result
+    }
+    
+    public func readMemory(newValue: Double) -> CalculatorLogic {
+        let newOutput = String(newValue, radix: 6)
+        switch self {
+        case .left(_): return .left(newOutput)
+        case let .leftOp(left: left, op: op), let .leftOpRight(left: left, op: op, right: _):
+            return .leftOpRight(left: left, op: op, right: newOutput)
+        default:
+            return .error
+        }
     }
     
     @discardableResult

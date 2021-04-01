@@ -47,6 +47,14 @@ struct CalculatorView: View {
 //                        .padding(.top, 5)
                 }
             })
+            .navigationBarItems(trailing: HStack {
+                //TODO: show current value
+                Menu("Memory") {
+                    ForEach(Calculator.MemoryAction.allCases) { action in
+                        Button(action.displayName, action: { model.applyMemory(action: action) })
+                    }
+                }
+            })
         }
         .padding()
         .navigationTitle("Calculator")
