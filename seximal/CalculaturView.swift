@@ -14,14 +14,10 @@ struct CalculatorView: View {
     let columns: [GridItem] = [GridItem(spacing: 10, alignment: .trailing),GridItem(spacing: 10, alignment: .center),GridItem(spacing: 10, alignment: .leading)]
     
     var body: some View {
-        #if targetEnvironment(macCatalyst)
-        content
-        #else
         NavigationView {
             content
         }
         .navigationViewStyle(StackNavigationViewStyle())
-        #endif
     }
     
     var content: some View {
@@ -44,11 +40,10 @@ struct CalculatorView: View {
             LazyVGrid(columns: columns, spacing: 10, content: {
                 ForEach(Calculator.Action.allCases) { op in
                     CalculatorButton(type: op)
-//                        .padding(.top, 5)
+                    //                        .padding(.top, 5)
                 }
             })
-            .navigationBarItems(trailing: HStack {
-                //TODO: show current value
+            .toolbar(content: {
                 Menu("Memory") {
                     ForEach(Calculator.MemoryAction.allCases) { action in
                         Button(action.displayName, action: { model.applyMemory(action: action) })
@@ -79,7 +74,7 @@ struct CalculatorButton: View {
         Group {
             if let sysName = type.sfSymbolName {
                 Image(systemName: sysName)
-//                    .imageScale(.large)
+                    //                    .imageScale(.large)
                     .font(Font.title3.weight(.bold))
             } else {
                 Text(type.displayName)
@@ -88,7 +83,7 @@ struct CalculatorButton: View {
             }
         }
         .frame(maxWidth: .infinity, minHeight: 60, maxHeight: .infinity)
-//        .frame(width: 100, height: 60)
+        //        .frame(width: 100, height: 60)
         .background(type.backgroundColor)
         .foregroundColor(type.foregroundColor)
         .opacity(isTapped ? 0.5 : 1)

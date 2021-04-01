@@ -167,8 +167,7 @@ enum CalculatorLogic {
         case .left(_): return .left(newOutput)
         case let .leftOp(left: left, op: op), let .leftOpRight(left: left, op: op, right: _):
             return .leftOpRight(left: left, op: op, right: newOutput)
-        default:
-            return .error
+        case .error: return .left(newOutput)
         }
     }
     
@@ -267,7 +266,11 @@ extension String {
     }
     
     func apply(num: Int) -> String {
-        return self == "0" ? "\(num)" : "\(self)\(num)"
+        if startWithNegative {
+            return self == "-0" ? "-\(num)" : "\(self)\(num)"
+        } else {
+            return self == "0" ? "\(num)" : "\(self)\(num)"
+        }
     }
 
     func applyDecSeparator() -> String {
