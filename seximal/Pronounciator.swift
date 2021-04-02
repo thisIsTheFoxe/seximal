@@ -15,42 +15,6 @@ extension Int {
       return formatter.string(from: numberValue) ?? ""
     }
     
-    /*
-    func spellAsExianInSex() -> String {
-        
-        let bi = self / 1296
-        let biRest = self / 1_679_616
-        let triRest = self % 1_679_616
-        let tri = self / 1_679_616
-
-        var result = ""
-        
-        switch self {
-        case 1..<1296:
-            if self > 1 {
-                result += self.spellInSex() + " "
-            }
-            result += "unexian"
-            return result
-        case 1296..<1_679_616:
-            if bi > 1 {
-                result += bi.spellInSex() + " "
-            }
-            result += "biexian" + biRest.spellAsExianInSex()
-            return result
-        case 1_679_616..<2_176_782_336:
-            if tri > 1 {
-                result += tri.spellInSex() + " "
-            }
-            result += "triexian" + biRest.spellAsExianInSex()
-            return result
-        default:
-            return ""
-        }
-        
-    }
-*/
-    
     func spellInSex() -> String {
         guard !(0...12).contains(self) else {
             if self == 0 { return "" }
