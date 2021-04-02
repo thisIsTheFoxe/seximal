@@ -35,6 +35,3 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         #endif
     }
 }
-
-
-//1440x900

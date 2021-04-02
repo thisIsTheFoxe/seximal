@@ -8,17 +8,29 @@
 import SwiftUI
 
 struct MonthView: View {
+    internal init(title: String, currentDay: Int, isLast: Bool) {
+        self.title = title
+        self.currentDay = currentDay
+        self.isLast = isLast
+        self.columns = Array(repeating: GridItem(.flexible(), spacing: 3, alignment: .trailing), count: isLast ? daysInMonth : 6)
+    }
+    
+    var columns: Array<GridItem>!
     var title: String
-    var currentDay: Int? = nil
-    let columns = Array(repeating: GridItem(.flexible(), spacing: 3, alignment: .trailing), count: 6)
+    var currentDay: Int
+    var isLast: Bool
+    var daysInMonth: Int {
+        isLast ? Calendar.current.daysInYear - 360 : 36
+    }
+    
+   
     
     var body: some View {
         VStack {
             Text(title)
                 .font(.headline)
-            
             LazyVGrid(columns: columns, alignment: .trailing, spacing: 3, content: {
-                ForEach(1...36, id: \.self) { day in
+                ForEach(1...daysInMonth, id: \.self) { day in
                     Text(day.asSex())
                         .font(.footnote)
                         .fontWeight(day == currentDay ? .bold: nil)
@@ -37,10 +49,8 @@ struct MonthView_Previews: PreviewProvider {
     static var previews: some View {
         
         LazyVGrid(columns: [GridItem(), GridItem()], content: {
-            ForEach(["January", "February"], id: \.self) { month in
-                MonthView(title: month, currentDay: 36)
-            }
+            MonthView(title: "January", currentDay: 2, isLast: true)
+            MonthView(title: "Februray", currentDay: 2, isLast: false)
         })
     }
-    
 }

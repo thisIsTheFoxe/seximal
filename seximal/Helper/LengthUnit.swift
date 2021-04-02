@@ -58,3 +58,9 @@ extension MeasurementFormatter {
         }
     }
 }
+
+extension Calendar {
+    var daysInYear: Int {
+        range(of: .day, in: .year, for: Date())?.count ?? 356
+    }
+}

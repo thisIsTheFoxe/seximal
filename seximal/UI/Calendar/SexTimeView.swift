@@ -77,6 +77,7 @@ struct SexTimeView: View {
     var months: [String] = {
         var result = Calendar.current.monthSymbols
         result.removeSubrange(6...7)
+        result.append("New Year's Week")
         return result
     }()
     
@@ -110,12 +111,20 @@ struct SexTimeView: View {
                 Text("Today is \(weekDays[(dayOfYear-1) % 6]), the \(ordDay) of \(months[(dayOfYear-1) / 36]) ")
                     .padding()
                 LazyVGrid(columns: columns, spacing: 36, content: {
-                    ForEach(0..<months.count) { monthIx in
+                    ForEach(0..<months.count - 1) { monthIx in
                         let monthDay = dayOfYear - monthIx * 36
-                        MonthView(title: months[monthIx], currentDay: monthDay < 0 ? nil : monthDay)
+                        MonthView(
+                            title: months[monthIx],
+                            currentDay: monthDay,
+                            isLast: false)
                     }
                 })
                 .padding(4)
+                MonthView(
+                    title: months.last!,
+                    currentDay: dayOfYear - 360,
+                    isLast: true)
+                    .frame(width: 200, alignment: .center)
             }
             .padding(.bottom)
         }
