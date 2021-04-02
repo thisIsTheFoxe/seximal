@@ -42,6 +42,7 @@ struct NumberConverterView: View {
                 }
                 swap(&baseA, &baseB)
             }
+            .keyboardShortcut(.tab, modifiers: .option)
             .font(.headline)
             .padding(20)
             .background(Color.gray.opacity(0.5))

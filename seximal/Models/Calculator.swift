@@ -54,6 +54,23 @@ class Calculator: ObservableObject {
             }
         }
         
+        var keyboardShortcut: KeyEquivalent? {
+            switch self {
+            case .mod(let mod):
+                switch mod {
+                case .number, .comma: return KeyEquivalent(Character(mod.displayName))
+                case .del: return .delete
+                case .negate: return nil //"-" is used for op
+                case .pow: return KeyEquivalent(Character("^")) //"^" doesn't work e.g. on german keyboard :(( (probably, cuz combining character)
+                default: return nil
+                }
+            case .equal: return .return
+            case .clear: return .clear
+            case .op(let op): return KeyEquivalent(Character(op.displayName))
+            default: return nil
+            }
+        }
+        
         var displayName: String {
             switch self {
             case .op(let op):

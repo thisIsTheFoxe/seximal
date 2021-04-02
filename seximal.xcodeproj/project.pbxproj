@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		D50E69A525C41BA100B054BB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50E69A425C41BA100B054BB /* SceneDelegate.swift */; };
 		D52CD64526170F8E00A2FF81 /* SeximalNumbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52CD64426170F8E00A2FF81 /* SeximalNumbers.swift */; };
+		D52CD64C2617132F00A2FF81 /* CGPoint+Distance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52CD64B2617132F00A2FF81 /* CGPoint+Distance.swift */; };
+		D52CD64E2617134F00A2FF81 /* CalculatorButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52CD64D2617134F00A2FF81 /* CalculatorButtons.swift */; };
 		D542ABD525C17F9F0090E4AA /* Optional+Ternary.swift in Sources */ = {isa = PBXBuildFile; fileRef = D542ABD425C17F9F0090E4AA /* Optional+Ternary.swift */; };
 		D542ABDC25C1929E0090E4AA /* Calculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D542ABDB25C1929E0090E4AA /* Calculator.swift */; };
 		D572F54D25BF7FE000BD3CE8 /* SexTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D572F54C25BF7FE000BD3CE8 /* SexTimeView.swift */; };
@@ -32,6 +34,8 @@
 /* Begin PBXFileReference section */
 		D50E69A425C41BA100B054BB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D52CD64426170F8E00A2FF81 /* SeximalNumbers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeximalNumbers.swift; sourceTree = "<group>"; };
+		D52CD64B2617132F00A2FF81 /* CGPoint+Distance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Distance.swift"; sourceTree = "<group>"; };
+		D52CD64D2617134F00A2FF81 /* CalculatorButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorButtons.swift; sourceTree = "<group>"; };
 		D542ABD425C17F9F0090E4AA /* Optional+Ternary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Ternary.swift"; sourceTree = "<group>"; };
 		D542ABDB25C1929E0090E4AA /* Calculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculator.swift; sourceTree = "<group>"; };
 		D572F54C25BF7FE000BD3CE8 /* SexTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SexTimeView.swift; sourceTree = "<group>"; };
@@ -71,6 +75,7 @@
 			children = (
 				D5D8BE4125BF18F20066CF30 /* ContentView.swift */,
 				D5D8BE5525BF1A620066CF30 /* AboutView.swift */,
+				D52CD64F2617135400A2FF81 /* Calculator */,
 				D52CD64726170FC300A2FF81 /* Converter */,
 				D52CD64826170FD600A2FF81 /* Calendar */,
 			);
@@ -93,7 +98,6 @@
 			children = (
 				D572F54C25BF7FE000BD3CE8 /* SexTimeView.swift */,
 				D5F6BE6025C0396600E37D72 /* MonthView.swift */,
-				D5D8BE5225BF1A4C0066CF30 /* CalculaturView.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -105,6 +109,7 @@
 				D5D8BE6225BF2B5E0066CF30 /* Pronounciator.swift */,
 				D5B5725725C058C7003087FA /* LengthUnit.swift */,
 				D52CD64426170F8E00A2FF81 /* SeximalNumbers.swift */,
+				D52CD64B2617132F00A2FF81 /* CGPoint+Distance.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -117,6 +122,15 @@
 				D542ABDB25C1929E0090E4AA /* Calculator.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		D52CD64F2617135400A2FF81 /* Calculator */ = {
+			isa = PBXGroup;
+			children = (
+				D5D8BE5225BF1A4C0066CF30 /* CalculaturView.swift */,
+				D52CD64D2617134F00A2FF81 /* CalculatorButtons.swift */,
+			);
+			path = Calculator;
 			sourceTree = "<group>";
 		};
 		D5D8BE3325BF18F20066CF30 = {
@@ -242,6 +256,8 @@
 				D5D8BE4025BF18F20066CF30 /* seximalApp.swift in Sources */,
 				D5D8BE6025BF1EE90066CF30 /* CCCConverterView.swift in Sources */,
 				D5D8BE5D25BF1C3A0066CF30 /* Base.swift in Sources */,
+				D52CD64C2617132F00A2FF81 /* CGPoint+Distance.swift in Sources */,
+				D52CD64E2617134F00A2FF81 /* CalculatorButtons.swift in Sources */,
 				D542ABD525C17F9F0090E4AA /* Optional+Ternary.swift in Sources */,
 				D572F54D25BF7FE000BD3CE8 /* SexTimeView.swift in Sources */,
 				D50E69A525C41BA100B054BB /* SceneDelegate.swift in Sources */,
