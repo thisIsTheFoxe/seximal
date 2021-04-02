@@ -72,7 +72,7 @@ struct LengthConverterView: View {
             }
             .pickerStyle(MenuPickerStyle())
             TextField(unitA.symbol, text: $converterText) { (didChange) in
-                print(didChange)
+//                print(didChange)
             }
             .padding(6)
             .background(Color.gray.opacity(0.125))

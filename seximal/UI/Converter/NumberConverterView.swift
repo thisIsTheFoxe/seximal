@@ -31,7 +31,7 @@ struct NumberConverterView: View {
                 }
             }
             TextField(baseA.abbreviatedName, text: $converterText) { (didChange) in
-                print(didChange)
+//                print(didChange)
             }
             .padding(6)
             .background(Color.gray.opacity(0.125))

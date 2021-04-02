@@ -46,17 +46,3 @@ enum Base: Int, CaseIterable, Identifiable {
         }
     }
 }
-
-let a = max(0, 2-100)
-
-extension Int {
-    
-    func asSex(padding: Int = 0) -> String {
-        var result = String(self, radix: 6)
-        let missing = Swift.max(0, padding - result.count)
-        for _ in 0..<missing {
-            result = "0" + result
-        }
-        return result
-    }
-}
