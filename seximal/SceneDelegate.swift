@@ -33,5 +33,42 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         scene.sizeRestrictions?.minimumSize = size
         scene.sizeRestrictions?.maximumSize = size
         #endif
+        
+        print(#function)
+        if let item = connectionOptions.shortcutItem {
+            _ = handle(shortcutItem: item)
+        }
+    }
+    
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        print(#function)
+        DispatchQueue.main.async {
+            AppState.global.selectedTab = .convert
+            AppState.global.activeConverter = .time
+        }
+    }
+    
+    
+    fileprivate func handle(shortcutItem: UIApplicationShortcutItem) -> Bool {
+        print(#function)
+        if shortcutItem.type == "time" {
+            DispatchQueue.main.async {
+                AppState.global.selectedTab = .convert
+                AppState.global.activeConverter = .time
+            }
+            return true
+        } else if shortcutItem.type == "calc" {
+            DispatchQueue.main.async {
+                AppState.global.selectedTab = .calc
+            }
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func windowScene(_ windowScene: UIWindowScene, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        let result = handle(shortcutItem: shortcutItem)
+        completionHandler(result)
     }
 }

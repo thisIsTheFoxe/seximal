@@ -28,7 +28,7 @@ struct SexTimeView: View {
     var ordDay: String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .ordinal
-        let month = (dayOfYear-1) / 36
+        let month = (dayOfYear - 1) / 36
         let seximalDay = (dayOfYear - month * 36).asSex() //FIXME: not in dec
         let sexDayAsInt = Int(seximalDay) ?? 0
         return formatter.string(from: sexDayAsInt as NSNumber) ?? ""
@@ -114,14 +114,14 @@ struct SexTimeView: View {
                     ForEach(0..<months.count - 1) { monthIx in
                         let monthDay = dayOfYear - monthIx * 36
                         MonthView(
-                            title: months[monthIx],
+                            title: Text(months[monthIx]).font(.headline),
                             currentDay: monthDay,
                             isLast: false)
                     }
                 })
                 .padding(4)
                 MonthView(
-                    title: months.last!,
+                    title: Text(months.last!).font(.headline),
                     currentDay: dayOfYear - 360,
                     isLast: true)
                     .frame(width: 200, alignment: .center)
