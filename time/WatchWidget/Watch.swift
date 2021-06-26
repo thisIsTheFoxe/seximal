@@ -48,7 +48,7 @@ struct WatchEntryView : View {
 //        ClockFace(date: entry.date)
         VStack {
             Text(entry.date, formatter: Self.dateFormatter)
-            Text(entry.date, style: .relative)
+            Text(entry.date, style: Text.DateStyle.timer)
         }
     }
 }

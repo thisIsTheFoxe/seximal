@@ -17,6 +17,9 @@
 		D54EB1D22684D4F400256E61 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54EB1D12684D4F300256E61 /* AppState.swift */; };
 		D54EB1D42684DCAF00256E61 /* CalendarWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54EB1D02684CFB400256E61 /* CalendarWidget.swift */; };
 		D572F54D25BF7FE000BD3CE8 /* SexTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D572F54C25BF7FE000BD3CE8 /* SexTimeView.swift */; };
+		D587590B26871C200010D441 /* WeekdayWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D587590926871C0A0010D441 /* WeekdayWidget.swift */; };
+		D587590D268720950010D441 /* SexTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = D587590C268720950010D441 /* SexTime.swift */; };
+		D587590E268721DE0010D441 /* SexTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = D587590C268720950010D441 /* SexTime.swift */; };
 		D599104725C32F3500A8C571 /* CalculatorAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D599104625C32F3500A8C571 /* CalculatorAction.swift */; };
 		D59EC2742684AA1900BB13EF /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F6BE6025C0396600E37D72 /* MonthView.swift */; };
 		D59EC2752684ABBD00BB13EF /* LengthUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B5725725C058C7003087FA /* LengthUnit.swift */; };
@@ -85,6 +88,8 @@
 		D54EB1D02684CFB400256E61 /* CalendarWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWidget.swift; sourceTree = "<group>"; };
 		D54EB1D12684D4F300256E61 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		D572F54C25BF7FE000BD3CE8 /* SexTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SexTimeView.swift; sourceTree = "<group>"; };
+		D587590926871C0A0010D441 /* WeekdayWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdayWidget.swift; sourceTree = "<group>"; };
+		D587590C268720950010D441 /* SexTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SexTime.swift; sourceTree = "<group>"; };
 		D599104625C32F3500A8C571 /* CalculatorAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorAction.swift; sourceTree = "<group>"; };
 		D599104925C3326900A8C571 /* seximal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = seximal.entitlements; sourceTree = "<group>"; };
 		D5B5725425C05709003087FA /* LengthConverterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LengthConverterView.swift; sourceTree = "<group>"; };
@@ -198,6 +203,7 @@
 				D54EB1D12684D4F300256E61 /* AppState.swift */,
 				D599104625C32F3500A8C571 /* CalculatorAction.swift */,
 				D542ABDB25C1929E0090E4AA /* Calculator.swift */,
+				D587590C268720950010D441 /* SexTime.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -271,6 +277,7 @@
 				D5DA824A2684887800ACAAB7 /* time.intentdefinition */,
 				D513460C2684F94200583AE3 /* WatchWidget */,
 				D54EB1D02684CFB400256E61 /* CalendarWidget.swift */,
+				D587590926871C0A0010D441 /* WeekdayWidget.swift */,
 				D5DA824B2684887B00ACAAB7 /* Assets.xcassets */,
 				D5DA824D2684887B00ACAAB7 /* Info.plist */,
 			);
@@ -390,6 +397,7 @@
 				D542ABDC25C1929E0090E4AA /* Calculator.swift in Sources */,
 				D599104725C32F3500A8C571 /* CalculatorAction.swift in Sources */,
 				D52CD64526170F8E00A2FF81 /* SeximalNumbers.swift in Sources */,
+				D587590D268720950010D441 /* SexTime.swift in Sources */,
 				D5D8BE4025BF18F20066CF30 /* seximalApp.swift in Sources */,
 				D5D8BE6025BF1EE90066CF30 /* CCCConverterView.swift in Sources */,
 				D5DA825B26848E1200ACAAB7 /* ClockMarks.swift in Sources */,
@@ -411,6 +419,8 @@
 			files = (
 				D5DA82492684887800ACAAB7 /* time.swift in Sources */,
 				D5DA825A26848E1000ACAAB7 /* ClockMarks.swift in Sources */,
+				D587590B26871C200010D441 /* WeekdayWidget.swift in Sources */,
+				D587590E268721DE0010D441 /* SexTime.swift in Sources */,
 				D5DA825D2684978400ACAAB7 /* Constraint.swift in Sources */,
 				D513460B2684F84E00583AE3 /* Watch.swift in Sources */,
 				D5DA82572684899F00ACAAB7 /* ClockFace.swift in Sources */,

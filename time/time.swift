@@ -9,10 +9,16 @@ import WidgetKit
 import SwiftUI
 import Intents
 
-//@main
+@main
 struct timeWidgets: WidgetBundle {
     var body: some Widget {
-        Watch()
+        WeekdayWidget()
         CalendarWidget()
+    }
+}
+
+extension TextConfig {
+    var isSet: Bool {
+        self != .unknown && self != .none
     }
 }

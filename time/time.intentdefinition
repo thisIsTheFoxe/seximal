@@ -3,7 +3,81 @@
 <plist version="1.0">
 <dict>
 	<key>INEnums</key>
-	<array/>
+	<array>
+		<dict>
+			<key>INEnumDisplayName</key>
+			<string>Text Config</string>
+			<key>INEnumDisplayNameID</key>
+			<string>yxtWHz</string>
+			<key>INEnumGeneratesHeader</key>
+			<true/>
+			<key>INEnumName</key>
+			<string>TextConfig</string>
+			<key>INEnumType</key>
+			<string>Regular</string>
+			<key>INEnumValues</key>
+			<array>
+				<dict>
+					<key>INEnumValueDisplayName</key>
+					<string>unknown</string>
+					<key>INEnumValueDisplayNameID</key>
+					<string>bkjMRY</string>
+					<key>INEnumValueName</key>
+					<string>unknown</string>
+				</dict>
+				<dict>
+					<key>INEnumValueDisplayName</key>
+					<string>All (weekday, month, day)</string>
+					<key>INEnumValueDisplayNameID</key>
+					<string>1UWBcW</string>
+					<key>INEnumValueIndex</key>
+					<integer>1</integer>
+					<key>INEnumValueName</key>
+					<string>all</string>
+				</dict>
+				<dict>
+					<key>INEnumValueDisplayName</key>
+					<string>Month</string>
+					<key>INEnumValueDisplayNameID</key>
+					<string>gHcb0Q</string>
+					<key>INEnumValueIndex</key>
+					<integer>2</integer>
+					<key>INEnumValueName</key>
+					<string>month</string>
+				</dict>
+				<dict>
+					<key>INEnumValueDisplayName</key>
+					<string>Month and day</string>
+					<key>INEnumValueDisplayNameID</key>
+					<string>EHFMu5</string>
+					<key>INEnumValueIndex</key>
+					<integer>3</integer>
+					<key>INEnumValueName</key>
+					<string>monthDay</string>
+				</dict>
+				<dict>
+					<key>INEnumValueDisplayName</key>
+					<string>Weekday only</string>
+					<key>INEnumValueDisplayNameID</key>
+					<string>tZdxaf</string>
+					<key>INEnumValueIndex</key>
+					<integer>4</integer>
+					<key>INEnumValueName</key>
+					<string>weekday</string>
+				</dict>
+				<dict>
+					<key>INEnumValueDisplayName</key>
+					<string>No text</string>
+					<key>INEnumValueDisplayNameID</key>
+					<string>Oj92Nk</string>
+					<key>INEnumValueIndex</key>
+					<integer>5</integer>
+					<key>INEnumValueName</key>
+					<string>none</string>
+				</dict>
+			</array>
+		</dict>
+	</array>
 	<key>INIntentDefinitionModelVersion</key>
 	<string>1.2</string>
 	<key>INIntentDefinitionNamespace</key>
@@ -11,7 +85,7 @@
 	<key>INIntentDefinitionSystemVersion</key>
 	<string>20G5042c</string>
 	<key>INIntentDefinitionToolsBuildVersion</key>
-	<string>13A5154h</string>
+	<string>13A5155e</string>
 	<key>INIntentDefinitionToolsVersion</key>
 	<string>13.0</string>
 	<key>INIntents</key>
@@ -259,10 +333,10 @@
 			<key>INIntentDescriptionID</key>
 			<string>SzfUhQ</string>
 			<key>INIntentLastParameterTag</key>
-			<integer>2</integer>
+			<integer>4</integer>
 			<key>INIntentManagedParameterCombinations</key>
 			<dict>
-				<key>showDate</key>
+				<key>showText</key>
 				<dict>
 					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
 					<true/>
@@ -278,16 +352,18 @@
 			<string>Calendar</string>
 			<key>INIntentParameterCombinations</key>
 			<dict>
-				<key>showDate</key>
+				<key>showText</key>
 				<dict>
 					<key>INIntentParameterCombinationIsLinked</key>
+					<true/>
+					<key>INIntentParameterCombinationIsPrimary</key>
 					<true/>
 					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
 					<true/>
 					<key>INIntentParameterCombinationTitle</key>
 					<string>display month</string>
 					<key>INIntentParameterCombinationTitleID</key>
-					<string>n7h3iK</string>
+					<string>ugzMLJ</string>
 				</dict>
 			</dict>
 			<key>INIntentParameters</key>
@@ -295,25 +371,20 @@
 				<dict>
 					<key>INIntentParameterConfigurable</key>
 					<true/>
+					<key>INIntentParameterCustomDisambiguation</key>
+					<true/>
 					<key>INIntentParameterDisplayName</key>
-					<string>Show Date</string>
+					<string>Text Display</string>
 					<key>INIntentParameterDisplayNameID</key>
-					<string>TThBUN</string>
+					<string>gk0SdN</string>
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>1</integer>
-					<key>INIntentParameterMetadata</key>
-					<dict>
-						<key>INIntentParameterMetadataFalseDisplayName</key>
-						<string>false</string>
-						<key>INIntentParameterMetadataFalseDisplayNameID</key>
-						<string>jwCYUz</string>
-						<key>INIntentParameterMetadataTrueDisplayName</key>
-						<string>true</string>
-						<key>INIntentParameterMetadataTrueDisplayNameID</key>
-						<string>lVc2kl</string>
-					</dict>
+					<key>INIntentParameterEnumType</key>
+					<string>TextConfig</string>
+					<key>INIntentParameterEnumTypeNamespace</key>
+					<string>88xZPY</string>
 					<key>INIntentParameterName</key>
-					<string>showDate</string>
+					<string>showText</string>
 					<key>INIntentParameterPromptDialogs</key>
 					<array>
 						<dict>
@@ -325,20 +396,36 @@
 						<dict>
 							<key>INIntentParameterPromptDialogCustom</key>
 							<true/>
-							<key>INIntentParameterPromptDialogFormatString</key>
-							<string>Show date as textual description</string>
-							<key>INIntentParameterPromptDialogFormatStringID</key>
-							<string>cWs8Ku</string>
 							<key>INIntentParameterPromptDialogType</key>
 							<string>Primary</string>
+						</dict>
+						<dict>
+							<key>INIntentParameterPromptDialogCustom</key>
+							<true/>
+							<key>INIntentParameterPromptDialogFormatString</key>
+							<string>There are ${count} options matching ‘${showText}’.</string>
+							<key>INIntentParameterPromptDialogFormatStringID</key>
+							<string>TDDqbn</string>
+							<key>INIntentParameterPromptDialogType</key>
+							<string>DisambiguationIntroduction</string>
+						</dict>
+						<dict>
+							<key>INIntentParameterPromptDialogCustom</key>
+							<true/>
+							<key>INIntentParameterPromptDialogFormatString</key>
+							<string>Just to confirm, you wanted ‘${showText}’?</string>
+							<key>INIntentParameterPromptDialogFormatStringID</key>
+							<string>se7nuq</string>
+							<key>INIntentParameterPromptDialogType</key>
+							<string>Confirmation</string>
 						</dict>
 					</array>
 					<key>INIntentParameterSupportsResolution</key>
 					<true/>
 					<key>INIntentParameterTag</key>
-					<integer>2</integer>
+					<integer>4</integer>
 					<key>INIntentParameterType</key>
-					<string>Boolean</string>
+					<string>Integer</string>
 				</dict>
 			</array>
 			<key>INIntentResponse</key>

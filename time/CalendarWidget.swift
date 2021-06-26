@@ -10,7 +10,7 @@ import Intents
 import WidgetKit
 
 
-@main
+//@main
 struct CalendarWidget: Widget {
     let kind = "calendar"
     
@@ -23,12 +23,6 @@ struct CalendarWidget: Widget {
 
 struct CalendarProvider: IntentTimelineProvider {
     
-    var cal: Calendar = {
-        var cal = Calendar.current
-        cal.timeZone = TimeZone(secondsFromGMT: 0)!
-        return cal
-    }()
-    
     func placeholder(in context: Context) -> CalendarEntry {
         CalendarEntry(date: Date(), configuration: CalendarIntent())
     }
@@ -38,14 +32,14 @@ struct CalendarProvider: IntentTimelineProvider {
         completion(entry)
     }
     
-    func getTimeline(for configuration: CalendarIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> Void) {
-        let midnight = cal.startOfDay(for: Date())
-        let nextMidnight = cal.date(byAdding: .day, value: 1, to: midnight)!
-        let next4Days = (1...3).map({ cal.date(byAdding: .day, value: $0, to: midnight)! })
+    func getTimeline(for configuration: CalendarIntent, in context: Context, completion: @escaping (Timeline<CalendarEntry>) -> Void) {
+        let midnight = Calendar.utc.startOfDay(for: Date())
+        let nextMidnight = Calendar.utc.date(byAdding: .day, value: 1, to: midnight)!
+        let next4Days = (1...3).map({ Calendar.utc.date(byAdding: .day, value: $0, to: midnight)! })
         let entries = next4Days.map( { CalendarEntry(date: $0, configuration: configuration) })
         let timeline = Timeline(entries: entries, policy: .after(nextMidnight))
         completion(timeline)
-
+        
     }
 }
 
@@ -56,58 +50,79 @@ struct CalendarEntry: TimelineEntry {
 
 struct CalendarEntryView: View {
     var entry: CalendarProvider.Entry
+    var time = SexTime()
+    @Environment(\.widgetFamily) var family: WidgetFamily
     
-    var dayOfYear: Int {
-        //day / year doesn't update
-        cal.ordinality(of: .day, in: .year, for: entry.date) ?? -1
+    var titleFont: Font {
+        switch family {
+        case .systemSmall:
+            return .caption
+        case .systemMedium:
+            return .subheadline
+        default: return .title
+        }
     }
     
-    var cal: Calendar = {
-        var cal = Calendar.current
-        cal.timeZone = TimeZone(secondsFromGMT: 0)!
-        return cal
+    var textFont: Font {
+        switch family {
+        case .systemSmall:
+            return .system(size: 8).bold()
+        case .systemMedium:
+            return .system(size: 10).bold()
+        default: return .body
+        }
+    }
+    
+    var emptyIntent: CalendarIntent = {
+        let emptyIntent = CalendarIntent()
+        emptyIntent.showText = TextConfig.none
+        return emptyIntent
     }()
-    
-    var months: [String] = {
-        var result = Calendar.current.monthSymbols
-        result.removeSubrange(6...7)
-        result.append("New Year's Week")
-        return result
-    }()
-    
-    let weekDays: [String] = ["Sunday", "Monday", "Vensday", "Marsday", "Joday", "Saturday"]
-    
-    var monthIx: Int {
-        (dayOfYear - 1) / 36
-    }
-    
-    var ordDay: String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .ordinal
-        let month = (dayOfYear - 1) / 36
-        let seximalDay = (dayOfYear - month * 36).asSex() //FIXME: not in dec
-        let sexDayAsInt = Int(seximalDay) ?? 0
-        return formatter.string(from: sexDayAsInt as NSNumber) ?? ""
-    }
     
     var body: some View {
         ZStack {
             Color(.systemBackground).ignoresSafeArea()
-            VStack(spacing: 2) {
-                MonthView(title: Text(months[monthIx]).font(.caption).bold(),
-                          spacing: 2,
-                          currentDay: dayOfYear - monthIx * 36,
-                          isLast: monthIx == months.count - 1
-                )
-                if entry.configuration.showDate?.boolValue == true {
-                    Text("\(weekDays[(dayOfYear - 1) % 6]), \(months[(dayOfYear - 1) / 36]) \(ordDay)")
-                        .font(.system(size: 8))
-                        .bold()
-                        .padding(.vertical, 2)
+            HStack {
+                VStack(spacing: 2) {
+                    MonthView(title: Text(time.month).font(titleFont).bold(),
+                              spacing: 4,
+                              currentDay: time.dayOfYear - time.monthIx * 36,
+                              isLast: time.month == time.allMonths.last!
+                    )
+                    if entry.configuration.showText.isSet {
+                        Text(time.format(for: entry.configuration.showText) ?? "– –")
+                            .font(textFont)
+                            .bold()
+                            .padding(.vertical, 2)
+                    }
+                }
+                .padding(family == .systemSmall ? 20 : 30)
+                
+                if family == .systemMedium {
+                    WeekdayEntryView(entry: .init(date: entry.date, config: emptyIntent), showText: false)
+                        .scaledToFit()
                 }
             }
-            .padding(20)
+            
         }
         .widgetURL(URL(string: "seximal://Converter/Time"))
+    }
+}
+
+@available(iOSApplicationExtension 15.0, *)
+struct CalendarWidget_Preview: PreviewProvider {
+    static var intent: CalendarIntent = {
+        let i = CalendarIntent()
+        i.showText = .all
+        return i
+    }()
+    
+    static var previews: some View {
+        CalendarEntryView(entry: .init(date: Date(), configuration: intent))
+            .previewContext(WidgetPreviewContext(family: .systemExtraLarge))
+        CalendarEntryView(entry: .init(date: Date(), configuration: intent))
+            .previewContext(WidgetPreviewContext(family: .systemMedium))
+        CalendarEntryView(entry: .init(date: Date(), configuration: intent))
+            .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }
