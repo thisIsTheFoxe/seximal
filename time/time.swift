@@ -12,6 +12,7 @@ import Intents
 @main
 struct timeWidgets: WidgetBundle {
     var body: some Widget {
+        WatchWidget()
         WeekdayWidget()
         CalendarWidget()
     }

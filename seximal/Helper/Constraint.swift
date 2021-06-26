@@ -11,7 +11,7 @@ import CoreGraphics
 struct Constraint {
     public static let marginLeading: CGFloat = 16
     public static let marginTrailing: CGFloat = 16
-    public static let marginTop: CGFloat = 12
+    public static let marginTop: CGFloat = 16
     public static let tickHeight: CGFloat = 8
     public static let longTickHeight: CGFloat = 14
     public static let tickWidth: CGFloat = 2

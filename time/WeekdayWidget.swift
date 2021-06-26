@@ -9,6 +9,28 @@ import SwiftUI
 import Intents
 import WidgetKit
 
+struct WeekdayWidget: Widget {
+    static let kind = "week"
+    
+    var config : some WidgetConfiguration = {
+        IntentConfiguration(kind: Self.kind, intent: CalendarIntent.self, provider: WeekdayProvider()) { entry in
+            WeekdayEntryView(entry: entry)
+        }
+        .configurationDisplayName("Week Widget")
+        .description("A widget displaying object the current weekday was named after (e.g. Sunday = Sun, Vensday = Venus).")
+    }()
+    
+    var body: some WidgetConfiguration {
+        if #available(iOSApplicationExtension 15.0, *) {
+            return config
+                .supportedFamilies([.systemSmall, .systemLarge, .systemExtraLarge])
+        } else {
+            return config
+                .supportedFamilies([.systemSmall, .systemLarge])
+        }
+    }
+}
+
 struct WeekdayEntry: TimelineEntry {
     let date: Date
     let config: CalendarIntent
@@ -68,35 +90,9 @@ struct WeekdayEntryView : View {
     }
 }
 
-struct WeekdayWidget: Widget {
-    static let kind = "week"
-    
-    var config = {
-        IntentConfiguration(kind: Self.kind, intent: CalendarIntent.self, provider: WeekdayProvider()) { entry in
-            WeekdayEntryView(entry: entry)
-        }
-    }()
-    
-    var body: some WidgetConfiguration {
-        if #available(iOSApplicationExtension 15.0, *) {
-            return config
-            .supportedFamilies([.systemSmall, .systemLarge, .systemExtraLarge])
-        } else {
-            return config
-            .supportedFamilies([.systemSmall, .systemLarge])
-        }
-    }
-}
-
 struct Weekday_Previews: PreviewProvider {
-    static var intent: CalendarIntent = {
-        let i = CalendarIntent()
-        i.showText = .all
-        return i
-    }()
-    
     static var previews: some View {
-        WeekdayEntryView(entry: WeekdayEntry(date: Date(), config: intent))
+        WeekdayEntryView(entry: WeekdayEntry(date: Date(), config: .preview))
             .previewContext(WidgetPreviewContext(family: .systemLarge))
     }
 }

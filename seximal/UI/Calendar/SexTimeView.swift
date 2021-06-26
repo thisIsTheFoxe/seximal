@@ -10,11 +10,9 @@ import Combine
 
 struct SexTimeView: View {
     
-    var columns = {
-        Array(repeating: GridItem(spacing: 3), count: 2)
-    }()
+    var columns = { Array(repeating: GridItem(spacing: 3), count: 2) }()
     
-    @State var time = SexTime()
+    @ObservedObject var time = SexTime()
     
     var body: some View {
         ScrollView {
@@ -62,25 +60,8 @@ struct SexTimeView: View {
             .padding(.bottom)
         }
         .navigationTitle("Time in Seximal")
-        .onAppear { self.subscribe() }
-        .onDisappear { self.unsubscribe() }
-    }
-    
-    private func subscribe() {
-        time.timerSubscription =
-            Timer.publish(every: 0.05, on: .main, in: .common)
-            .autoconnect()
-            .map({
-                if !Calendar.utc.isDate($0, inSameDayAs: time.dayDate) {
-                    time.dayDate = $0
-                }
-                return $0
-            })
-            .assign(to: \.time.date, on: self)
-    }
-    
-    private func unsubscribe() {
-        time.timerSubscription?.cancel()
+        .onAppear { self.time.startTimer() }
+        .onDisappear { self.time.stopTimer() }
     }
 }
 

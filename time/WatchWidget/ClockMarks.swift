@@ -32,13 +32,6 @@ struct ClockMarks: View {
     }
 }
 
-struct ClockMarks_Previews: PreviewProvider {
-    static var previews: some View {
-        ClockMarks(count: 36, longDivider: 6, longTickHeight: 10, tickHeight: 5, tickWidth: 2, highlightedColorDivider: 6, highlightedColor: .red, normalColor: .blue)
-            .frame(width: 250, height: 250)
-    }
-}
-
 struct TickShape: Shape {
     
     let tickHeight: CGFloat
@@ -76,4 +69,33 @@ struct NumberView: View {
         }
     }
     
+}
+
+struct ClockHand: Shape {
+    let angle: CGFloat
+    let length: CGFloat
+    
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        let length = (rect.width / 2) * self.length
+        let center = CGPoint(x: rect.midX, y: rect.midY)
+        
+        path.move(to: center)
+        
+        let hoursAngle = CGFloat.pi / 2 - .pi * 2 * angle
+        
+        path.addLine(to: CGPoint(
+            x: rect.midX + cos(hoursAngle) * length,
+            y: rect.midY - sin(hoursAngle) * length))
+        return path
+    }
+}
+
+
+
+struct Clock_Previews: PreviewProvider {
+    static var previews: some View {
+        ClockMarks(count: 36, longDivider: 6, longTickHeight: 10, tickHeight: 5, tickWidth: 2, highlightedColorDivider: 6, highlightedColor: .red, normalColor: .blue)
+            .frame(width: 250, height: 250)
+    }
 }

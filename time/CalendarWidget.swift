@@ -10,15 +10,21 @@ import Intents
 import WidgetKit
 
 
-//@main
 struct CalendarWidget: Widget {
-    let kind = "calendar"
+    let kind = "cal"
     
     var body: some WidgetConfiguration {
         IntentConfiguration(kind: kind, intent: CalendarIntent.self, provider: CalendarProvider()) { entry in
             CalendarEntryView(entry: entry)
         }
+        .configurationDisplayName("Calendar Widget")
+        .description("A widget showing the current month and date in a seximal calendar.")
     }
+}
+
+struct CalendarEntry: TimelineEntry {
+    let date: Date
+    let configuration: CalendarIntent
 }
 
 struct CalendarProvider: IntentTimelineProvider {
@@ -41,11 +47,6 @@ struct CalendarProvider: IntentTimelineProvider {
         completion(timeline)
         
     }
-}
-
-struct CalendarEntry: TimelineEntry {
-    let date: Date
-    let configuration: CalendarIntent
 }
 
 struct CalendarEntryView: View {
@@ -111,18 +112,22 @@ struct CalendarEntryView: View {
 
 @available(iOSApplicationExtension 15.0, *)
 struct CalendarWidget_Preview: PreviewProvider {
-    static var intent: CalendarIntent = {
+    
+    static var previews: some View {
+        CalendarEntryView(entry: .init(date: Date(), configuration: .preview))
+            .previewContext(WidgetPreviewContext(family: .systemExtraLarge))
+        CalendarEntryView(entry: .init(date: Date(), configuration: .preview))
+            .previewContext(WidgetPreviewContext(family: .systemMedium))
+        CalendarEntryView(entry: .init(date: Date(), configuration: .preview))
+            .previewContext(WidgetPreviewContext(family: .systemSmall))
+    }
+}
+
+
+extension CalendarIntent {
+    static var preview: CalendarIntent = {
         let i = CalendarIntent()
         i.showText = .all
         return i
     }()
-    
-    static var previews: some View {
-        CalendarEntryView(entry: .init(date: Date(), configuration: intent))
-            .previewContext(WidgetPreviewContext(family: .systemExtraLarge))
-        CalendarEntryView(entry: .init(date: Date(), configuration: intent))
-            .previewContext(WidgetPreviewContext(family: .systemMedium))
-        CalendarEntryView(entry: .init(date: Date(), configuration: intent))
-            .previewContext(WidgetPreviewContext(family: .systemSmall))
-    }
 }
