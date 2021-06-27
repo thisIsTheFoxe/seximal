@@ -9,24 +9,29 @@ import Foundation
 import SwiftUI
 
 class AppState: ObservableObject {
-    @Published var selectedTab: ContentView.Tab = .about
-    @Published var activeConverter: ConverterListView.ConverterType?
+    enum Tab: String, Hashable {
+        case convert
+        case calc
+        case about
+    }
+    
+    enum ConverterType: String, Hashable {
+        case time, length, number
+    }
+    
+    @Published var selectedTab: Tab = .about
+    @Published var activeConverter: ConverterType?
     
     static let global = AppState()
     
     private init() { }
-}
-
-extension ConverterListView {
-    enum ConverterType: Hashable {
-        case time, length, number
-    }
-}
-
-extension ContentView {
-    enum Tab: Hashable {
-        case convert
-        case calc
-        case about
+    
+    static func url(for tab: Tab, converterType: ConverterType? = nil) -> URL {
+        var urlStr = "seximal://app/\(tab.rawValue)"
+        if let converterType = converterType {
+            urlStr.append("/\(converterType.rawValue)")
+        }
+        
+        return URL(string: urlStr)!
     }
 }

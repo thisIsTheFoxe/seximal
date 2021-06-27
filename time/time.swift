@@ -7,7 +7,6 @@
 
 import WidgetKit
 import SwiftUI
-import Intents
 
 @main
 struct timeWidgets: WidgetBundle {
@@ -15,11 +14,5 @@ struct timeWidgets: WidgetBundle {
         WatchWidget()
         WeekdayWidget()
         CalendarWidget()
-    }
-}
-
-extension TextConfig {
-    var isSet: Bool {
-        self != .unknown && self != .none
     }
 }

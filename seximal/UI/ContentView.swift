@@ -17,20 +17,20 @@ struct ContentView: View {
                     Image(systemName: "arrow.left.arrow.right.square")
                     Text("Converter")
                 }
-                .tag(Tab.convert)
+                .tag(AppState.Tab.convert)
             CalculatorView()
                 .environmentObject(Calculator())
                 .tabItem {
                     Image(systemName: "number.square.fill")
                 Text("Calculator")
                 }
-                .tag(Tab.calc)
+                .tag(AppState.Tab.calc)
             AboutView()
                 .tabItem {
                     Image(systemName: "questionmark.circle")
                     Text("About")
                 }
-                .tag(Tab.about)
+                .tag(AppState.Tab.about)
         }
     }
 }

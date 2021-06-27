@@ -21,13 +21,13 @@ struct WeekdayWidget: Widget {
     }()
     
     var body: some WidgetConfiguration {
-        if #available(iOSApplicationExtension 15.0, *) {
-            return config
-                .supportedFamilies([.systemSmall, .systemLarge, .systemExtraLarge])
-        } else {
+//        if #available(iOSApplicationExtension 15.0, *) {
+//            return config
+//                .supportedFamilies([.systemSmall, .systemLarge, .systemExtraLarge])
+//        } else {
             return config
                 .supportedFamilies([.systemSmall, .systemLarge])
-        }
+//        }
     }
 }
 
@@ -72,10 +72,10 @@ struct WeekdayEntryView : View {
             Image("\(time.weekday)/\(Int.random(in: 0...4))", bundle: .main)
                 .resizable()
                 .scaledToFill()
-            if entry.config.showText.isSet {
+            if let timeText = time.format(for: entry.config.showText) {
                 VStack {
                     Spacer()
-                    Text(time.format(for: entry.config.showText) ?? "– –")
+                    Text(timeText)
                         .bold()
                         .foregroundColor(.white)
                         .shadow(color: .black, radius: 0.5, x: 0, y: 1)
@@ -86,7 +86,7 @@ struct WeekdayEntryView : View {
                 .padding()
             }
         }
-        .widgetURL(URL(string: "seximal://Converter/Time"))
+        .widgetURL(AppState.url(for: .convert, converterType: .time))
     }
 }
 

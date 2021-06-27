@@ -13,7 +13,7 @@ struct ClockView: View {
     var useTwoHourHands: Bool
     var showDigitally: Bool
     
-    var strokeScalar: Double { isSmall ? 1 : 1.5 }
+    var strokeScalar: CGFloat { isSmall ? 1 : 1.5 }
     
     var titleFont: Font
     var textFont: Font

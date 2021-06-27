@@ -90,8 +90,8 @@ struct CalendarEntryView: View {
                               currentDay: time.dayOfYear - time.monthIx * 36,
                               isLast: time.month == time.allMonths.last!
                     )
-                    if entry.configuration.showText.isSet {
-                        Text(time.format(for: entry.configuration.showText) ?? "– –")
+                    if let timeText = time.format(for: entry.configuration.showText) {
+                        Text(timeText)
                             .font(textFont)
                             .bold()
                             .padding(.vertical, 2)
@@ -106,7 +106,7 @@ struct CalendarEntryView: View {
             }
             
         }
-        .widgetURL(URL(string: "seximal://Converter/Time"))
+        .widgetURL(AppState.url(for: .convert, converterType: .time))
     }
 }
 
@@ -114,8 +114,8 @@ struct CalendarEntryView: View {
 struct CalendarWidget_Preview: PreviewProvider {
     
     static var previews: some View {
-        CalendarEntryView(entry: .init(date: Date(), configuration: .preview))
-            .previewContext(WidgetPreviewContext(family: .systemExtraLarge))
+//        CalendarEntryView(entry: .init(date: Date(), configuration: .preview))
+//            .previewContext(WidgetPreviewContext(family: .systemExtraLarge))
         CalendarEntryView(entry: .init(date: Date(), configuration: .preview))
             .previewContext(WidgetPreviewContext(family: .systemMedium))
         CalendarEntryView(entry: .init(date: Date(), configuration: .preview))

@@ -69,7 +69,7 @@ struct WatchEntryView : View {
     
     var body: some View {
         ClockFace(config: entry.configuration, time: SexTime(date: entry.date))
-            .widgetURL(URL(string: "seximal://Converter/Time"))
+            .widgetURL(AppState.url(for: .convert, converterType: .time))
     }
 }
 
