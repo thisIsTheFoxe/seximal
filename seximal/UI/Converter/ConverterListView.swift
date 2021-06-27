@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct ConverterListView: View {
+    @EnvironmentObject var appState: AppState
+    
     var body: some View {
         NavigationView {
             List {
 //                Section(header: Text("Seximal")) {
-                    NavigationLink("Numbers", destination: NumberConverterView())
-                    NavigationLink("Time", destination: SexTimeView())
-                    NavigationLink("Length", destination: LengthConverterView())
+                NavigationLink("Numbers", destination: NumberConverterView(), tag: .number, selection: $appState.activeConverter)
+                    NavigationLink("Time", destination: SexTimeView(), tag: .time, selection: $appState.activeConverter)
+                    NavigationLink("Length", destination: LengthConverterView(), tag: .length, selection: $appState.activeConverter)
 //                    NavigationLink("Volume", destination: Text("VOL"))
 //                }
 //                Section(header: Text("CCC")) {

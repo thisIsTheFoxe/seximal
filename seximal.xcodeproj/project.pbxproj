@@ -8,13 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		D50E69A525C41BA100B054BB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50E69A425C41BA100B054BB /* SceneDelegate.swift */; };
+		D513460B2684F84E00583AE3 /* WatchWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D513460A2684F80A00583AE3 /* WatchWidget.swift */; };
 		D52CD64526170F8E00A2FF81 /* SeximalNumbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52CD64426170F8E00A2FF81 /* SeximalNumbers.swift */; };
 		D52CD64C2617132F00A2FF81 /* CGPoint+Distance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52CD64B2617132F00A2FF81 /* CGPoint+Distance.swift */; };
 		D52CD64E2617134F00A2FF81 /* CalculatorButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52CD64D2617134F00A2FF81 /* CalculatorButtons.swift */; };
 		D542ABD525C17F9F0090E4AA /* Optional+Ternary.swift in Sources */ = {isa = PBXBuildFile; fileRef = D542ABD425C17F9F0090E4AA /* Optional+Ternary.swift */; };
 		D542ABDC25C1929E0090E4AA /* Calculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D542ABDB25C1929E0090E4AA /* Calculator.swift */; };
+		D54EB1D22684D4F400256E61 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54EB1D12684D4F300256E61 /* AppState.swift */; };
+		D54EB1D42684DCAF00256E61 /* CalendarWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54EB1D02684CFB400256E61 /* CalendarWidget.swift */; };
 		D572F54D25BF7FE000BD3CE8 /* SexTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D572F54C25BF7FE000BD3CE8 /* SexTimeView.swift */; };
+		D587590B26871C200010D441 /* WeekdayWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D587590926871C0A0010D441 /* WeekdayWidget.swift */; };
+		D587590D268720950010D441 /* SexTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = D587590C268720950010D441 /* SexTime.swift */; };
+		D587590E268721DE0010D441 /* SexTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = D587590C268720950010D441 /* SexTime.swift */; };
+		D597177D2688974400A84BA9 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54EB1D12684D4F300256E61 /* AppState.swift */; };
 		D599104725C32F3500A8C571 /* CalculatorAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D599104625C32F3500A8C571 /* CalculatorAction.swift */; };
+		D59EC2742684AA1900BB13EF /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F6BE6025C0396600E37D72 /* MonthView.swift */; };
+		D59EC2752684ABBD00BB13EF /* LengthUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B5725725C058C7003087FA /* LengthUnit.swift */; };
+		D5B51591268769F600079B31 /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B51590268769F600079B31 /* ClockView.swift */; };
+		D5B51592268769F600079B31 /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B51590268769F600079B31 /* ClockView.swift */; };
+		D5B515932687722B00079B31 /* ClockMarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DA825826848E0C00ACAAB7 /* ClockMarks.swift */; };
 		D5B5725525C05709003087FA /* LengthConverterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B5725425C05709003087FA /* LengthConverterView.swift */; };
 		D5B5725825C058C7003087FA /* LengthUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B5725725C058C7003087FA /* LengthUnit.swift */; };
 		D5D8BE4025BF18F20066CF30 /* seximalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8BE3F25BF18F20066CF30 /* seximalApp.swift */; };
@@ -28,19 +40,61 @@
 		D5D8BE5D25BF1C3A0066CF30 /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8BE5C25BF1C3A0066CF30 /* Base.swift */; };
 		D5D8BE6025BF1EE90066CF30 /* CCCConverterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8BE5F25BF1EE90066CF30 /* CCCConverterView.swift */; };
 		D5D8BE6325BF2B5E0066CF30 /* Pronounciator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8BE6225BF2B5E0066CF30 /* Pronounciator.swift */; };
+		D5DA82452684887800ACAAB7 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5DA82232684628C00ACAAB7 /* WidgetKit.framework */; };
+		D5DA82462684887800ACAAB7 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5DA82252684628C00ACAAB7 /* SwiftUI.framework */; };
+		D5DA82492684887800ACAAB7 /* time.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DA82482684887800ACAAB7 /* time.swift */; };
+		D5DA824C2684887B00ACAAB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5DA824B2684887B00ACAAB7 /* Assets.xcassets */; };
+		D5DA824E2684887B00ACAAB7 /* time.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = D5DA824A2684887800ACAAB7 /* time.intentdefinition */; };
+		D5DA824F2684887B00ACAAB7 /* time.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = D5DA824A2684887800ACAAB7 /* time.intentdefinition */; };
+		D5DA82522684887B00ACAAB7 /* timeExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D5DA82442684887800ACAAB7 /* timeExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D5DA82572684899F00ACAAB7 /* ClockFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DA823E268483FD00ACAAB7 /* ClockFace.swift */; };
+		D5DA825A26848E1000ACAAB7 /* ClockMarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DA825826848E0C00ACAAB7 /* ClockMarks.swift */; };
+		D5DA825D2684978400ACAAB7 /* Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DA825C2684978400ACAAB7 /* Constraint.swift */; };
+		D5DA825E268497A600ACAAB7 /* Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DA825C2684978400ACAAB7 /* Constraint.swift */; };
+		D5DA825F26849A9000ACAAB7 /* SeximalNumbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52CD64426170F8E00A2FF81 /* SeximalNumbers.swift */; };
 		D5F6BE6125C0396600E37D72 /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F6BE6025C0396600E37D72 /* MonthView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		D5DA82502684887B00ACAAB7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D5D8BE3425BF18F20066CF30 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D5DA82432684887800ACAAB7;
+			remoteInfo = timeExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D5DA82342684628E00ACAAB7 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				D5DA82522684887B00ACAAB7 /* timeExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		D50E69A425C41BA100B054BB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		D513460A2684F80A00583AE3 /* WatchWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchWidget.swift; sourceTree = "<group>"; };
 		D52CD64426170F8E00A2FF81 /* SeximalNumbers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeximalNumbers.swift; sourceTree = "<group>"; };
 		D52CD64B2617132F00A2FF81 /* CGPoint+Distance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Distance.swift"; sourceTree = "<group>"; };
 		D52CD64D2617134F00A2FF81 /* CalculatorButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorButtons.swift; sourceTree = "<group>"; };
 		D542ABD425C17F9F0090E4AA /* Optional+Ternary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Ternary.swift"; sourceTree = "<group>"; };
 		D542ABDB25C1929E0090E4AA /* Calculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculator.swift; sourceTree = "<group>"; };
+		D54EB1D02684CFB400256E61 /* CalendarWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWidget.swift; sourceTree = "<group>"; };
+		D54EB1D12684D4F300256E61 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		D572F54C25BF7FE000BD3CE8 /* SexTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SexTimeView.swift; sourceTree = "<group>"; };
+		D587590926871C0A0010D441 /* WeekdayWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdayWidget.swift; sourceTree = "<group>"; };
+		D587590C268720950010D441 /* SexTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SexTime.swift; sourceTree = "<group>"; };
 		D599104625C32F3500A8C571 /* CalculatorAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorAction.swift; sourceTree = "<group>"; };
 		D599104925C3326900A8C571 /* seximal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = seximal.entitlements; sourceTree = "<group>"; };
+		D5B51590268769F600079B31 /* ClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
 		D5B5725425C05709003087FA /* LengthConverterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LengthConverterView.swift; sourceTree = "<group>"; };
 		D5B5725725C058C7003087FA /* LengthUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LengthUnit.swift; sourceTree = "<group>"; };
 		D5D8BE3C25BF18F20066CF30 /* seximal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = seximal.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,6 +110,17 @@
 		D5D8BE5C25BF1C3A0066CF30 /* Base.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
 		D5D8BE5F25BF1EE90066CF30 /* CCCConverterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCCConverterView.swift; sourceTree = "<group>"; };
 		D5D8BE6225BF2B5E0066CF30 /* Pronounciator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pronounciator.swift; sourceTree = "<group>"; };
+		D5DA82232684628C00ACAAB7 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		D5DA82252684628C00ACAAB7 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		D5DA823E268483FD00ACAAB7 /* ClockFace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockFace.swift; sourceTree = "<group>"; };
+		D5DA82442684887800ACAAB7 /* timeExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = timeExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5DA82482684887800ACAAB7 /* time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = time.swift; sourceTree = "<group>"; };
+		D5DA824A2684887800ACAAB7 /* time.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = time.intentdefinition; sourceTree = "<group>"; };
+		D5DA824B2684887B00ACAAB7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D5DA824D2684887B00ACAAB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D5DA82532684887B00ACAAB7 /* timeExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = timeExtension.entitlements; sourceTree = "<group>"; };
+		D5DA825826848E0C00ACAAB7 /* ClockMarks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockMarks.swift; sourceTree = "<group>"; };
+		D5DA825C2684978400ACAAB7 /* Constraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constraint.swift; sourceTree = "<group>"; };
 		D5F6BE6025C0396600E37D72 /* MonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -67,9 +132,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D5DA82412684887800ACAAB7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5DA82462684887800ACAAB7 /* SwiftUI.framework in Frameworks */,
+				D5DA82452684887800ACAAB7 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D513460C2684F94200583AE3 /* WatchWidget */ = {
+			isa = PBXGroup;
+			children = (
+				D513460A2684F80A00583AE3 /* WatchWidget.swift */,
+				D5DA823E268483FD00ACAAB7 /* ClockFace.swift */,
+				D5B51590268769F600079B31 /* ClockView.swift */,
+				D5DA825826848E0C00ACAAB7 /* ClockMarks.swift */,
+			);
+			path = WatchWidget;
+			sourceTree = "<group>";
+		};
 		D52CD64626170FAE00A2FF81 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +190,7 @@
 		D52CD6492617100A00A2FF81 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				D5DA825C2684978400ACAAB7 /* Constraint.swift */,
 				D542ABD425C17F9F0090E4AA /* Optional+Ternary.swift */,
 				D5D8BE6225BF2B5E0066CF30 /* Pronounciator.swift */,
 				D5B5725725C058C7003087FA /* LengthUnit.swift */,
@@ -118,8 +204,10 @@
 			isa = PBXGroup;
 			children = (
 				D5D8BE5C25BF1C3A0066CF30 /* Base.swift */,
+				D54EB1D12684D4F300256E61 /* AppState.swift */,
 				D599104625C32F3500A8C571 /* CalculatorAction.swift */,
 				D542ABDB25C1929E0090E4AA /* Calculator.swift */,
+				D587590C268720950010D441 /* SexTime.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -136,7 +224,10 @@
 		D5D8BE3325BF18F20066CF30 = {
 			isa = PBXGroup;
 			children = (
+				D5DA82532684887B00ACAAB7 /* timeExtension.entitlements */,
 				D5D8BE3E25BF18F20066CF30 /* seximal */,
+				D5DA82472684887800ACAAB7 /* time */,
+				D5DA82222684628C00ACAAB7 /* Frameworks */,
 				D5D8BE3D25BF18F20066CF30 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -145,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				D5D8BE3C25BF18F20066CF30 /* seximal.app */,
+				D5DA82442684887800ACAAB7 /* timeExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -173,6 +265,29 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		D5DA82222684628C00ACAAB7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D5DA82232684628C00ACAAB7 /* WidgetKit.framework */,
+				D5DA82252684628C00ACAAB7 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D5DA82472684887800ACAAB7 /* time */ = {
+			isa = PBXGroup;
+			children = (
+				D5DA82482684887800ACAAB7 /* time.swift */,
+				D5DA824A2684887800ACAAB7 /* time.intentdefinition */,
+				D513460C2684F94200583AE3 /* WatchWidget */,
+				D54EB1D02684CFB400256E61 /* CalendarWidget.swift */,
+				D587590926871C0A0010D441 /* WeekdayWidget.swift */,
+				D5DA824B2684887B00ACAAB7 /* Assets.xcassets */,
+				D5DA824D2684887B00ACAAB7 /* Info.plist */,
+			);
+			path = time;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -183,15 +298,34 @@
 				D5D8BE3825BF18F20066CF30 /* Sources */,
 				D5D8BE3925BF18F20066CF30 /* Frameworks */,
 				D5D8BE3A25BF18F20066CF30 /* Resources */,
+				D5DA82342684628E00ACAAB7 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D5DA82512684887B00ACAAB7 /* PBXTargetDependency */,
 			);
 			name = seximal;
 			productName = seximal;
 			productReference = D5D8BE3C25BF18F20066CF30 /* seximal.app */;
 			productType = "com.apple.product-type.application";
+		};
+		D5DA82432684887800ACAAB7 /* timeExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D5DA82542684887B00ACAAB7 /* Build configuration list for PBXNativeTarget "timeExtension" */;
+			buildPhases = (
+				D5DA82402684887800ACAAB7 /* Sources */,
+				D5DA82412684887800ACAAB7 /* Frameworks */,
+				D5DA82422684887800ACAAB7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = timeExtension;
+			productName = timeExtension;
+			productReference = D5DA82442684887800ACAAB7 /* timeExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -199,11 +333,14 @@
 		D5D8BE3425BF18F20066CF30 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1230;
+				LastSwiftUpdateCheck = 1300;
 				LastUpgradeCheck = 1230;
 				TargetAttributes = {
 					D5D8BE3B25BF18F20066CF30 = {
 						CreatedOnToolsVersion = 12.3;
+					};
+					D5DA82432684887800ACAAB7 = {
+						CreatedOnToolsVersion = 13.0;
 					};
 				};
 			};
@@ -221,6 +358,7 @@
 			projectRoot = "";
 			targets = (
 				D5D8BE3B25BF18F20066CF30 /* seximal */,
+				D5DA82432684887800ACAAB7 /* timeExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -235,6 +373,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D5DA82422684887800ACAAB7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5DA824C2684887B00ACAAB7 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -242,10 +388,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5DA825E268497A600ACAAB7 /* Constraint.swift in Sources */,
 				D5F6BE6125C0396600E37D72 /* MonthView.swift in Sources */,
 				D5D8BE5025BF19450066CF30 /* NumberConverterView.swift in Sources */,
 				D5D8BE6325BF2B5E0066CF30 /* Pronounciator.swift in Sources */,
 				D5D8BE5925BF1B110066CF30 /* ConverterListView.swift in Sources */,
+				D5B515932687722B00079B31 /* ClockMarks.swift in Sources */,
+				D5DA824F2684887B00ACAAB7 /* time.intentdefinition in Sources */,
 				D5D8BE4225BF18F20066CF30 /* ContentView.swift in Sources */,
 				D5B5725825C058C7003087FA /* LengthUnit.swift in Sources */,
 				D5B5725525C05709003087FA /* LengthConverterView.swift in Sources */,
@@ -253,19 +402,51 @@
 				D542ABDC25C1929E0090E4AA /* Calculator.swift in Sources */,
 				D599104725C32F3500A8C571 /* CalculatorAction.swift in Sources */,
 				D52CD64526170F8E00A2FF81 /* SeximalNumbers.swift in Sources */,
+				D587590D268720950010D441 /* SexTime.swift in Sources */,
 				D5D8BE4025BF18F20066CF30 /* seximalApp.swift in Sources */,
 				D5D8BE6025BF1EE90066CF30 /* CCCConverterView.swift in Sources */,
+				D54EB1D22684D4F400256E61 /* AppState.swift in Sources */,
 				D5D8BE5D25BF1C3A0066CF30 /* Base.swift in Sources */,
 				D52CD64C2617132F00A2FF81 /* CGPoint+Distance.swift in Sources */,
 				D52CD64E2617134F00A2FF81 /* CalculatorButtons.swift in Sources */,
 				D542ABD525C17F9F0090E4AA /* Optional+Ternary.swift in Sources */,
 				D572F54D25BF7FE000BD3CE8 /* SexTimeView.swift in Sources */,
+				D5B51591268769F600079B31 /* ClockView.swift in Sources */,
 				D50E69A525C41BA100B054BB /* SceneDelegate.swift in Sources */,
 				D5D8BE5625BF1A620066CF30 /* AboutView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D5DA82402684887800ACAAB7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5DA82492684887800ACAAB7 /* time.swift in Sources */,
+				D5DA825A26848E1000ACAAB7 /* ClockMarks.swift in Sources */,
+				D587590B26871C200010D441 /* WeekdayWidget.swift in Sources */,
+				D587590E268721DE0010D441 /* SexTime.swift in Sources */,
+				D5DA825D2684978400ACAAB7 /* Constraint.swift in Sources */,
+				D513460B2684F84E00583AE3 /* WatchWidget.swift in Sources */,
+				D5DA82572684899F00ACAAB7 /* ClockFace.swift in Sources */,
+				D5DA825F26849A9000ACAAB7 /* SeximalNumbers.swift in Sources */,
+				D54EB1D42684DCAF00256E61 /* CalendarWidget.swift in Sources */,
+				D597177D2688974400A84BA9 /* AppState.swift in Sources */,
+				D59EC2752684ABBD00BB13EF /* LengthUnit.swift in Sources */,
+				D5B51592268769F600079B31 /* ClockView.swift in Sources */,
+				D5DA824E2684887B00ACAAB7 /* time.intentdefinition in Sources */,
+				D59EC2742684AA1900BB13EF /* MonthView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D5DA82512684887B00ACAAB7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D5DA82432684887800ACAAB7 /* timeExtension */;
+			targetProxy = D5DA82502684887B00ACAAB7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		D5D8BE4925BF18F30066CF30 /* Debug */ = {
@@ -387,6 +568,7 @@
 		D5D8BE4C25BF18F30066CF30 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = seximal/seximal.entitlements;
@@ -415,6 +597,7 @@
 		D5D8BE4D25BF18F30066CF30 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = seximal/seximal.entitlements;
@@ -440,6 +623,72 @@
 			};
 			name = Release;
 		};
+		D5DA82552684887B00ACAAB7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = timeExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = E3BNAMEWTS;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = time/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = time;
+				INFOPLIST_KEY_CFBundleExecutable = timeExtension;
+				INFOPLIST_KEY_CFBundleName = timeExtension;
+				INFOPLIST_KEY_CFBundleVersion = 11;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = me.thisIsTheFoxe.seximal.time;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D5DA82562684887B00ACAAB7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = timeExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = E3BNAMEWTS;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = time/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = time;
+				INFOPLIST_KEY_CFBundleExecutable = timeExtension;
+				INFOPLIST_KEY_CFBundleName = timeExtension;
+				INFOPLIST_KEY_CFBundleVersion = 11;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = me.thisIsTheFoxe.seximal.time;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -457,6 +706,15 @@
 			buildConfigurations = (
 				D5D8BE4C25BF18F30066CF30 /* Debug */,
 				D5D8BE4D25BF18F30066CF30 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D5DA82542684887B00ACAAB7 /* Build configuration list for PBXNativeTarget "timeExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5DA82552684887B00ACAAB7 /* Debug */,
+				D5DA82562684887B00ACAAB7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -7,6 +7,11 @@
 
 import Foundation
 
+extension Double {
+    func asSexInt(padding: Int = 0) -> String {
+        Int(self).asSex(padding: padding)
+    }
+}
 
 extension Int {
     ///interprets the number as a seximal integer written in decimal
