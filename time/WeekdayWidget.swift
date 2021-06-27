@@ -17,7 +17,7 @@ struct WeekdayWidget: Widget {
             WeekdayEntryView(entry: entry)
         }
         .configurationDisplayName("Week Widget")
-        .description("A widget displaying object the current weekday was named after (e.g. Sunday = Sun, Vensday = Venus).")
+        .description("A widget showing the object after which the current day of the week is named (e.g. Sunday = Sun, Vensday = Venus).")
     }()
     
     var body: some WidgetConfiguration {
