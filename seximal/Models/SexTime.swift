@@ -87,7 +87,11 @@ class SexTime: ObservableObject {
     }
     
     var weekday: String {
-        allWeekdays[(dayOfYear - 1) % 6]
+        Self.allWeekdays[(dayOfYear - 1) % 6]
+    }
+    
+    var weekdayShort: String {
+        Self.allWeekdaysShort[(dayOfYear - 1) % 6].uppercased()
     }
     
     var allMonths: [String] = {
@@ -97,7 +101,8 @@ class SexTime: ObservableObject {
         return result
     }()
     
-    let allWeekdays: [String] = ["Sunday", "Monday", "Vensday", "Marsday", "Joday", "Saturday"]
+    static let allWeekdays: [String] = ["Sunday", "Monday", "Vensday", "Marsday", "Joday", "Saturday"]
+    static let allWeekdaysShort: [String] = ["Sun", "Mon", "Ves", "Mar", "Jo", "Sat"]
 
     func format(for config: TextConfig) -> String? {
         switch config {

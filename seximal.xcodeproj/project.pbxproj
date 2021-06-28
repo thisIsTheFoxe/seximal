@@ -27,7 +27,6 @@
 		D59717942688C63D00A84BA9 /* WatchContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59717932688C63D00A84BA9 /* WatchContentView.swift */; };
 		D59717962688C63D00A84BA9 /* seximalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59717952688C63D00A84BA9 /* seximalApp.swift */; };
 		D59717982688C63D00A84BA9 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59717972688C63D00A84BA9 /* ComplicationController.swift */; };
-		D597179A2688C63F00A84BA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D59717992688C63F00A84BA9 /* Assets.xcassets */; };
 		D597179D2688C63F00A84BA9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D597179C2688C63F00A84BA9 /* Preview Assets.xcassets */; };
 		D59717AC2688C67F00A84BA9 /* SexTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = D587590C268720950010D441 /* SexTime.swift */; };
 		D59717AD2688C68B00A84BA9 /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8BE5C25BF1C3A0066CF30 /* Base.swift */; };
@@ -68,7 +67,6 @@
 		D5DA82452684887800ACAAB7 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5DA82232684628C00ACAAB7 /* WidgetKit.framework */; };
 		D5DA82462684887800ACAAB7 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5DA82252684628C00ACAAB7 /* SwiftUI.framework */; };
 		D5DA82492684887800ACAAB7 /* time.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DA82482684887800ACAAB7 /* time.swift */; };
-		D5DA824C2684887B00ACAAB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5DA824B2684887B00ACAAB7 /* Assets.xcassets */; };
 		D5DA824E2684887B00ACAAB7 /* time.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = D5DA824A2684887800ACAAB7 /* time.intentdefinition */; };
 		D5DA824F2684887B00ACAAB7 /* time.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = D5DA824A2684887800ACAAB7 /* time.intentdefinition */; };
 		D5DA82522684887B00ACAAB7 /* timeExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D5DA82442684887800ACAAB7 /* timeExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -77,6 +75,8 @@
 		D5DA825D2684978400ACAAB7 /* Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DA825C2684978400ACAAB7 /* Constraint.swift */; };
 		D5DA825E268497A600ACAAB7 /* Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DA825C2684978400ACAAB7 /* Constraint.swift */; };
 		D5DA825F26849A9000ACAAB7 /* SeximalNumbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52CD64426170F8E00A2FF81 /* SeximalNumbers.swift */; };
+		D5DADFD82689F915004CD40A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5DA824B2684887B00ACAAB7 /* Assets.xcassets */; };
+		D5DADFD92689FFC4004CD40A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5DA824B2684887B00ACAAB7 /* Assets.xcassets */; };
 		D5F6BE6125C0396600E37D72 /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F6BE6025C0396600E37D72 /* MonthView.swift */; };
 /* End PBXBuildFile section */
 
@@ -565,7 +565,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D597179D2688C63F00A84BA9 /* Preview Assets.xcassets in Resources */,
-				D597179A2688C63F00A84BA9 /* Assets.xcassets in Resources */,
+				D5DADFD92689FFC4004CD40A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -582,7 +582,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D5DA824C2684887B00ACAAB7 /* Assets.xcassets in Resources */,
+				D5DADFD82689F915004CD40A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
