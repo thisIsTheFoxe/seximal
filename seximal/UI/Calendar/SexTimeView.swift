@@ -67,6 +67,6 @@ struct SexTimeView: View {
 
 struct SexTimeView_Previews: PreviewProvider {
     static var previews: some View {
-        SexTimeView()
+        SexTimeView(time: SexTime(date: Date().addingTimeInterval(-9200000)))
     }
 }

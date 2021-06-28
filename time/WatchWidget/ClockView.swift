@@ -12,13 +12,14 @@ struct ClockView: View {
     var showDate: Bool
     var useTwoHourHands: Bool
     var showDigitally: Bool
+    var showSecondsHand: Bool
     
     var strokeScalar: CGFloat { isSmall ? 1 : 1.5 }
     
     var titleFont: Font
     var textFont: Font
     
-    var time: SexTime
+    @ObservedObject var time: SexTime
     
     var lapseAngle: CGFloat {
         useTwoHourHands ?
@@ -35,8 +36,7 @@ struct ClockView: View {
     var body: some View {
         GeometryReader { geometryReader in
             VStack {
-                let width = geometryReader.size.width - Constraint.marginLeading - Constraint.marginTrailing
-                let height = showDigitally ? width - 10 : width
+                let size = getSize(geometryReader.size)
                 
                 ZStack {
                     ClockMarks(count: 36, longDivider: 6, longTickHeight: 10 * strokeScalar, tickHeight: 5 * strokeScalar, tickWidth: 2 * strokeScalar, highlightedColorDivider: 6, highlightedColor: .primary, normalColor: .gray)
@@ -50,7 +50,11 @@ struct ClockView: View {
                                 .font(textFont)
                                 .padding(2)
                                 .padding(.horizontal, 2)
+                            #if !os(watchOS)
                                 .border(Color(UIColor.label))
+                            #else
+                                .border(.white)
+                            #endif
                                 .padding(.trailing, 20)
                         }
                     }
@@ -77,8 +81,23 @@ struct ClockView: View {
                                     lineWidth: 3 * strokeScalar,
                                     lineCap: .round,
                                     lineJoin: .round))
+                    if showSecondsHand {
+                        ClockHand(angle: CGFloat(time.moment) / 36, length: 0.825, backstroke: 0.125)
+                            .stroke(Color.red,
+                                    style: StrokeStyle(
+                                        lineWidth: 2 * strokeScalar,
+                                        lineCap: .round,
+                                        lineJoin: .round))
+                        Circle().scale(0.05).stroke(Color.red,
+                                                     style: StrokeStyle(
+                                                         lineWidth: 2,
+                                                         lineCap: .round,
+                                                         lineJoin: .round))
+                        Circle().scale(0.04).colorInvert()
+
+                    }
                 }
-                .frame(width: width, height: height, alignment: .center)
+                .frame(width: size.width, height: size.height, alignment: .center)
                 
                 .padding(.leading, Constraint.marginLeading)
                 .padding(.trailing, Constraint.marginTrailing)
@@ -92,4 +111,17 @@ struct ClockView: View {
             }
         }
     }
+    
+    func getSize(_ size: CGSize) -> CGSize {
+        var width: CGFloat = 0
+        
+        if size.width <= size.height {
+            width = size.width - Constraint.marginLeading - Constraint.marginTrailing
+        } else {
+            width = size.height - Constraint.marginTop
+        }
+        let height = showDigitally ? width - 10 : width
+        return CGSize(width: width, height: height)
+    }
+    
 }

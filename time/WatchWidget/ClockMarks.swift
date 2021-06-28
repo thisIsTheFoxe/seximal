@@ -74,19 +74,24 @@ struct NumberView: View {
 struct ClockHand: Shape {
     let angle: CGFloat
     let length: CGFloat
+    var backstroke: CGFloat = 0
     
     func path(in rect: CGRect) -> Path {
         var path = Path()
         let length = (rect.width / 2) * self.length
-        let center = CGPoint(x: rect.midX, y: rect.midY)
-        
-        path.move(to: center)
-        
+        let backstroke = (rect.width / 2) * self.backstroke
         let hoursAngle = CGFloat.pi / 2 - .pi * 2 * angle
         
+        let dX = cos(hoursAngle)
+        let dY = -sin(hoursAngle)
+        let start = CGPoint(x: rect.midX - dX * backstroke, y: rect.midY - dY * backstroke)
+
+        path.move(to: start)
+        
+        
         path.addLine(to: CGPoint(
-            x: rect.midX + cos(hoursAngle) * length,
-            y: rect.midY - sin(hoursAngle) * length))
+            x: rect.midX + dX * length,
+            y: rect.midY + dY * length))
         return path
     }
 }
@@ -95,7 +100,28 @@ struct ClockHand: Shape {
 
 struct Clock_Previews: PreviewProvider {
     static var previews: some View {
-        ClockMarks(count: 36, longDivider: 6, longTickHeight: 10, tickHeight: 5, tickWidth: 2, highlightedColorDivider: 6, highlightedColor: .red, normalColor: .blue)
-            .frame(width: 250, height: 250)
+        ZStack {
+            ClockMarks(count: 36, longDivider: 6, longTickHeight: 10, tickHeight: 5, tickWidth: 2, highlightedColorDivider: 6, highlightedColor: .red, normalColor: .blue)
+                .frame(width: 150, height: 150)
+            ClockHand(angle: 0.95, length: 0.5)
+                .stroke(Color.gray,
+                        style: StrokeStyle(
+                            lineWidth: 4,
+                            lineCap: .round,
+                            lineJoin: .round))
+                
+                ClockHand(angle: 0.8, length: 0.8, backstroke: 0.125)
+                .stroke(Color.red,
+                        style: StrokeStyle(
+                            lineWidth: 2,
+                            lineCap: .round,
+                            lineJoin: .round))
+            Circle().scale(0.05).stroke(Color.red,
+                                         style: StrokeStyle(
+                                             lineWidth: 2,
+                                             lineCap: .round,
+                                             lineJoin: .round))
+            Circle().scale(0.04).colorInvert()
+        }
     }
 }

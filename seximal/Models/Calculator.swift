@@ -30,6 +30,7 @@ class Calculator: ObservableObject {
     enum Action: CalculatorAction, CaseIterable {
         case op(_ op: CalculatorOp), mod(_ mod: CalculatorModifier), clear, equal
         
+        #if !os(watchOS)
         static var allCases: [Action] = [
             .mod(.number(i: 0)),    .mod(.number(i: 1)),    .mod(.comma),
             .mod(.number(i: 2)),    .mod(.number(i: 3)),    .clear,
@@ -38,7 +39,14 @@ class Calculator: ObservableObject {
             .op(.mult),             .op(.div),              .mod(.negate),
             .mod(.pow),             .mod(.sqrt),            .mod(.rand),
         ]
-        
+        #else
+        static var allCases: [Action] = [
+            .mod(.number(i: 0)),    .mod(.number(i: 1)),    .mod(.number(i: 2)),
+            .mod(.number(i: 3)),    .mod(.number(i: 4)),    .mod(.number(i: 5)),
+            .op(.plus),             .op(.minus),            .mod(.comma),
+            .op(.mult),             .op(.div),              .equal,
+        ]
+        #endif
         var id: Action { return self }
         
         var sfSymbolName: String? {
@@ -54,6 +62,7 @@ class Calculator: ObservableObject {
             }
         }
         
+        @available(watchOS, unavailable)
         var keyboardShortcut: KeyEquivalent? {
             switch self {
             case .mod(let mod):
@@ -89,7 +98,11 @@ class Calculator: ObservableObject {
         var foregroundColor: Color? {
             switch self {
             case .op(_), .equal:
+                #if !os(watchOS)
                 return Color(UIColor.systemBackground)
+                #else
+                return .white
+                #endif
             default:
                 return nil
             }
