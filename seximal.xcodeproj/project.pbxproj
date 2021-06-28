@@ -17,6 +17,7 @@
 		D54EB1D22684D4F400256E61 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54EB1D12684D4F300256E61 /* AppState.swift */; };
 		D54EB1D42684DCAF00256E61 /* CalendarWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54EB1D02684CFB400256E61 /* CalendarWidget.swift */; };
 		D572F54D25BF7FE000BD3CE8 /* SexTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D572F54C25BF7FE000BD3CE8 /* SexTimeView.swift */; };
+		D574CA7C268A364200B36563 /* WatchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D574CA7B268A364200B36563 /* WatchDelegate.swift */; };
 		D587590B26871C200010D441 /* WeekdayWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D587590926871C0A0010D441 /* WeekdayWidget.swift */; };
 		D587590D268720950010D441 /* SexTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = D587590C268720950010D441 /* SexTime.swift */; };
 		D587590E268721DE0010D441 /* SexTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = D587590C268720950010D441 /* SexTime.swift */; };
@@ -25,7 +26,7 @@
 		D59717892688C63D00A84BA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D59717882688C63D00A84BA9 /* Assets.xcassets */; };
 		D597178F2688C63D00A84BA9 /* seximalWatch WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D597178E2688C63D00A84BA9 /* seximalWatch WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D59717942688C63D00A84BA9 /* WatchContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59717932688C63D00A84BA9 /* WatchContentView.swift */; };
-		D59717962688C63D00A84BA9 /* seximalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59717952688C63D00A84BA9 /* seximalApp.swift */; };
+		D59717962688C63D00A84BA9 /* seximalWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59717952688C63D00A84BA9 /* seximalWatchApp.swift */; };
 		D59717982688C63D00A84BA9 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59717972688C63D00A84BA9 /* ComplicationController.swift */; };
 		D597179D2688C63F00A84BA9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D597179C2688C63F00A84BA9 /* Preview Assets.xcassets */; };
 		D59717AC2688C67F00A84BA9 /* SexTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = D587590C268720950010D441 /* SexTime.swift */; };
@@ -76,7 +77,6 @@
 		D5DA825E268497A600ACAAB7 /* Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DA825C2684978400ACAAB7 /* Constraint.swift */; };
 		D5DA825F26849A9000ACAAB7 /* SeximalNumbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52CD64426170F8E00A2FF81 /* SeximalNumbers.swift */; };
 		D5DADFD82689F915004CD40A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5DA824B2684887B00ACAAB7 /* Assets.xcassets */; };
-		D5DADFD92689FFC4004CD40A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5DA824B2684887B00ACAAB7 /* Assets.xcassets */; };
 		D5F6BE6125C0396600E37D72 /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F6BE6025C0396600E37D72 /* MonthView.swift */; };
 /* End PBXBuildFile section */
 
@@ -151,6 +151,7 @@
 		D54EB1D02684CFB400256E61 /* CalendarWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWidget.swift; sourceTree = "<group>"; };
 		D54EB1D12684D4F300256E61 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		D572F54C25BF7FE000BD3CE8 /* SexTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SexTimeView.swift; sourceTree = "<group>"; };
+		D574CA7B268A364200B36563 /* WatchDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchDelegate.swift; sourceTree = "<group>"; };
 		D587590926871C0A0010D441 /* WeekdayWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdayWidget.swift; sourceTree = "<group>"; };
 		D587590C268720950010D441 /* SexTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SexTime.swift; sourceTree = "<group>"; };
 		D59717802688C63900A84BA9 /* seximalWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = seximalWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,7 +159,7 @@
 		D59717882688C63D00A84BA9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D597178E2688C63D00A84BA9 /* seximalWatch WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "seximalWatch WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D59717932688C63D00A84BA9 /* WatchContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchContentView.swift; sourceTree = "<group>"; };
-		D59717952688C63D00A84BA9 /* seximalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = seximalApp.swift; sourceTree = "<group>"; };
+		D59717952688C63D00A84BA9 /* seximalWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = seximalWatchApp.swift; sourceTree = "<group>"; };
 		D59717972688C63D00A84BA9 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		D59717992688C63F00A84BA9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D597179C2688C63F00A84BA9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -313,7 +314,8 @@
 		D59717922688C63D00A84BA9 /* seximalWatch WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
-				D59717952688C63D00A84BA9 /* seximalApp.swift */,
+				D59717952688C63D00A84BA9 /* seximalWatchApp.swift */,
+				D574CA7B268A364200B36563 /* WatchDelegate.swift */,
 				D59717932688C63D00A84BA9 /* WatchContentView.swift */,
 				D59717BD2688D16400A84BA9 /* WatchCalculatorView.swift */,
 				D5B8B3CF2689BC3700CD1E81 /* WatchCalendarView.swift */,
@@ -565,7 +567,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D597179D2688C63F00A84BA9 /* Preview Assets.xcassets in Resources */,
-				D5DADFD92689FFC4004CD40A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -600,7 +601,7 @@
 				D59717B32688C6D400A84BA9 /* ClockView.swift in Sources */,
 				D59717942688C63D00A84BA9 /* WatchContentView.swift in Sources */,
 				D59717B52688C77C00A84BA9 /* Optional+Ternary.swift in Sources */,
-				D59717962688C63D00A84BA9 /* seximalApp.swift in Sources */,
+				D59717962688C63D00A84BA9 /* seximalWatchApp.swift in Sources */,
 				D59717AF2688C6AE00A84BA9 /* CalculatorButtons.swift in Sources */,
 				D59717B82688C7B900A84BA9 /* Calculator.swift in Sources */,
 				D5B8B3D02689BC3700CD1E81 /* WatchCalendarView.swift in Sources */,
@@ -608,6 +609,7 @@
 				D59717B42688C6D600A84BA9 /* ClockMarks.swift in Sources */,
 				D59717AC2688C67F00A84BA9 /* SexTime.swift in Sources */,
 				D59717AD2688C68B00A84BA9 /* Base.swift in Sources */,
+				D574CA7C268A364200B36563 /* WatchDelegate.swift in Sources */,
 				D59717BA2688C90300A84BA9 /* LengthUnit.swift in Sources */,
 				D59717B02688C6C400A84BA9 /* SexTimeView.swift in Sources */,
 				D59717B62688C78800A84BA9 /* SeximalNumbers.swift in Sources */,
@@ -723,6 +725,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = E3BNAMEWTS;
@@ -738,7 +741,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.1;
 			};
 			name = Debug;
 		};
@@ -748,6 +751,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = E3BNAMEWTS;
@@ -763,7 +767,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.1;
 			};
 			name = Release;
 		};
@@ -795,7 +799,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.1;
 			};
 			name = Debug;
 		};
@@ -827,7 +831,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.1;
 			};
 			name = Release;
 		};

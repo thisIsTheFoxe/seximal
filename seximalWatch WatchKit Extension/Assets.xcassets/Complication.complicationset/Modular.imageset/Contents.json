@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "Icon-Small@2x.png",
       "idiom" : "watch",
       "scale" : "2x"
     },
@@ -10,6 +11,7 @@
       "screen-width" : "<=145"
     },
     {
+      "filename" : "64x64.png",
       "idiom" : "watch",
       "scale" : "2x",
       "screen-width" : ">183"

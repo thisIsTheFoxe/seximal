@@ -49,7 +49,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         
         let secondsSinceDay = Int(date.timeIntervalSince(Calendar.utc.startOfDay(for: date)))
         let momentsSinceDay = Double(secondsSinceDay) / secondsInAMoment
-        let lullsSinceDay = Int(momentsSinceDay / 36) - 1
+        let lullsSinceDay = Int(momentsSinceDay / 36)
         let nextLullInSec = Double(lullsSinceDay) * 36 * secondsInAMoment + 0.25
         
         let d = Calendar.utc.startOfDay(for: date).addingTimeInterval(nextLullInSec)
@@ -73,7 +73,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             handler(entries)
         }
         
-        guard ![.modularSmall, .utilitarianSmall, .utilitarianSmallFlat].contains(complication.family) else {
+        guard ![.utilitarianSmall, .utilitarianSmallFlat, .utilitarianLarge].contains(complication.family) else {
             for i in 0..<limit {
                 let d = date.addingTimeInterval(TimeInterval(i * 3600 * 24))
                 let t = SexTime(date: d)
@@ -120,15 +120,27 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         switch family {
         case .modularSmall:
 //            return CLKComplicationTemplateModularSmallSimpleImage(imageProvider: CLKFullColorImageProvider(fullColorImage: UIImage(named: "\(time.weekday)\(Int.random(in: 0...4))")))
-            return CLKComplicationTemplateModularSmallSimpleText(textProvider: CLKTextProvider(format: time.weekdayShort))
+            return CLKComplicationTemplateModularSmallStackText(
+                line1TextProvider: CLKTextProvider(
+                    format: "\(time.lapse.asSex(padding: 2)):\(time.lull.asSex(padding: 2))"),
+                line2TextProvider: CLKTextProvider(
+                    format: time.weekdayShort))
         case .modularLarge:
-            return CLKComplicationTemplateModularLargeStandardBody(headerTextProvider: CLKTextProvider(format: time.format(for: .all)!), body1TextProvider: CLKTextProvider(format: "\(time.lapse.asSex()):\(time.lull.asSex())"))
+            return CLKComplicationTemplateModularLargeStandardBody(
+                headerTextProvider: CLKTextProvider(
+                    format: time.format(for: .all)!),
+                body1TextProvider: CLKTextProvider(
+                    format: "\(time.lapse.asSex(padding: 2)):\(time.lull.asSex(padding: 2))"))
                     
         case .extraLarge:
-            return CLKComplicationTemplateExtraLargeStackText(line1TextProvider: CLKTextProvider(format: time.format(for: .all)!), line2TextProvider: CLKTextProvider(format: "\(time.lapse.asSex()):\(time.lull.asSex())"))
+            return CLKComplicationTemplateExtraLargeStackText(
+                line1TextProvider: CLKTextProvider(
+                    format: "\(time.lapse.asSex(padding: 2)):\(time.lull.asSex(padding: 2))"),
+                line2TextProvider: CLKTextProvider(
+                    format: time.weekdayShort))
             
         case .utilitarianSmall, .utilitarianSmallFlat:
-            return CLKComplicationTemplateUtilitarianSmallFlat(textProvider: CLKTextProvider(format: time.weekdayShort))
+            return CLKComplicationTemplateUtilitarianSmallFlat(textProvider: CLKTextProvider(format: time.weekday))
         case .utilitarianLarge:
             return CLKComplicationTemplateUtilitarianLargeFlat(textProvider: CLKTextProvider(format: time.format(for: .all)!))
 //        case .circularSmall:
@@ -144,7 +156,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
 //        case .graphicExtraLarge:
             
         default:
-            fatalError()
+            fatalError("Unuported compliaction family")
         }
     }
 }

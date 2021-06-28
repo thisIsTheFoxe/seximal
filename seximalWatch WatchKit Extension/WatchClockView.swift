@@ -22,7 +22,7 @@ struct WatchClockView: View {
                 textFont: .system(size: 8).bold(),
                 time: time)
             
-            Text("\(time.lapse.asSex()):\(time.lull.asSex()):\(time.moment.asSex()).\(time.snap.asSex())")
+            Text("\(time.lapse.asSex(padding: 2)):\(time.lull.asSex(padding: 2)):\(time.moment.asSex(padding: 2)).\(time.snap.asSex())")
                 .font(.system(size: 10).bold())
                 .padding(.bottom, 1)
         }.ignoresSafeArea()

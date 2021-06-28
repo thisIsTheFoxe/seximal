@@ -24,7 +24,7 @@ struct WatchCalculatorView: View {
                         .onTapGesture {
                             model.apply(.mod(.del))
                         }
-                    .background(.black)
+                    .background(Color.black)
                 }
             }
             Divider()

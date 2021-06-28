@@ -64,7 +64,7 @@ struct DayText: View {
         .background(isCurrentDay ? Color(UIColor.label):  Color(UIColor.systemBackground))
 #else
         .foregroundColor(isCurrentDay ? .black : .white)
-        .background(isCurrentDay ? .white:  .black)
+        .background(isCurrentDay ? Color.white:  Color.black)
 #endif
     }
     
