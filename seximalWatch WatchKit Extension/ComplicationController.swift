@@ -32,7 +32,12 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     
     func getTimelineEndDate(for complication: CLKComplication, withHandler handler: @escaping (Date?) -> Void) {
         // Call the handler with the last entry date you can currently provide or nil if you can't support future timelines
-        handler(nil)
+        //should be able to update up to 4x per hour
+        let date = Date()
+        let secondsInAMoment = ((60.0 * 60.0 * 24.0) / (36.0 * 36.0 * 36.0))
+        
+        
+        handler(date.addingTimeInterval(secondsInAMoment * 36 * 36))
     }
     
     func getPrivacyBehavior(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationPrivacyBehavior) -> Void) {
@@ -50,9 +55,9 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         let secondsSinceDay = Int(date.timeIntervalSince(Calendar.utc.startOfDay(for: date)))
         let momentsSinceDay = Double(secondsSinceDay) / secondsInAMoment
         let lullsSinceDay = Int(momentsSinceDay / 36)
-        let nextLullInSec = Double(lullsSinceDay) * 36 * secondsInAMoment + 0.25
+        let lullsInSec = Double(lullsSinceDay) * 36 * secondsInAMoment + 0.25
         
-        let d = Calendar.utc.startOfDay(for: date).addingTimeInterval(nextLullInSec)
+        let d = Calendar.utc.startOfDay(for: date).addingTimeInterval(lullsInSec)
         let t = SexTime(date: d)
         
         let entry = CLKComplicationTimelineEntry(

@@ -34,13 +34,13 @@ struct WatchContentView: View {
                 NavigationLink(destination: WatchClockView(time: time), isActive: $state.showTime, label: {
                     Label("Clock", systemImage: "clock")
                 })
+                NavigationLink(destination: WatchCalendarView(time: time), label: {
+                    Label("Calendar", systemImage: "calendar")
+                })
+                NavigationLink(destination: WatchCalculatorView().environmentObject(Calculator()), label: {
+                    Label("Calculator", systemImage: "number.square")
+                })
             }
-            NavigationLink(destination: WatchCalendarView(time: time), label: {
-                Label("Calendar", systemImage: "calendar")
-            })
-            NavigationLink(destination: WatchCalculatorView().environmentObject(Calculator()), label: {
-                Label("Calculator", systemImage: "number.square")
-            })
         }
     }
 }

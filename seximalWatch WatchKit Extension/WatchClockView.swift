@@ -8,18 +8,18 @@
 import SwiftUI
 
 struct WatchClockView: View {
-    @State var showTwoHourHands = false
     @ObservedObject var time: SexTime
+    
     var body: some View {
         VStack {
             ClockView(
                 isSmall: true,
                 showDate: false,
-                useTwoHourHands: showTwoHourHands,
+                useTwoHourHands: false,
                 showDigitally: false,
                 showSecondsHand: true,
                 titleFont: .caption,
-                textFont: .system(size: 8).bold(),
+                textFont: .body, //don't need it
                 time: time)
             
             Text("\(time.lapse.asSex(padding: 2)):\(time.lull.asSex(padding: 2)):\(time.moment.asSex(padding: 2)).\(time.snap.asSex())")
