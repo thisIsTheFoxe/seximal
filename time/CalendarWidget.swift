@@ -87,7 +87,7 @@ struct CalendarEntryView: View {
                 VStack(spacing: 2) {
                     MonthView(title: Text(time.month).font(titleFont).bold(),
                               spacing: 4,
-                              currentDay: time.dayOfYear - time.monthIx * 36,
+                              currentDay: time.dayOfMonth,
                               isLast: time.month == time.allMonths.last!
                     )
                     if let timeText = time.format(for: entry.configuration.showText) {

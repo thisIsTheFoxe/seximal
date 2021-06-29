@@ -87,7 +87,7 @@ extension WatchIntent {
     static var preview: WatchIntent = {
         let i = WatchIntent()
         i.showDate = true
-//        i.showDigitally = true
+        i.showDigitally = true
         i.useTwoHourHands = true
         return i
     }()

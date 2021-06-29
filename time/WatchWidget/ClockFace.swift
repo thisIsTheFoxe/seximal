@@ -39,6 +39,7 @@ struct ClockFace: View {
             showDate: config.showDate == true,
             useTwoHourHands: config.useTwoHourHands == true,
             showDigitally: config.showDigitally == true,
+            showSecondsHand: false,
             titleFont: titleFont,
             textFont: textFont,
             time: time)
