@@ -25,6 +25,14 @@ struct MonthView: View {
         isLast ? Calendar.current.daysInYear - 360 : 36
     }
     
+    var borderColor: Color {
+        #if !os(watchOS)
+        return Color(UIColor.label)
+        #else
+        return .white
+        #endif
+    }
+    
     var body: some View {
         VStack(spacing: spacing) {
             title
@@ -35,13 +43,8 @@ struct MonthView: View {
                 }
             })
             
-            #if !os(watchOS)
-            .border(Color(UIColor.label), width: 1)
-            #else
-            .border(.white, width: 1)
-            #endif
+            .border(borderColor, width: 1)
         }
-        .scaledToFill()
     }
 }
 
@@ -49,46 +52,42 @@ struct DayText: View {
     let text: String
     let isCurrentDay: Bool
     
+    var foreground: Color {
+        #if !os(watchOS)
+        return isCurrentDay ? Color(UIColor.systemBackground) : Color(UIColor.label)
+        #else
+        return isCurrentDay ? .black : .white
+        #endif
+    }
+    
+    var background: Color {
+        #if !os(watchOS)
+        isCurrentDay ? Color(UIColor.label):  Color(UIColor.systemBackground)
+        #else
+        isCurrentDay ? Color.white:  Color.black
+        #endif
+    }
+    
     var body: some View {
         GeometryReader { g in
-        Text(text)
-                .font(.system(size: idealFontSize(for: g.size)))
-                .fontWeight(idealFontWeight(for: g.size))
-            .lineLimit(1)
-            .padding(.top, (g.size.height) * 0.25)
-            .padding(.trailing, 2)
-            .frame(maxWidth: .infinity, alignment: .topTrailing)
+            Text(text)
+                .font(.forViewSize(g.size))
+                .lineLimit(1)
+                .padding(.top, (g.size.height) * 0.25)
+                .padding(.trailing, 2)
+                .frame(maxWidth: .infinity, alignment: .topTrailing)
         }
-#if !os(watchOS)
-        .foregroundColor(isCurrentDay ? Color(UIColor.systemBackground) : Color(UIColor.label))
-        .background(isCurrentDay ? Color(UIColor.label):  Color(UIColor.systemBackground))
-#else
-        .foregroundColor(isCurrentDay ? .black : .white)
-        .background(isCurrentDay ? Color.white:  Color.black)
-#endif
-    }
-    
-    func idealFontWeight(for size: CGSize) -> Font.Weight {
-        if isCurrentDay { return .heavy }
-        else if min(size.height, size.width) <= 20 {
-            return .bold
-        } else {
-            return .regular
-        }
-    }
-    
-    func idealFontSize(for size: CGSize) -> CGFloat {
-        let s = size.height > size.width ?
-        size.width * 0.4 : size.height * 0.4
-        return max(s, 7)
+        .foregroundColor(foreground)
+        .background(background)
     }
 }
 
 struct MonthView_Previews: PreviewProvider {
     static var previews: some View {
         
-        MonthView(title:Text("February").font(.subheadline), currentDay: 36, isLast: false)
-            .frame(width: 120, height: 100)
-            .background(Color.red)
+        LazyVGrid(columns: [GridItem(), GridItem()], content: {
+            MonthView(title: Text("January").font(.headline), currentDay: 2, isLast: true)
+            MonthView(title: Text("Februray").font(.headline), currentDay: 2, isLast: false)
+        })
     }
 }

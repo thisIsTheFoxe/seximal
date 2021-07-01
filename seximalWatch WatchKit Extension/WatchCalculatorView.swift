@@ -30,7 +30,7 @@ struct WatchCalculatorView: View {
             Divider()
             LazyVGrid(columns: columns, spacing: 6, content: {
                 ForEach(Calculator.Action.allCases) { op in
-                    CalculatorButton(type: op, font: .body)
+                    CalculatorButton(type: op, font: .body.bold())
                         .cornerRadius(6)
 //                                            .padding(.top, 5)
                 }

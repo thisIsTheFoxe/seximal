@@ -10,7 +10,7 @@ import Combine
 
 struct SexTimeView: View {
     
-    var columns = { Array(repeating: GridItem(spacing: 3), count: 2) }()
+    var columns = { Array(repeating: GridItem(spacing: 6), count: 2) }()
     
     @ObservedObject var time = SexTime()
     
@@ -50,12 +50,13 @@ struct SexTimeView: View {
                             isLast: false)
                     }
                 })
-                .padding(4)
+                .padding(6)
+                .padding(.bottom)
                 MonthView(
                     title: Text(time.allMonths.last!).font(.headline),
                     currentDay: time.dayOfYear - 360,
                     isLast: true)
-                    .frame(width: 200, alignment: .center)
+                    .padding(.horizontal, 75)
             }
             .padding(.bottom)
         }
@@ -67,6 +68,6 @@ struct SexTimeView: View {
 
 struct SexTimeView_Previews: PreviewProvider {
     static var previews: some View {
-        SexTimeView(time: SexTime(date: Date().addingTimeInterval(-9200000)))
+        SexTimeView(time: SexTime(date: Date().addingTimeInterval(-2400 * 24 * 165)))
     }
 }

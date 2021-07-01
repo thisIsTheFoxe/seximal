@@ -53,6 +53,8 @@ class SexTime: ObservableObject {
         Int(date.timeIntervalSince(Calendar.utc.startOfDay(for: date)) * 1000)  // milliseconds since midnight
     }
     
+    var shortTime: String { "\(lapse.asSex(padding: 2)):\(lull.asSex(padding: 2))" }
+    
     var lapse: Int {
         msSinceDay / 2400000
     }
@@ -90,7 +92,7 @@ class SexTime: ObservableObject {
         Self.allWeekdays[(dayOfYear - 1) % 6]
     }
     
-    var weekdayShort: String {
+    var shortWeekday: String {
         Self.allWeekdaysShort[(dayOfYear - 1) % 6].uppercased()
     }
     

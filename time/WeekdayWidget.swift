@@ -65,7 +65,13 @@ struct WeekdayEntryView : View {
     
     var showText: Bool = true
     
-    var time = SexTime()
+    var time: SexTime
+    
+    init(entry: WeekdayProvider.Entry, showText: Bool = true) {
+        self.entry = entry
+        self.showText = showText
+        self.time = SexTime(date: entry.date)
+    }
     
     var body: some View {
         ZStack {
@@ -82,6 +88,7 @@ struct WeekdayEntryView : View {
                         .shadow(color: .black, radius: 0.5, x: 1, y: 1)
                         .shadow(color: .black, radius: 0.5, x: -1, y: 0)
                         .shadow(color: .black, radius: 0.5, x: 0, y: -1)
+                        .padding(.horizontal, 6)
                 }
                 .padding()
             }
@@ -92,7 +99,7 @@ struct WeekdayEntryView : View {
 
 struct Weekday_Previews: PreviewProvider {
     static var previews: some View {
-        WeekdayEntryView(entry: WeekdayEntry(date: Date(), config: .preview))
+        WeekdayEntryView(entry: WeekdayEntry(date: Date().addingTimeInterval(12 * 3600 * 24), config: .preview))
             .previewContext(WidgetPreviewContext(family: .systemLarge))
     }
 }

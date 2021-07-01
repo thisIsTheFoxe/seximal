@@ -77,6 +77,10 @@
 		D5DA825E268497A600ACAAB7 /* Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DA825C2684978400ACAAB7 /* Constraint.swift */; };
 		D5DA825F26849A9000ACAAB7 /* SeximalNumbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52CD64426170F8E00A2FF81 /* SeximalNumbers.swift */; };
 		D5DADFD82689F915004CD40A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5DA824B2684887B00ACAAB7 /* Assets.xcassets */; };
+		D5DB3211268DEC2C003E7D35 /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DB3210268DEC2C003E7D35 /* UI.swift */; };
+		D5DB3212268DEC30003E7D35 /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DB3210268DEC2C003E7D35 /* UI.swift */; };
+		D5DB3213268DEC31003E7D35 /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DB3210268DEC2C003E7D35 /* UI.swift */; };
+		D5DB3215268DF3A8003E7D35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D59717992688C63F00A84BA9 /* Assets.xcassets */; };
 		D5F6BE6125C0396600E37D72 /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F6BE6025C0396600E37D72 /* MonthView.swift */; };
 /* End PBXBuildFile section */
 
@@ -196,6 +200,8 @@
 		D5DA82532684887B00ACAAB7 /* timeExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = timeExtension.entitlements; sourceTree = "<group>"; };
 		D5DA825826848E0C00ACAAB7 /* ClockMarks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockMarks.swift; sourceTree = "<group>"; };
 		D5DA825C2684978400ACAAB7 /* Constraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constraint.swift; sourceTree = "<group>"; };
+		D5DB3210268DEC2C003E7D35 /* UI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UI.swift; sourceTree = "<group>"; };
+		D5DB3214268DEC66003E7D35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D5F6BE6025C0396600E37D72 /* MonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -278,6 +284,7 @@
 				D5B5725725C058C7003087FA /* LengthUnit.swift */,
 				D52CD64426170F8E00A2FF81 /* SeximalNumbers.swift */,
 				D52CD64B2617132F00A2FF81 /* CGPoint+Distance.swift */,
+				D5DB3210268DEC2C003E7D35 /* UI.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -307,6 +314,7 @@
 			isa = PBXGroup;
 			children = (
 				D59717882688C63D00A84BA9 /* Assets.xcassets */,
+				D5DB3214268DEC66003E7D35 /* Info.plist */,
 			);
 			path = "seximalWatch WatchKit App";
 			sourceTree = "<group>";
@@ -566,6 +574,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5DB3215268DF3A8003E7D35 /* Assets.xcassets in Resources */,
 				D597179D2688C63F00A84BA9 /* Preview Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -613,6 +622,7 @@
 				D59717BA2688C90300A84BA9 /* LengthUnit.swift in Sources */,
 				D59717B02688C6C400A84BA9 /* SexTimeView.swift in Sources */,
 				D59717B62688C78800A84BA9 /* SeximalNumbers.swift in Sources */,
+				D5DB3212268DEC30003E7D35 /* UI.swift in Sources */,
 				D59717BE2688D16400A84BA9 /* WatchCalculatorView.swift in Sources */,
 				D59717982688C63D00A84BA9 /* ComplicationController.swift in Sources */,
 			);
@@ -642,6 +652,7 @@
 				D54EB1D22684D4F400256E61 /* AppState.swift in Sources */,
 				D5D8BE5D25BF1C3A0066CF30 /* Base.swift in Sources */,
 				D52CD64C2617132F00A2FF81 /* CGPoint+Distance.swift in Sources */,
+				D5DB3211268DEC2C003E7D35 /* UI.swift in Sources */,
 				D52CD64E2617134F00A2FF81 /* CalculatorButtons.swift in Sources */,
 				D542ABD525C17F9F0090E4AA /* Optional+Ternary.swift in Sources */,
 				D572F54D25BF7FE000BD3CE8 /* SexTimeView.swift in Sources */,
@@ -663,6 +674,7 @@
 				D513460B2684F84E00583AE3 /* WatchWidget.swift in Sources */,
 				D5DA82572684899F00ACAAB7 /* ClockFace.swift in Sources */,
 				D5DA825F26849A9000ACAAB7 /* SeximalNumbers.swift in Sources */,
+				D5DB3213268DEC31003E7D35 /* UI.swift in Sources */,
 				D54EB1D42684DCAF00256E61 /* CalendarWidget.swift in Sources */,
 				D597177D2688974400A84BA9 /* AppState.swift in Sources */,
 				D59EC2752684ABBD00BB13EF /* LengthUnit.swift in Sources */,
@@ -697,9 +709,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = E3BNAMEWTS;
-				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = me.thisisthefoxe.seximalWatch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -710,9 +720,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = E3BNAMEWTS;
-				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = me.thisisthefoxe.seximalWatch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -727,13 +735,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = E3BNAMEWTS;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = seximalWatch_WatchKit_Extension;
+				INFOPLIST_FILE = "$(SRCROOT)/seximalWatch WatchKit App/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "seximalWatch WatchKit App";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = me.thisisthefoxe.seximalWatch.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -753,13 +760,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = E3BNAMEWTS;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = seximalWatch_WatchKit_Extension;
+				INFOPLIST_FILE = "$(SRCROOT)/seximalWatch WatchKit App/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "seximalWatch WatchKit App";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = me.thisisthefoxe.seximalWatch.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -776,7 +782,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"seximalWatch WatchKit Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = E3BNAMEWTS;
 				ENABLE_PREVIEWS = YES;
@@ -791,7 +796,6 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = me.thisisthefoxe.seximalWatch.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
@@ -808,7 +812,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"seximalWatch WatchKit Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = E3BNAMEWTS;
 				ENABLE_PREVIEWS = YES;
@@ -823,7 +826,6 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = me.thisisthefoxe.seximalWatch.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
@@ -869,6 +871,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 12;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -887,6 +890,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				MARKETING_VERSION = 2.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -930,6 +934,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 12;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -942,6 +947,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				MARKETING_VERSION = 2.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -959,7 +965,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = seximal/seximal.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_ASSET_PATHS = "\"seximal/Preview Content\"";
 				DEVELOPMENT_TEAM = E3BNAMEWTS;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = NO;
@@ -970,7 +975,6 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = me.thisIsTheFoxe.seximal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
@@ -988,7 +992,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = seximal/seximal.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_ASSET_PATHS = "\"seximal/Preview Content\"";
 				DEVELOPMENT_TEAM = E3BNAMEWTS;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = NO;
@@ -999,7 +1002,6 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = me.thisIsTheFoxe.seximal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
@@ -1016,7 +1018,6 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = timeExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = E3BNAMEWTS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = time/Info.plist;
@@ -1031,7 +1032,6 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = me.thisIsTheFoxe.seximal.time;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1049,7 +1049,6 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = timeExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = E3BNAMEWTS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = time/Info.plist;
@@ -1064,7 +1063,6 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = me.thisIsTheFoxe.seximal.time;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

@@ -62,7 +62,7 @@ struct LengthConverterView: View {
         
     var body: some View {
         VStack {
-            Text("A stick is exactly 0\(Locale.current.decimalSeparator ?? ".")9572 meter or 1\(Locale.current.decimalSeparator ?? ".")05 yards")
+            Text("A stick is exactly 0\(Locale.current.decimalSeparator ?? ".")9572 meter or 1\(Locale.current.decimalSeparator ?? ".")05 yards. Sticks are counted in seximal.")
                 .font(.headline)
             
             Picker("Converter unit: \(unitFormatter.customString(from: unitA))", selection: $unitA) {

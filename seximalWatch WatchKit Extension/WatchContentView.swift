@@ -8,39 +8,20 @@
 import SwiftUI
 
 struct WatchContentView: View {
-    @ObservedObject var time = SexTime()
+    @ObservedObject var time = SexTime(date: Date().addingTimeInterval(-2400 * 10))
     @ObservedObject var state = WatchState.shared
     
     var body: some View {
         List {
-            if #available(watchOSApplicationExtension 8.0, *) {
-                NavigationLink(isActive: $state.showTime) {
-                    WatchClockView(time: time)
-                } label: {
-                    Label("Clock", systemImage: "clock")
-                }
-                NavigationLink {
-                    WatchCalendarView(time: time)
-                } label: {
-                    Label("Calendar", systemImage: "calendar")
-                }
-                NavigationLink {
-                    WatchCalculatorView()
-                        .environmentObject(Calculator())
-                } label: {
-                    Label("Calculator", systemImage: "number.square")
-                }
-            } else {
-                NavigationLink(destination: WatchClockView(time: time), isActive: $state.showTime, label: {
-                    Label("Clock", systemImage: "clock")
-                })
-                NavigationLink(destination: WatchCalendarView(time: time), label: {
-                    Label("Calendar", systemImage: "calendar")
-                })
-                NavigationLink(destination: WatchCalculatorView().environmentObject(Calculator()), label: {
-                    Label("Calculator", systemImage: "number.square")
-                })
-            }
+            NavigationLink(destination: WatchClockView(time: time), isActive: $state.showTime, label: {
+                Label("Clock", systemImage: "clock")
+            })
+            NavigationLink(destination: WatchCalendarView(time: time), label: {
+                Label("Calendar", systemImage: "calendar")
+            })
+            NavigationLink(destination: WatchCalculatorView().environmentObject(Calculator()), label: {
+                Label("Calculator", systemImage: "number.square")
+            })
         }
     }
 }

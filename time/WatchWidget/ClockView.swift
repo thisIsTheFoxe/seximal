@@ -33,6 +33,14 @@ struct ClockView: View {
         0
     }
     
+    var borderColor: Color {
+        #if !os(watchOS)
+            return Color(UIColor.label)
+        #else
+            return .white
+        #endif
+    }
+    
     var body: some View {
         GeometryReader { geometryReader in
             VStack {
@@ -50,11 +58,7 @@ struct ClockView: View {
                                 .font(textFont)
                                 .padding(2)
                                 .padding(.horizontal, 2)
-                            #if !os(watchOS)
-                                .border(Color(UIColor.label))
-                            #else
-                                .border(.white)
-                            #endif
+                                .border(borderColor)
                                 .padding(.trailing, 20)
                         }
                     }

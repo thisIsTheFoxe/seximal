@@ -9,13 +9,18 @@ import SwiftUI
 
 struct CalcButtonStyle: ButtonStyle {
     var type: Calculator.Action
+    
+    var minHeight: CGFloat {
+        #if !os(watchOS)
+        return 60
+        #else
+        return 22
+        #endif
+    }
+    
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
-        #if !os(watchOS)
-            .frame(maxWidth: .infinity, minHeight: 60, maxHeight: .infinity)
-        #else
-            .frame(maxWidth: .infinity, minHeight: 22, maxHeight: .infinity)
-        #endif
+            .frame(maxWidth: .infinity, minHeight: minHeight, maxHeight: .infinity)
             .background(type.backgroundColor)
             .foregroundColor(type.foregroundColor)
             .opacity(configuration.isPressed ? 0.5 : 1)
@@ -24,7 +29,7 @@ struct CalcButtonStyle: ButtonStyle {
 
 struct CalculatorButton: View {
     var type: Calculator.Action
-    var font = Font.title3
+    var font: Font?
     @EnvironmentObject var model: Calculator
     
     @State var isTapped = false
@@ -46,14 +51,17 @@ struct CalculatorButton: View {
         Button(action: {
             model.apply(type)
         }, label: {
-            if let sysName = type.sfSymbolName {
-                Image(systemName: sysName)
-                    //                    .imageScale(.large)
-                    .font(font.weight(.bold))
-            } else {
-                Text(type.displayName)
-                    .font(font)
-                    .bold()
+            GeometryReader { reader in
+                if let sysName = type.sfSymbolName {
+                    Image(systemName: sysName)
+                        //                    .imageScale(.large)
+                        .font(font ?? .forViewSize(reader.size, weight: .bold))
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                } else {
+                    Text(type.displayName)
+                        .font(font ?? .forViewSize(reader.size, weight: .bold))
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                }
             }
         })
         .buttonStyle(CalcButtonStyle(type: type))

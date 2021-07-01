@@ -30,26 +30,27 @@ struct CalculatorView: View {
                     .frame(width: g.size.width, height: g.size.height)
                     .background(Color(UIColor.secondarySystemBackground).opacity(0.5))
             }
+            .frame(maxHeight: 100)
+            .padding(.bottom)
             .contextMenu(ContextMenu(menuItems: {
                 Button("Copy", action: {
                     UIPasteboard.general.string = model.logic.output
                 })
             }))
-            .frame(maxHeight: 100)
-            .padding(.bottom)
+            
             LazyVGrid(columns: columns, spacing: 10, content: {
                 ForEach(Calculator.Action.allCases) { op in
                     CalculatorButton(type: op)
                     //                        .padding(.top, 5)
                 }
             })
-            .toolbar(content: {
-                Menu("Memory") {
-                    ForEach(Calculator.MemoryAction.allCases) { action in
-                        Button(action.displayName, action: { model.applyMemory(action: action) })
+                .toolbar(content: {
+                    Menu("Memory") {
+                        ForEach(Calculator.MemoryAction.allCases) { action in
+                            Button(action.displayName, action: { model.applyMemory(action: action) })
+                        }
                     }
-                }
-            })
+                })
         }
         .padding()
         .navigationTitle("Calculator")
