@@ -1,0 +1,20 @@
+{
+  "images" : [
+    {
+      "filename" : "Webp.net-resizeimage-8.png",
+      "idiom" : "watch",
+      "scale" : "2x",
+      "screen-width" : ">161"
+    },
+    {
+      "filename" : "Webp.net-resizeimage-7.png",
+      "idiom" : "watch",
+      "scale" : "2x",
+      "screen-width" : ">183"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

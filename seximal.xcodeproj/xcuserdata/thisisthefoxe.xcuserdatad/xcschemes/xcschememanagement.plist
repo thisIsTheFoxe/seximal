@@ -19,6 +19,11 @@
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
+		<key>seximalWatch WatchKit Extension.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
 		<key>timeExtension.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>

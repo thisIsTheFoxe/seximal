@@ -46,9 +46,9 @@ class SexTime: ObservableObject {
     
     @Published var dayDate: Date
     
-    @Published
-    var timerSubscription: Cancellable? = nil
-    
+    private let timer = Timer.publish(every: 0.05, on: .main, in: .common).autoconnect()
+    private var timerSubscription: Cancellable?
+
     var msSinceDay: Int {
         Int(date.timeIntervalSince(Calendar.utc.startOfDay(for: date)) * 1000)  // milliseconds since midnight
     }
@@ -123,9 +123,7 @@ class SexTime: ObservableObject {
     
     func startTimer() {
         print(#function)
-        self.timerSubscription =
-            Timer.publish(every: 0.05, on: .main, in: .common)
-            .autoconnect()
+        self.timerSubscription = timer
             .map({
                 if !Calendar.utc.isDate($0, inSameDayAs: self.dayDate) {
                     self.dayDate = $0
@@ -137,6 +135,6 @@ class SexTime: ObservableObject {
     
     func stopTimer() {
         print(#function)
-        self.timerSubscription?.cancel()
+        timerSubscription = nil
     }
 }

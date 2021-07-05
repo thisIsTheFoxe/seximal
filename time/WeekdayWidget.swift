@@ -53,7 +53,7 @@ struct WeekdayProvider: IntentTimelineProvider {
     func getTimeline(for configuration: CalendarIntent, in context: Context, completion: @escaping (Timeline<WeekdayEntry>) -> Void) {
         let midnight = cal.startOfDay(for: Date())
         let nextMidnight = cal.date(byAdding: .day, value: 1, to: midnight)!
-        let next4Days = (1...3).map({ cal.date(byAdding: .day, value: $0, to: midnight)! })
+        let next4Days = (0...3).map({ cal.date(byAdding: .day, value: $0, to: midnight)! })
         let entries = next4Days.map( { WeekdayEntry(date: $0, config: configuration) })
         let timeline = Timeline(entries: entries, policy: .after(nextMidnight))
         completion(timeline)

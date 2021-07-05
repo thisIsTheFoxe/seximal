@@ -41,7 +41,7 @@ struct CalendarProvider: IntentTimelineProvider {
     func getTimeline(for configuration: CalendarIntent, in context: Context, completion: @escaping (Timeline<CalendarEntry>) -> Void) {
         let midnight = Calendar.utc.startOfDay(for: Date())
         let nextMidnight = Calendar.utc.date(byAdding: .day, value: 1, to: midnight)!
-        let next4Days = (1...3).map({ Calendar.utc.date(byAdding: .day, value: $0, to: midnight)! })
+        let next4Days = (0...3).map({ Calendar.utc.date(byAdding: .day, value: $0, to: midnight)! })
         let entries = next4Days.map( { CalendarEntry(date: $0, configuration: configuration) })
         let timeline = Timeline(entries: entries, policy: .after(nextMidnight))
         completion(timeline)
@@ -104,7 +104,6 @@ struct CalendarEntryView: View {
                         .scaledToFit()
                 }
             }
-            
         }
         .widgetURL(AppState.url(for: .convert, converterType: .time))
     }
