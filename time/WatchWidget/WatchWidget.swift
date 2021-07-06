@@ -47,6 +47,8 @@ struct WatchProvider: IntentTimelineProvider {
         
         let secondsSinceDay = Int(date.timeIntervalSince(Calendar.utc.startOfDay(for: date)))
         let momentsSinceDay = Double(secondsSinceDay) / secondsInAMoment
+        
+        //TODO: start from current lull, to avoid unneccisary waiting / loading
         let lullsSinceDay = Int(momentsSinceDay / 36) + 1
         let nextLullInSec = Double(lullsSinceDay) * 36 * secondsInAMoment + 0.25
         
