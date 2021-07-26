@@ -60,7 +60,7 @@ struct ClockView: View {
                                 .padding(.horizontal, 2)
                                 .border(borderColor)
                             //TODO: use more padding depending on isSmall
-                                .padding(.trailing, 20)
+                                .padding(.trailing, isSmall ? 20 : 35)
                         }
                     }
                     
