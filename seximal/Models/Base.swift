@@ -9,8 +9,8 @@ import Foundation
 
 enum Base: Int, CaseIterable, Identifiable {
     var id: Base { self }
-    
-    case dec = 10, sex = 6, bin = 2, doz = 12, oct = 8, hex = 16
+
+    case dec = 10, sex = 6, bin = 2, doz = 12, oct = 8, hex = 16, nif = 36
     
     var grouping: Int? {
         switch self {
@@ -19,7 +19,7 @@ enum Base: Int, CaseIterable, Identifiable {
         default: return nil
         }
     }
-    
+
     var baseName : String {
         switch self {
         case .bin: return "Binary"
@@ -28,7 +28,8 @@ enum Base: Int, CaseIterable, Identifiable {
         case .dec: return "Decimal"
         case .doz: return "Dozenal"
         case .hex: return "Hexadecimal"
-        default:
+        case .nif: return "Niftimal"
+        @unknown default:
             return "??"
         }
     }
@@ -41,6 +42,7 @@ enum Base: Int, CaseIterable, Identifiable {
         case .dec: return "dec"
         case .doz: return "doz"
         case .hex: return "hex"
+        case .nif: return "nif"
         default:
             return "??"
         }
