@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AboutView: View {
-    
+
     var body: some View {
         #if targetEnvironment(macCatalyst)
         content
@@ -19,7 +19,7 @@ struct AboutView: View {
         .navigationViewStyle(StackNavigationViewStyle())
         #endif
     }
-    
+
     var content: some View {
         ScrollView {
             VStack(alignment: .leading) {
@@ -32,7 +32,7 @@ struct AboutView: View {
                 .padding(.vertical)
                 Text("Most people are very familiar and use the decimal (base-10) numbering system. However, also binary (base-2) or hexadecimal (base-16) systems are often used e.g. in computer science. Even in our daily lives we can encounter different numbering systems, like the Roman numeral system on some clocks and base-60 when counting seconds and minutes.")
                 Text("Things that distinguish one base from another are:")
-                
+
                 Text("1. It's size").bold().padding([.leading, .top])
                 Text("The bigger a base, the fewer digits it requires to write larger numbers. But also the more distinct digits are there to remember. Scientists say that the human brain's short-term memory has a capacity of seven (plus/minus two).")
                 Text("2. It's factors").bold().padding([.leading, .top])

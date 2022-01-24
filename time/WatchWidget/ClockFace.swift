@@ -12,7 +12,7 @@ struct ClockFace: View {
     var config: WatchIntent
     var time: SexTime
     @Environment(\.widgetFamily) var family: WidgetFamily
-    
+
     var textFont: Font {
         switch family {
         case .systemSmall:
@@ -22,7 +22,7 @@ struct ClockFace: View {
         default: return .body
         }
     }
-    
+
     var titleFont: Font {
         switch family {
         case .systemSmall:
@@ -32,7 +32,7 @@ struct ClockFace: View {
         default: return .title
         }
     }
-    
+
     var body: some View {
         ClockView(
             isSmall: family == .systemSmall,

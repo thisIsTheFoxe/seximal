@@ -13,13 +13,12 @@ protocol CalculatorAction: Hashable, Identifiable {
     var displayName: String { get }
 }
 
-
 // MARK: - Operations
 enum CalculatorOp: CalculatorAction {
     case plus, minus, mult, div
-    
+
     var id: CalculatorOp { self }
-    
+
     var sfSymbolName: String? {
         switch self {
         case .plus: return "plus"
@@ -29,7 +28,7 @@ enum CalculatorOp: CalculatorAction {
         default: return nil
         }
     }
-    
+
     var displayName: String {
         switch self {
         case .plus: return "+"
@@ -39,13 +38,13 @@ enum CalculatorOp: CalculatorAction {
         default: return "?"
         }
     }
-        
+
     func calculate(l: String, r: String) -> String? {
 
         guard let left = Double(l, radix: 6), let right = Double(r, radix: 6) else {
             return nil
         }
-        
+
         let result: Double?
         switch self {
         case .plus: result = left + right
@@ -55,18 +54,17 @@ enum CalculatorOp: CalculatorAction {
         default:
             return nil
         }
-        
+
         return result ?? { String($0, radix: 6) } | nil
     }
 }
 
-
 // MARK: - Modifier
 enum CalculatorModifier: CalculatorAction {
     case number(i: Int), pow, sqrt, comma, del, negate, rand
-    
+
     var id: CalculatorModifier { return self }
-    
+
     var sfSymbolName: String? {
         switch self {
         case .sqrt: return "x.squareroot"
@@ -75,7 +73,7 @@ enum CalculatorModifier: CalculatorAction {
         default: return nil
         }
     }
-    
+
     var displayName: String {
         switch self {
         case .number(let i): return String(i)
@@ -88,7 +86,7 @@ enum CalculatorModifier: CalculatorAction {
         default: return "?"
         }
     }
-    
+
     var backgroundColor: Color {
         switch self {
         case .number, .comma:
@@ -97,7 +95,7 @@ enum CalculatorModifier: CalculatorAction {
             return Color.gray.opacity(0.125)
         }
     }
-    
+
     func modify(text: String) -> String? {
         switch self {
         case .number(i: let num):

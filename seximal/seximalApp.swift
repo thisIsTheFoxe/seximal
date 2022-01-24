@@ -11,7 +11,7 @@ import SwiftUI
 struct seximalApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @State var globalState = AppState.global
-    
+
     var body: some Scene {
         WindowGroup {
             ContentView()

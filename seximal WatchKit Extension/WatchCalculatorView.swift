@@ -9,9 +9,9 @@ import SwiftUI
 
 struct WatchCalculatorView: View {
     @EnvironmentObject var model: Calculator
-    
+
     let columns: [GridItem] = [GridItem(spacing: 6, alignment: .trailing), GridItem(spacing: 6, alignment: .center), GridItem(spacing: 6, alignment: .center)]
-    
+
     var body: some View {
         VStack {
             HStack {

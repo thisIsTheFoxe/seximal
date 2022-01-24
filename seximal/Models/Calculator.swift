@@ -9,10 +9,10 @@ import Foundation
 import SwiftUI
 
 class Calculator: ObservableObject {
-    
+
     enum MemoryAction: CalculatorAction, CaseIterable {
         var sfSymbolName: String? { return nil }
-        
+
         var displayName: String {
             switch self {
             case .clear: return "Clear (MC)"
@@ -21,34 +21,34 @@ class Calculator: ObservableObject {
             case .read: return "Read (MR)"
             }
         }
-        
+
         var id: MemoryAction { return self }
-        
+
         case clear, add, subtract, read
     }
-    
+
     enum Action: CalculatorAction, CaseIterable {
         case op(_ op: CalculatorOp), mod(_ mod: CalculatorModifier), clear, equal
-        
+
         #if !os(watchOS)
         static var allCases: [Action] = [
-            .mod(.number(i: 0)),    .mod(.number(i: 1)),    .mod(.comma),
-            .mod(.number(i: 2)),    .mod(.number(i: 3)),    .clear,
-            .mod(.number(i: 4)),    .mod(.number(i: 5)),    .mod(.del),
-            .op(.plus),             .op(.minus),            .equal,
-            .op(.mult),             .op(.div),              .mod(.negate),
-            .mod(.pow),             .mod(.sqrt),            .mod(.rand),
+            .mod(.number(i: 0)), .mod(.number(i: 1)), .mod(.comma),
+            .mod(.number(i: 2)), .mod(.number(i: 3)), .clear,
+            .mod(.number(i: 4)), .mod(.number(i: 5)), .mod(.del),
+            .op(.plus), .op(.minus), .equal,
+            .op(.mult), .op(.div), .mod(.negate),
+            .mod(.pow), .mod(.sqrt), .mod(.rand)
         ]
         #else
         static var allCases: [Action] = [
-            .mod(.number(i: 0)),    .mod(.number(i: 1)),    .mod(.number(i: 2)),
-            .mod(.number(i: 3)),    .mod(.number(i: 4)),    .mod(.number(i: 5)),
-            .op(.plus),             .op(.minus),            .mod(.comma),
-            .op(.mult),             .op(.div),              .equal,
+            .mod(.number(i: 0)), .mod(.number(i: 1)), .mod(.number(i: 2)),
+            .mod(.number(i: 3)), .mod(.number(i: 4)), .mod(.number(i: 5)),
+            .op(.plus), .op(.minus), .mod(.comma),
+            .op(.mult), .op(.div), .equal
         ]
         #endif
         var id: Action { return self }
-        
+
         var sfSymbolName: String? {
             switch self {
             case .op(let op):
@@ -61,7 +61,7 @@ class Calculator: ObservableObject {
                 return nil
             }
         }
-        
+
         @available(watchOS, unavailable)
         var keyboardShortcut: KeyEquivalent? {
             switch self {
@@ -69,8 +69,8 @@ class Calculator: ObservableObject {
                 switch mod {
                 case .number, .comma: return KeyEquivalent(Character(mod.displayName))
                 case .del: return .delete
-                case .negate: return nil //"-" is used for op
-                case .pow: return KeyEquivalent(Character("^")) //"^" doesn't work e.g. on german keyboard :(( (probably, cuz combining character)
+                case .negate: return nil // "-" is used for op
+                case .pow: return KeyEquivalent(Character("^")) // "^" doesn't work e.g. on german keyboard :(( (probably, cuz combining character)
                 default: return nil
                 }
             case .equal: return .return
@@ -79,7 +79,7 @@ class Calculator: ObservableObject {
             default: return nil
             }
         }
-        
+
         var displayName: String {
             switch self {
             case .op(let op):
@@ -94,10 +94,10 @@ class Calculator: ObservableObject {
                 return "?"
             }
         }
-        
+
         var foregroundColor: Color? {
             switch self {
-            case .op(_), .equal:
+            case .op, .equal:
                 #if !os(watchOS)
                 return Color(UIColor.systemBackground)
                 #else
@@ -107,26 +107,25 @@ class Calculator: ObservableObject {
                 return nil
             }
         }
-        
+
         var backgroundColor: Color {
             switch self {
             case .mod(let mod):
                 return mod.backgroundColor
-            case .op(_), .equal:
+            case .op, .equal:
                 return .orange
             default:
                 return Color.gray.opacity(0.125)
             }
         }
     }
-    
+
     @Published var logic: CalculatorLogic = .left("0")
-    
-    
+
     static var Memory_Key = "CALC_MEMORY"
     var memory = UserDefaults.standard.double(forKey: Memory_Key)
     var temporaryKept: [Action] = []
-    
+
     func applyMemory(action: MemoryAction) {
         switch action {
         case .clear:
@@ -142,23 +141,20 @@ class Calculator: ObservableObject {
             logic = logic.readMemory(newValue: memory)
         }
     }
-    
+
     func apply(_ item: Action) {
         logic = logic.apply(item: item)
         temporaryKept.removeAll()
     }
 }
 
-
-
 enum CalculatorLogic {
     case left(String)
     case leftOp(left: String, op: CalculatorOp)
     case leftOpRight(left: String, op: CalculatorOp, right: String)
     case error
-    
-    
-    //FIXME: can be optimized, since it's called a lot..?
+
+    // FIXME: can be optimized, since it's called a lot..?
     var output: String {
         var result: String
         switch self {
@@ -167,42 +163,42 @@ enum CalculatorLogic {
         case .leftOpRight(_, _, let right): result = right
         case .error: return "Error"
         }
-        
+
         guard let _ = Double(result, radix: 6) else {
             return "Error"
         }
-                
+
         if let grSeparator = Locale.current.groupingSeparator, let decSeparator = Locale.current.decimalSeparator {
             let sign = result.startWithNegative ? String(result.removeFirst()) : ""
             let parts = result.components(separatedBy: decSeparator)
-            
+
             if let int = parts.first, int.count >= 5, parts.count <= 2 {
                 let rest = parts.count == 2 ? decSeparator + parts[1] : ""
-                
+
                 result = parts[0].split(by: 4).joined(separator: grSeparator) + rest
             }
             result = sign + result
         }
-        
+
 //        if result.containsDecSeparator && !result.containsDecSeparator {
 //            result = result.applyDecSeparator()
 //        }
-        
+
         return result
     }
-    
+
     public func readMemory(newValue: Double) -> CalculatorLogic {
         let newOutput = String(newValue, radix: 6)
         switch self {
-        case .left(_): return .left(newOutput)
+        case .left: return .left(newOutput)
         case let .leftOp(left: left, op: op), let .leftOpRight(left: left, op: op, right: _):
             return .leftOpRight(left: left, op: op, right: newOutput)
         case .error: return .left(newOutput)
         }
     }
-    
+
     @discardableResult
-    func apply(item: Calculator.Action) -> CalculatorLogic  {
+    func apply(item: Calculator.Action) -> CalculatorLogic {
         switch item {
         case .op(let op):
             return apply(op)
@@ -214,7 +210,7 @@ enum CalculatorLogic {
             return applyEqual()
         }
     }
-    
+
     private func apply(_ op: CalculatorOp) -> CalculatorLogic {
         switch self {
         case .left(let left):
@@ -228,7 +224,7 @@ enum CalculatorLogic {
             return self
         }
     }
-    
+
     private func apply(_ mod: CalculatorModifier) -> CalculatorLogic {
         switch self {
         case .left(let left):
@@ -245,7 +241,7 @@ enum CalculatorLogic {
             return .left(result)
         }
     }
-    
+
     private func applyEqual() -> CalculatorLogic {
         switch self {
         case .leftOp(left: let left, op: let op):
@@ -276,7 +272,7 @@ extension String {
     var startWithNegative: Bool {
         return starts(with: "-")
     }
-    
+
     func negate() -> String {
         if startWithNegative {
             var s = self
@@ -294,7 +290,7 @@ extension String {
         }
         return result.isEmpty ? "0" : result
     }
-    
+
     func apply(num: Int) -> String {
         if startWithNegative {
             return self == "-0" ? "-\(num)" : "\(self)\(num)"

@@ -15,16 +15,16 @@ struct MonthView: View {
         self.spacing = spacing
         self.columns = Array(repeating: GridItem(.flexible(), spacing: 3, alignment: .trailing), count: isLast ? daysInMonth : 6)
     }
-    
+
     var spacing: CGFloat?
-    var columns: Array<GridItem>!
+    var columns: [GridItem]!
     var title: Text
     var currentDay: Int
     var isLast: Bool
     var daysInMonth: Int {
         isLast ? Calendar.current.daysInYear - 360 : 36
     }
-    
+
     var borderColor: Color {
         #if !os(watchOS)
         return Color(UIColor.label)
@@ -32,7 +32,7 @@ struct MonthView: View {
         return .white
         #endif
     }
-    
+
     var body: some View {
         VStack(spacing: spacing) {
             title
@@ -42,7 +42,7 @@ struct MonthView: View {
                         .scaledToFill()
                 }
             })
-            
+
             .border(borderColor, width: 1)
         }
     }
@@ -51,7 +51,7 @@ struct MonthView: View {
 struct DayText: View {
     let text: String
     let isCurrentDay: Bool
-    
+
     var foreground: Color {
         #if !os(watchOS)
         return isCurrentDay ? Color(UIColor.systemBackground) : Color(UIColor.label)
@@ -59,7 +59,7 @@ struct DayText: View {
         return isCurrentDay ? .black : .white
         #endif
     }
-    
+
     var background: Color {
         #if !os(watchOS)
         isCurrentDay ? Color(UIColor.label):  Color(UIColor.systemBackground)
@@ -67,7 +67,7 @@ struct DayText: View {
         isCurrentDay ? Color.white:  Color.black
         #endif
     }
-    
+
     var body: some View {
         GeometryReader { g in
             Text(text)
@@ -84,7 +84,7 @@ struct DayText: View {
 
 struct MonthView_Previews: PreviewProvider {
     static var previews: some View {
-        
+
         LazyVGrid(columns: [GridItem(), GridItem()], content: {
             MonthView(title: Text("January").font(.headline), currentDay: 2, isLast: true)
             MonthView(title: Text("Februray").font(.headline), currentDay: 2, isLast: false)

@@ -11,7 +11,7 @@ import WidgetKit
 
 struct WeekdayWidget: Widget {
     static let kind = "week"
-    
+
     var config : some WidgetConfiguration = {
         IntentConfiguration(kind: Self.kind, intent: CalendarIntent.self, provider: WeekdayProvider()) { entry in
             WeekdayEntryView(entry: entry)
@@ -19,7 +19,7 @@ struct WeekdayWidget: Widget {
         .configurationDisplayName("Week Widget")
         .description("A widget showing the object after which the current day of the week is named (e.g. Sunday = Sun, Vensday = Venus).")
     }()
-    
+
     var body: some WidgetConfiguration {
 //        if #available(iOSApplicationExtension 15.0, *) {
 //            return config
@@ -42,37 +42,37 @@ struct WeekdayProvider: IntentTimelineProvider {
         cal.timeZone = TimeZone(secondsFromGMT: 0)!
         return cal
     }()
-    
+
     func placeholder(in context: Context) -> WeekdayEntry {
         WeekdayEntry(date: Date(), config: CalendarIntent())
     }
     func getSnapshot(for configuration: CalendarIntent, in context: Context, completion: @escaping (WeekdayEntry) -> Void) {
         completion(WeekdayEntry(date: Date(), config: configuration))
     }
-    
+
     func getTimeline(for configuration: CalendarIntent, in context: Context, completion: @escaping (Timeline<WeekdayEntry>) -> Void) {
         let midnight = cal.startOfDay(for: Date())
         let nextMidnight = cal.date(byAdding: .day, value: 1, to: midnight)!
         let next4Days = (0...3).map({ cal.date(byAdding: .day, value: $0, to: midnight)! })
-        let entries = next4Days.map( { WeekdayEntry(date: $0, config: configuration) })
+        let entries = next4Days.map({ WeekdayEntry(date: $0, config: configuration) })
         let timeline = Timeline(entries: entries, policy: .after(nextMidnight))
         completion(timeline)
     }
 }
 
-struct WeekdayEntryView : View {
+struct WeekdayEntryView: View {
     var entry: WeekdayProvider.Entry
-    
+
     var showText: Bool = true
-    
+
     var time: SexTime
-    
+
     init(entry: WeekdayProvider.Entry, showText: Bool = true) {
         self.entry = entry
         self.showText = showText
         self.time = SexTime(date: entry.date)
     }
-    
+
     var body: some View {
         ZStack {
             Image("\(time.weekday)/\(Int.random(in: 0...4))", bundle: .main)

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct WatchClockView: View {
     @ObservedObject var time: SexTime
-    
+
     var body: some View {
         VStack {
             ClockView(
@@ -19,9 +19,9 @@ struct WatchClockView: View {
                 showDigitally: false,
                 showSecondsHand: true,
                 titleFont: .caption,
-                textFont: .body, //don't need it
+                textFont: .body, // don't need it
                 time: time)
-            
+
             Text("\(time.lapse.asSex(padding: 2)):\(time.lull.asSex(padding: 2)):\(time.moment.asSex(padding: 2)).\(time.snap.asSex())")
                 .font(.system(size: 10).bold())
                 .padding(.bottom, 1)

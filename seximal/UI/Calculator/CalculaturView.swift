@@ -8,18 +8,18 @@
 import SwiftUI
 
 struct CalculatorView: View {
-    
+
     @EnvironmentObject var model: Calculator
-    
-    let columns: [GridItem] = [GridItem(spacing: 10, alignment: .trailing),GridItem(spacing: 10, alignment: .center),GridItem(spacing: 10, alignment: .leading)]
-    
+
+    let columns: [GridItem] = [GridItem(spacing: 10, alignment: .trailing), GridItem(spacing: 10, alignment: .center), GridItem(spacing: 10, alignment: .leading)]
+
     var body: some View {
         NavigationView {
             content
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
-    
+
     var content: some View {
         VStack {
             GeometryReader { g in
@@ -37,7 +37,7 @@ struct CalculatorView: View {
                     UIPasteboard.general.string = model.logic.output
                 })
             }))
-            
+
             LazyVGrid(columns: columns, spacing: 10, content: {
                 ForEach(Calculator.Action.allCases) { op in
                     CalculatorButton(type: op)

@@ -14,13 +14,13 @@ extension Int {
       formatter.numberStyle = .spellOut
       return formatter.string(from: numberValue) ?? ""
     }
-    
+
     func spellInSex() -> String {
         guard !(0...12).contains(self) else {
             if self == 0 { return "" }
             return asWord
         }
-        
+
         let dozens = self / 6
         let nifs = self / 36
         let nifRest = self % 36
@@ -33,8 +33,8 @@ extension Int {
         let quadexian = self / 2_821_109_907_456
         let quadexianRest = self % 2_821_109_907_456
         let rest = self % 6
-        
-        ///NOTE: Not switchng self, but divided by six
+
+        /// NOTE: Not switchng self, but divided by six
         switch dozens {
         case 2: return "dozen " + rest.spellInSex()
         case 3: return "thirsy " + rest.spellInSex()
@@ -50,7 +50,7 @@ extension Int {
                 result += " " + nifRest.spellInSex()
             }
             return result
-        //6**(8-1)
+        // 6**(8-1)
         case 216..<279_936:
             var result = ""
             if unexian > 1 {
@@ -61,7 +61,7 @@ extension Int {
                 result += " " + unexianRest.spellInSex()
             }
             return result
-            //6**(12-1)
+            // 6**(12-1)
         case 279_936..<362_797_056:
             var result = ""
             if biexian > 1 {
@@ -72,7 +72,7 @@ extension Int {
                 result += " " + biexianRest.spellInSex()
             }
             return result
-            //6**(16-1)
+            // 6**(16-1)
         case 362_797_056..<470_184_984_576:
             var result = ""
             if triexian > 1 {
@@ -83,7 +83,7 @@ extension Int {
                 result += " " + triexianRest.spellInSex()
             }
             return result
-        //6**(20-1)
+        // 6**(20-1)
         case 470_184_984_576..<609_359_740_010_496:
             var result = ""
             if quadexian > 1 {

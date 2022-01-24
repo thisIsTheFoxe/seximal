@@ -13,7 +13,7 @@ extension Font {
         var s = size.height > size.width ?
         size.width * 0.4 : size.height * 0.4
         s = max(s, 7)
-        
+
         if let weight = weight {
             return .system(size: s, weight: weight)
         } else if min(size.height, size.width) <= 20 {

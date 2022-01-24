@@ -10,7 +10,7 @@ import SwiftUI
 struct WatchContentView: View {
     @ObservedObject var time = SexTime(date: Date().addingTimeInterval(-2400 * 10))
     @ObservedObject var state = WatchState.shared
-    
+
     var body: some View {
         List {
             NavigationLink(destination: WatchClockView(time: time), isActive: $state.showTime, label: {

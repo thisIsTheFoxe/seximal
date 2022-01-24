@@ -11,7 +11,7 @@ enum Base: Int, CaseIterable, Identifiable {
     var id: Base { self }
 
     case dec = 10, sex = 6, bin = 2, doz = 12, oct = 8, hex = 16, nif = 36
-    
+
     var grouping: Int? {
         switch self {
         case .dec: return 3
@@ -20,7 +20,7 @@ enum Base: Int, CaseIterable, Identifiable {
         }
     }
 
-    var baseName : String {
+    var baseName: String {
         switch self {
         case .bin: return "Binary"
         case .sex: return "Seximal"
@@ -33,7 +33,7 @@ enum Base: Int, CaseIterable, Identifiable {
             return "??"
         }
     }
-    
+
     var abbreviatedName: String {
         switch self {
         case .bin: return "bin"

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ConverterListView: View {
     @EnvironmentObject var appState: AppState
-    
+
     var body: some View {
         NavigationView {
             List {

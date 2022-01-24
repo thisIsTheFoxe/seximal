@@ -9,18 +9,18 @@ import SwiftUI
 import Combine
 
 struct SexTimeView: View {
-    
+
     var columns = { Array(repeating: GridItem(spacing: 6), count: 2) }()
-    
+
     @ObservedObject var time = SexTime()
-    
+
     var body: some View {
         ScrollView {
             Text("Current universal time:")
                 .font(.title)
             Text("(there are no time zones in seximal)")
                 .font(.caption)
-            
+
             Text("\(time.lapse.asSex(padding: 2)):\(time.lull.asSex(padding: 2)):\(time.moment.asSex(padding: 2)).\(time.snap)")
                 .font(.title2)
                 .padding(.top)
@@ -33,7 +33,7 @@ struct SexTimeView: View {
             Text("1 Span is a little less than 11 (DEC7) minutes")
                 .font(.subheadline)
                 .padding(4)
-            
+
             Text("Check the number converter for how to pronounce seximal numbers.")
                 .font(.footnote)
                 .padding()
