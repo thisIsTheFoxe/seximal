@@ -46,7 +46,7 @@ struct ClockFace: View {
     }
 }
 
-struct ClockFace_Preview: PreviewProvider {
+struct ClockFace_Previews: PreviewProvider {
     static var previews: some View {
         ClockFace(config: .preview, time: SexTime(date: Date().addingTimeInterval(60*370)))
             .previewContext(WidgetPreviewContext(family: .systemLarge))

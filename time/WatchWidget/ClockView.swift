@@ -47,7 +47,15 @@ struct ClockView: View {
                 let size = getSize(geometryReader.size)
 
                 ZStack {
-                    ClockMarks(count: 36, longDivider: 6, longTickHeight: 10 * strokeScalar, tickHeight: 5 * strokeScalar, tickWidth: 2 * strokeScalar, highlightedColorDivider: 6, highlightedColor: .primary, normalColor: .gray)
+                    ClockMarks(
+                        count: 36,
+                        longDivider: 6,
+                        longTickHeight: 10 * strokeScalar,
+                        tickHeight: 5 * strokeScalar,
+                        tickWidth: 2 * strokeScalar,
+                        highlightedColorDivider: 6,
+                        highlightedColor: .primary,
+                        normalColor: .gray)
                     NumberView(numbers: Array(0..<6), textColor: .primary, font: titleFont)
                         .padding(10 * strokeScalar)
 
@@ -59,7 +67,7 @@ struct ClockView: View {
                                 .padding(2)
                                 .padding(.horizontal, 2)
                                 .border(borderColor)
-                            // TODO: use more padding depending on isSmall
+                            // : use more padding depending on isSmall
                                 .padding(.trailing, isSmall ? 20 : 35)
                         }
                     }

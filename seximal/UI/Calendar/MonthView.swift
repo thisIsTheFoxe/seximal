@@ -69,11 +69,11 @@ struct DayText: View {
     }
 
     var body: some View {
-        GeometryReader { g in
+        GeometryReader { reader in
             Text(text)
-                .font(.forViewSize(g.size))
+                .font(.forViewSize(reader.size))
                 .lineLimit(1)
-                .padding(.top, (g.size.height) * 0.25)
+                .padding(.top, (reader.size.height) * 0.25)
                 .padding(.trailing, 2)
                 .frame(maxWidth: .infinity, alignment: .topTrailing)
         }

@@ -44,72 +44,70 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
 
     func getCurrentTimelineEntry(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTimelineEntry?) -> Void) {
         // Call the handler with the current timeline entry
-        print(#function)
         let secondsInAMoment = ((60.0 * 60.0 * 24.0) / (36.0 * 36.0 * 36.0))
-        let date = Date()
+        var date = Date()
 
         let secondsSinceDay = Int(date.timeIntervalSince(Calendar.utc.startOfDay(for: date)))
         let momentsSinceDay = Double(secondsSinceDay) / secondsInAMoment
         let lullsSinceDay = Int(momentsSinceDay / 36)
         let lullsInSec = Double(lullsSinceDay) * 36 * secondsInAMoment + 0.25
 
-        let d = Calendar.utc.startOfDay(for: date).addingTimeInterval(lullsInSec)
-        let t = SexTime(date: d)
+        date = Calendar.utc.startOfDay(for: date).addingTimeInterval(lullsInSec)
+        let time = SexTime(date: date)
 
         let entry = CLKComplicationTimelineEntry(
-            date: d,
-            complicationTemplate: template(for: complication.family, time: t)
+            date: date,
+            complicationTemplate: template(for: complication.family, time: time)
         )
 
         // RUNTIME WARING!
         handler(entry)
     }
 
-    func getTimelineEntries(for complication: CLKComplication, after date: Date, limit: Int, withHandler handler: @escaping ([CLKComplicationTimelineEntry]?) -> Void) {
-        // Call the handler with the timeline entries after the given date
-        print(#function)
-        let date = Date()
-        var entries = [CLKComplicationTimelineEntry]()
+    func getTimelineEntries(
+        for complication: CLKComplication,
+        after date: Date,
+        limit: Int,
+        withHandler handler: @escaping ([CLKComplicationTimelineEntry]?) -> Void) {
+            // Call the handler with the timeline entries after the given date
+            let date = Date()
+            var entries = [CLKComplicationTimelineEntry]()
 
-        defer {
-            handler(entries)
-        }
+            defer { handler(entries) }
 
-        guard ![.utilitarianSmall, .utilitarianSmallFlat, .utilitarianLarge].contains(complication.family) else {
-            for i in 0..<limit {
-                let d = date.addingTimeInterval(TimeInterval(i * 3600 * 24))
-                let t = SexTime(date: d)
+            guard ![.utilitarianSmall, .utilitarianSmallFlat, .utilitarianLarge].contains(complication.family) else {
+                for sec in 0..<limit {
+                    let date = date.addingTimeInterval(TimeInterval(sec * 3600 * 24))
+                    let time = SexTime(date: date)
 
-                entries.append(CLKComplicationTimelineEntry(
-                    date: d,
-                    complicationTemplate: template(for: complication.family, time: t)
-                ))
+                    entries.append(CLKComplicationTimelineEntry(
+                        date: date,
+                        complicationTemplate: template(for: complication.family, time: time)
+                    ))
+                }
+                return
             }
 
+            let secondsInAMoment = ((60.0 * 60.0 * 24.0) / (36.0 * 36.0 * 36.0))
+            let secondsInALapse = secondsInAMoment * 36
+
+            let secondsSinceDay = Int(date.timeIntervalSince(Calendar.utc.startOfDay(for: date)))
+            let momentsSinceDay = Double(secondsSinceDay) / secondsInAMoment
+            let lullsSinceDay = Int(momentsSinceDay / 36) + 1
+            let nextLullInSec = Double(lullsSinceDay) * 36 * secondsInAMoment + 0.25
+
+            let now = Calendar.utc.startOfDay(for: date).addingTimeInterval(nextLullInSec)
+
+            for sec in 0..<limit {
+                let date = now.addingTimeInterval(TimeInterval(Double(sec) * secondsInALapse))
+                let time = SexTime(date: date)
+                entries.append(CLKComplicationTimelineEntry(
+                    date: date,
+                    complicationTemplate: template(for: complication.family, time: time)
+                ))
+            }
             return
         }
-
-        let secondsInAMoment = ((60.0 * 60.0 * 24.0) / (36.0 * 36.0 * 36.0))
-        let secondsInALapse = secondsInAMoment * 36
-
-        let secondsSinceDay = Int(date.timeIntervalSince(Calendar.utc.startOfDay(for: date)))
-        let momentsSinceDay = Double(secondsSinceDay) / secondsInAMoment
-        let lullsSinceDay = Int(momentsSinceDay / 36) + 1
-        let nextLullInSec = Double(lullsSinceDay) * 36 * secondsInAMoment + 0.25
-
-        let now = Calendar.utc.startOfDay(for: date).addingTimeInterval(nextLullInSec)
-
-        for i in 0..<limit {
-            let d = now.addingTimeInterval(TimeInterval(Double(i) * secondsInALapse))
-            let t = SexTime(date: d)
-            entries.append(CLKComplicationTimelineEntry(
-                date: d,
-                complicationTemplate: template(for: complication.family, time: t)
-            ))
-        }
-
-        return
-    }
 
     // MARK: - Sample Templates
 

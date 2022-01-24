@@ -11,7 +11,10 @@ struct CalculatorView: View {
 
     @EnvironmentObject var model: Calculator
 
-    let columns: [GridItem] = [GridItem(spacing: 10, alignment: .trailing), GridItem(spacing: 10, alignment: .center), GridItem(spacing: 10, alignment: .leading)]
+    let columns: [GridItem] = [
+        GridItem(spacing: 10, alignment: .trailing),
+        GridItem(spacing: 10, alignment: .center),
+        GridItem(spacing: 10, alignment: .leading)]
 
     var body: some View {
         NavigationView {
@@ -22,12 +25,12 @@ struct CalculatorView: View {
 
     var content: some View {
         VStack {
-            GeometryReader { g in
+            GeometryReader { reader in
                 Text(verbatim: model.logic.output)
                     .font(.system(size: 28))
                     .bold()
                     .padding()
-                    .frame(width: g.size.width, height: g.size.height)
+                    .frame(width: reader.size.width, height: reader.size.height)
                     .background(Color(UIColor.secondarySystemBackground).opacity(0.5))
             }
             .frame(maxHeight: 100)
@@ -41,7 +44,6 @@ struct CalculatorView: View {
             LazyVGrid(columns: columns, spacing: 10, content: {
                 ForEach(Calculator.Action.allCases) { op in
                     CalculatorButton(type: op)
-                    //                        .padding(.top, 5)
                 }
             })
                 .toolbar(content: {

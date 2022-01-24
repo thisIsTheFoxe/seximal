@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -25,7 +25,7 @@
 		D59717892688C63D00A84BA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D59717882688C63D00A84BA9 /* Assets.xcassets */; };
 		D597178F2688C63D00A84BA9 /* seximal WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D597178E2688C63D00A84BA9 /* seximal WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D59717942688C63D00A84BA9 /* WatchContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59717932688C63D00A84BA9 /* WatchContentView.swift */; };
-		D59717962688C63D00A84BA9 /* seximalWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59717952688C63D00A84BA9 /* seximalWatchApp.swift */; };
+		D59717962688C63D00A84BA9 /* SeximalWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59717952688C63D00A84BA9 /* SeximalWatchApp.swift */; };
 		D59717982688C63D00A84BA9 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59717972688C63D00A84BA9 /* ComplicationController.swift */; };
 		D597179D2688C63F00A84BA9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D597179C2688C63F00A84BA9 /* Preview Assets.xcassets */; };
 		D59717AC2688C67F00A84BA9 /* SexTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = D587590C268720950010D441 /* SexTime.swift */; };
@@ -53,7 +53,7 @@
 		D5B5725525C05709003087FA /* LengthConverterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B5725425C05709003087FA /* LengthConverterView.swift */; };
 		D5B5725825C058C7003087FA /* LengthUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B5725725C058C7003087FA /* LengthUnit.swift */; };
 		D5B8B3D02689BC3700CD1E81 /* WatchCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B8B3CF2689BC3700CD1E81 /* WatchCalendarView.swift */; };
-		D5D8BE4025BF18F20066CF30 /* seximalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8BE3F25BF18F20066CF30 /* seximalApp.swift */; };
+		D5D8BE4025BF18F20066CF30 /* SeximalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8BE3F25BF18F20066CF30 /* SeximalApp.swift */; };
 		D5D8BE4225BF18F20066CF30 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8BE4125BF18F20066CF30 /* ContentView.swift */; };
 		D5D8BE4425BF18F30066CF30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5D8BE4325BF18F30066CF30 /* Assets.xcassets */; };
 		D5D8BE4725BF18F30066CF30 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5D8BE4625BF18F30066CF30 /* Preview Assets.xcassets */; };
@@ -162,7 +162,7 @@
 		D59717882688C63D00A84BA9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D597178E2688C63D00A84BA9 /* seximal WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "seximal WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D59717932688C63D00A84BA9 /* WatchContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchContentView.swift; sourceTree = "<group>"; };
-		D59717952688C63D00A84BA9 /* seximalWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = seximalWatchApp.swift; sourceTree = "<group>"; };
+		D59717952688C63D00A84BA9 /* SeximalWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeximalWatchApp.swift; sourceTree = "<group>"; };
 		D59717972688C63D00A84BA9 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		D59717992688C63F00A84BA9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D597179C2688C63F00A84BA9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -176,7 +176,7 @@
 		D5B5725725C058C7003087FA /* LengthUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LengthUnit.swift; sourceTree = "<group>"; };
 		D5B8B3CF2689BC3700CD1E81 /* WatchCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchCalendarView.swift; sourceTree = "<group>"; };
 		D5D8BE3C25BF18F20066CF30 /* seximal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = seximal.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D5D8BE3F25BF18F20066CF30 /* seximalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = seximalApp.swift; sourceTree = "<group>"; };
+		D5D8BE3F25BF18F20066CF30 /* SeximalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeximalApp.swift; sourceTree = "<group>"; };
 		D5D8BE4125BF18F20066CF30 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D5D8BE4325BF18F30066CF30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D5D8BE4625BF18F30066CF30 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -321,7 +321,7 @@
 		D59717922688C63D00A84BA9 /* seximal WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
-				D59717952688C63D00A84BA9 /* seximalWatchApp.swift */,
+				D59717952688C63D00A84BA9 /* SeximalWatchApp.swift */,
 				D574CA7B268A364200B36563 /* WatchDelegate.swift */,
 				D59717932688C63D00A84BA9 /* WatchContentView.swift */,
 				D59717BD2688D16400A84BA9 /* WatchCalculatorView.swift */,
@@ -371,7 +371,7 @@
 			isa = PBXGroup;
 			children = (
 				D599104925C3326900A8C571 /* seximal.entitlements */,
-				D5D8BE3F25BF18F20066CF30 /* seximalApp.swift */,
+				D5D8BE3F25BF18F20066CF30 /* SeximalApp.swift */,
 				D50E69A425C41BA100B054BB /* SceneDelegate.swift */,
 				D52CD64A2617104400A2FF81 /* Models */,
 				D52CD6492617100A00A2FF81 /* Helper */,
@@ -574,6 +574,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		D58F8B03279F416C00C49C95 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -604,7 +605,7 @@
 				D59717B32688C6D400A84BA9 /* ClockView.swift in Sources */,
 				D59717942688C63D00A84BA9 /* WatchContentView.swift in Sources */,
 				D59717B52688C77C00A84BA9 /* Optional+Ternary.swift in Sources */,
-				D59717962688C63D00A84BA9 /* seximalWatchApp.swift in Sources */,
+				D59717962688C63D00A84BA9 /* SeximalWatchApp.swift in Sources */,
 				D59717AF2688C6AE00A84BA9 /* CalculatorButtons.swift in Sources */,
 				D59717B82688C7B900A84BA9 /* Calculator.swift in Sources */,
 				D5B8B3D02689BC3700CD1E81 /* WatchCalendarView.swift in Sources */,
@@ -641,7 +642,7 @@
 				D599104725C32F3500A8C571 /* CalculatorAction.swift in Sources */,
 				D52CD64526170F8E00A2FF81 /* SeximalNumbers.swift in Sources */,
 				D587590D268720950010D441 /* SexTime.swift in Sources */,
-				D5D8BE4025BF18F20066CF30 /* seximalApp.swift in Sources */,
+				D5D8BE4025BF18F20066CF30 /* SeximalApp.swift in Sources */,
 				D5D8BE6025BF1EE90066CF30 /* CCCConverterView.swift in Sources */,
 				D54EB1D22684D4F400256E61 /* AppState.swift in Sources */,
 				D5D8BE5D25BF1C3A0066CF30 /* Base.swift in Sources */,

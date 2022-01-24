@@ -39,9 +39,9 @@ enum CalculatorOp: CalculatorAction {
         }
     }
 
-    func calculate(l: String, r: String) -> String? {
+    func calculate(lhs: String, rhs: String) -> String? {
 
-        guard let left = Double(l, radix: 6), let right = Double(r, radix: 6) else {
+        guard let left = Double(lhs, radix: 6), let right = Double(rhs, radix: 6) else {
             return nil
         }
 
@@ -51,7 +51,7 @@ enum CalculatorOp: CalculatorAction {
         case .minus: result = left - right
         case .mult: result = left * right
         case .div: result = right == 0 ? nil : left / right
-        default:
+        @unknown default:
             return nil
         }
 
@@ -61,7 +61,7 @@ enum CalculatorOp: CalculatorAction {
 
 // MARK: - Modifier
 enum CalculatorModifier: CalculatorAction {
-    case number(i: Int), pow, sqrt, comma, del, negate, rand
+    case number(value: Int), pow, sqrt, comma, del, negate, rand
 
     var id: CalculatorModifier { return self }
 
@@ -76,7 +76,7 @@ enum CalculatorModifier: CalculatorAction {
 
     var displayName: String {
         switch self {
-        case .number(let i): return String(i)
+        case .number(let value): return String(value)
         case .pow: return "x²"
         case .sqrt: return "√"
         case .comma: return Locale.current.decimalSeparator ?? "."
@@ -98,7 +98,7 @@ enum CalculatorModifier: CalculatorAction {
 
     func modify(text: String) -> String? {
         switch self {
-        case .number(i: let num):
+        case .number(value: let num):
             return text.apply(num: num)
         case .pow:
             guard let left = Double(text, radix: 6) else {

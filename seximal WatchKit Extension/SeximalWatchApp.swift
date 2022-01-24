@@ -16,7 +16,7 @@ class WatchState: NSObject, ObservableObject {
 }
 
 @main
-struct seximalWatchApp: App {
+struct SeximalWatchApp: App {
     @WKExtensionDelegateAdaptor(WatchDelegate.self) var delegate
 
     var body: some Scene {

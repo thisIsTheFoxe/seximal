@@ -13,17 +13,17 @@ struct ConverterListView: View {
     var body: some View {
         NavigationView {
             List {
-//                Section(header: Text("Seximal")) {
-                NavigationLink("Numbers", destination: NumberConverterView(), tag: .number, selection: $appState.activeConverter)
-                    NavigationLink("Time", destination: SexTimeView(), tag: .time, selection: $appState.activeConverter)
-                    NavigationLink("Length", destination: LengthConverterView(), tag: .length, selection: $appState.activeConverter)
-//                    NavigationLink("Volume", destination: Text("VOL"))
-//                }
-//                Section(header: Text("CCC")) {
-//                    NavigationLink("Time", destination: CCCConverterView())
-//                    NavigationLink("Length", destination: CCCConverterView())
-//                    NavigationLink("Weight", destination: CCCConverterView())
-//                }
+                NavigationLink(
+                    "Numbers",
+                    destination: NumberConverterView(),
+                    tag: .number,
+                    selection: $appState.activeConverter)
+                NavigationLink("Time", destination: SexTimeView(), tag: .time, selection: $appState.activeConverter)
+                NavigationLink(
+                    "Length",
+                    destination: LengthConverterView(),
+                    tag: .length,
+                    selection: $appState.activeConverter)
             }
             .navigationTitle("Converter")
         }

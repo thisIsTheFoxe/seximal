@@ -56,8 +56,8 @@ struct WatchProvider: IntentTimelineProvider {
 
         var entries = [WatchEntry(date: now.addingTimeInterval(-secondsInALapse), configuration: WatchIntent())]
 
-        for i in 0..<(36 * 6) {
-            entries.append(WatchEntry(date: now.addingTimeInterval(TimeInterval(Double(i) * secondsInALapse)), configuration: configuration))
+        for sec in 0..<(36 * 6) {
+            entries.append(WatchEntry(date: now.addingTimeInterval(TimeInterval(Double(sec) * secondsInALapse)), configuration: configuration))
         }
         completion(Timeline(entries: entries, policy: .atEnd))
     }
@@ -83,10 +83,10 @@ struct Watch_Previews: PreviewProvider {
 
 extension WatchIntent {
     static var preview: WatchIntent = {
-        let i = WatchIntent()
-        i.showDate = true
-        i.showDigitally = true
-        i.useTwoHourHands = true
-        return i
+        let intent = WatchIntent()
+        intent.showDate = true
+        intent.showDigitally = true
+        intent.useTwoHourHands = true
+        return intent
     }()
 }

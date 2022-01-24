@@ -15,6 +15,8 @@ extension Int {
       return formatter.string(from: numberValue) ?? ""
     }
 
+    // swiftlint:disable cyclomatic_complexity
+    // swiftlint:disable function_body_length
     func spellInSex() -> String {
         guard !(0...12).contains(self) else {
             if self == 0 { return "" }
@@ -34,7 +36,7 @@ extension Int {
         let quadexianRest = self % 2_821_109_907_456
         let rest = self % 6
 
-        /// NOTE: Not switchng self, but divided by six
+        // NOTE: Not switchng self, but divided by six
         switch dozens {
         case 2: return "dozen " + rest.spellInSex()
         case 3: return "thirsy " + rest.spellInSex()

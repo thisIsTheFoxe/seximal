@@ -32,17 +32,17 @@ class Calculator: ObservableObject {
 
         #if !os(watchOS)
         static var allCases: [Action] = [
-            .mod(.number(i: 0)), .mod(.number(i: 1)), .mod(.comma),
-            .mod(.number(i: 2)), .mod(.number(i: 3)), .clear,
-            .mod(.number(i: 4)), .mod(.number(i: 5)), .mod(.del),
+            .mod(.number(value: 0)), .mod(.number(value: 1)), .mod(.comma),
+            .mod(.number(value: 2)), .mod(.number(value: 3)), .clear,
+            .mod(.number(value: 4)), .mod(.number(value: 5)), .mod(.del),
             .op(.plus), .op(.minus), .equal,
             .op(.mult), .op(.div), .mod(.negate),
             .mod(.pow), .mod(.sqrt), .mod(.rand)
         ]
         #else
         static var allCases: [Action] = [
-            .mod(.number(i: 0)), .mod(.number(i: 1)), .mod(.number(i: 2)),
-            .mod(.number(i: 3)), .mod(.number(i: 4)), .mod(.number(i: 5)),
+            .mod(.number(value: 0)), .mod(.number(value: 1)), .mod(.number(value: 2)),
+            .mod(.number(value: 3)), .mod(.number(value: 4)), .mod(.number(value: 5)),
             .op(.plus), .op(.minus), .mod(.comma),
             .op(.mult), .op(.div), .equal
         ]
@@ -70,7 +70,8 @@ class Calculator: ObservableObject {
                 case .number, .comma: return KeyEquivalent(Character(mod.displayName))
                 case .del: return .delete
                 case .negate: return nil // "-" is used for op
-                case .pow: return KeyEquivalent(Character("^")) // "^" doesn't work e.g. on german keyboard :(( (probably, cuz combining character)
+                // "^" doesn't work e.g. on german keyboard :(( (probably, cuz combining character)
+                case .pow: return KeyEquivalent(Character("^"))
                 default: return nil
                 }
             case .equal: return .return
@@ -122,21 +123,21 @@ class Calculator: ObservableObject {
 
     @Published var logic: CalculatorLogic = .left("0")
 
-    static var Memory_Key = "CALC_MEMORY"
-    var memory = UserDefaults.standard.double(forKey: Memory_Key)
+    static var memoryKey = "CALC_MEMORY"
+    var memory = UserDefaults.standard.double(forKey: memoryKey)
     var temporaryKept: [Action] = []
 
     func applyMemory(action: MemoryAction) {
         switch action {
         case .clear:
             memory = 0
-            UserDefaults.standard.setValue(0, forKey: Calculator.Memory_Key)
+            UserDefaults.standard.setValue(0, forKey: Calculator.memoryKey)
         case .add:
             memory += Double(logic.output, radix: 6) ?? 0
-            UserDefaults.standard.setValue(memory, forKey: Calculator.Memory_Key)
+            UserDefaults.standard.setValue(memory, forKey: Calculator.memoryKey)
         case .subtract:
             memory -= Double(logic.output, radix: 6) ?? 0
-            UserDefaults.standard.setValue(memory, forKey: Calculator.Memory_Key)
+            UserDefaults.standard.setValue(memory, forKey: Calculator.memoryKey)
         case .read:
             logic = logic.readMemory(newValue: memory)
         }
@@ -164,7 +165,7 @@ enum CalculatorLogic {
         case .error: return "Error"
         }
 
-        guard let _ = Double(result, radix: 6) else {
+        guard Double(result, radix: 6) != nil else {
             return "Error"
         }
 
@@ -218,7 +219,7 @@ enum CalculatorLogic {
         case .leftOp(left: let left, op: _):
             return .leftOp(left: left, op: op)
         case .leftOpRight(left: let left, op: let currentOp, right: let right):
-            guard let result = currentOp.calculate(l: left, r: right) else { return .error }
+            guard let result = currentOp.calculate(lhs: left, rhs: right) else { return .error }
             return .leftOp(left: result, op: op)
         case .error:
             return self
@@ -245,10 +246,10 @@ enum CalculatorLogic {
     private func applyEqual() -> CalculatorLogic {
         switch self {
         case .leftOp(left: let left, op: let op):
-            guard let result = op.calculate(l: left, r: left) else { return .error }
+            guard let result = op.calculate(lhs: left, rhs: left) else { return .error }
             return .leftOp(left: result, op: op)
         case .leftOpRight(left: let left, op: let op, right: let right):
-            guard let result = op.calculate(l: left, r: right) else { return .error }
+            guard let result = op.calculate(lhs: left, rhs: right) else { return .error }
             return .left(result)
         default:
             return self
@@ -257,11 +258,11 @@ enum CalculatorLogic {
 }
 
 var formatter: NumberFormatter = {
-    let f = NumberFormatter()
-    f.minimumFractionDigits = 0
-    f.maximumFractionDigits = 8
-    f.numberStyle = .decimal
-    return f
+    let formatter = NumberFormatter()
+    formatter.minimumFractionDigits = 0
+    formatter.maximumFractionDigits = 8
+    formatter.numberStyle = .decimal
+    return formatter
 }()
 
 extension String {
@@ -275,9 +276,9 @@ extension String {
 
     func negate() -> String {
         if startWithNegative {
-            var s = self
-            s.removeFirst()
-            return s
+            var string = self
+            string.removeFirst()
+            return string
         } else {
             return "-\(self)"
         }
@@ -301,15 +302,5 @@ extension String {
 
     func applyDecSeparator() -> String {
         return containsDecSeparator ? self : self + (Locale.current.decimalSeparator ?? ".")
-    }
-
-    func flipped() -> String {
-        if startWithNegative {
-            var s = self
-            s.removeFirst()
-            return s
-        } else {
-            return "-\(self)"
-        }
     }
 }

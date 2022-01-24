@@ -109,7 +109,7 @@ struct CalendarEntryView: View {
 }
 
 @available(iOSApplicationExtension 15.0, *)
-struct CalendarWidget_Preview: PreviewProvider {
+struct CalendarWidget_Previews: PreviewProvider {
 
     static var previews: some View {
 //        CalendarEntryView(entry: .init(date: Date(), configuration: .preview))
@@ -123,8 +123,8 @@ struct CalendarWidget_Preview: PreviewProvider {
 
 extension CalendarIntent {
     static var preview: CalendarIntent = {
-        let i = CalendarIntent()
-        i.showText = .all
-        return i
+        let intent = CalendarIntent()
+        intent.showText = .all
+        return intent
     }()
 }

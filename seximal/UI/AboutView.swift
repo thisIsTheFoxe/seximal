@@ -5,6 +5,8 @@
 //  Created by Henrik Storch on 25.01.21.
 //
 
+// swiftlint:disable line_length
+
 import SwiftUI
 
 struct AboutView: View {
