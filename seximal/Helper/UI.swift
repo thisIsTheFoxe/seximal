@@ -23,3 +23,34 @@ extension Font {
         }
     }
 }
+
+public extension AnyTransition {
+    static var verticalSlide: AnyTransition {
+        .asymmetric(
+            insertion: .modifier(
+                active: VerticalSlideViewModifier(isActive: true, insertion: true),
+                identity: VerticalSlideViewModifier(isActive: false, insertion: true)
+            ),
+            removal: .modifier(
+                active: VerticalSlideViewModifier(isActive: true, insertion: false),
+                identity: VerticalSlideViewModifier(isActive: false, insertion: false)
+            )
+        )
+    }
+}
+
+private struct VerticalSlideViewModifier: ViewModifier {
+    let isActive: Bool
+    let insertion: Bool
+    let offset: CGFloat = 18
+
+    func body(content: Content) -> some View {
+        content
+            .scaleEffect(isActive ? 0 : 1)
+            .opacity(isActive ? 0 : 1)
+            .offset(x: 0, y: isActive ?
+                    // could use GeometryReader.height but messes with other views
+                    (insertion ? -offset : offset)
+                    : (insertion ? offset : -offset))
+    }
+}

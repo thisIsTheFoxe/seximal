@@ -14,14 +14,21 @@ extension Double {
 }
 
 extension Int {
+    func convert(to radix: Int, padding: Int = 0) -> String {
+        var result = String(self, radix: radix)
+        let missing = Swift.max(0, padding - result.count)
+        result = String(repeating: "0", count: missing) + result
+        return result
+    }
+
     /// interprets the number as a seximal integer written in decimal
     func asSex(padding: Int = 0) -> String {
-        var result = String(self, radix: 6)
-        let missing = Swift.max(0, padding - result.count)
-        for _ in 0..<missing {
-            result = "0" + result
-        }
-        return result
+        convert(to: 6, padding: padding)
+    }
+
+    /// interprets the number as a niftimal integer written in decimal
+    func asNif(padding: Int = 0) -> String {
+        convert(to: 36, padding: padding).uppercased()
     }
 }
 

@@ -13,7 +13,9 @@ struct MonthView: View {
         self.currentDay = currentDay
         self.isLast = isLast
         self.spacing = spacing
-        self.columns = Array(repeating: GridItem(.flexible(), spacing: 3, alignment: .trailing), count: isLast ? daysInMonth : 6)
+        self.columns = Array(
+            repeating: GridItem(.flexible(), spacing: 3, alignment: .trailing),
+            count: isLast ? daysInMonth : 6)
     }
 
     var spacing: CGFloat?

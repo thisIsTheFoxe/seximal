@@ -84,7 +84,7 @@ struct CalendarEntryView: View {
             Color(.systemBackground).ignoresSafeArea()
             HStack {
                 VStack(spacing: 2) {
-                    MonthView(title: Text(time.month).font(titleFont).bold(),
+                    MonthView(title: Text("\(time.month) \(time.year.asNif())").font(titleFont).bold(),
                               spacing: 4,
                               currentDay: time.dayOfMonth,
                               isLast: time.month == time.allMonths.last!
