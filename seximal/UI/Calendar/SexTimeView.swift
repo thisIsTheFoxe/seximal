@@ -14,7 +14,7 @@ struct SexTimeView: View {
 
     @ObservedObject var time = SexTime()
     var timeString: String {
-        "\(time.lapse.asSex()) lapse, \(time.lull.asSex()) lull, \(time.moment.asSex()) moment(s), \(time.snap.asSex()) snap(s)"
+        "\(time.lapse.asSex()) lapse(s), \(time.lull.asSex()) lull(s), \(time.moment.asSex()) moment(s), \(time.snap.asSex()) snap(s)"
     }
     var body: some View {
         ScrollView {
@@ -24,13 +24,14 @@ struct SexTimeView: View {
                 .font(.caption)
 
             Text("\(time.lapse.asSex(padding: 2)):\(time.lull.asSex(padding: 2)):\(time.moment.asSex(padding: 2)).\(time.snap)")
-                .font(.title2)
+                .font(.title2.monospacedDigit())
                 .padding(.top)
             Text(timeString)
+                .font(.caption.monospacedDigit())
                 .padding(4)
             Text("or")
                 .padding(12)
-            HStack {
+            HStack(spacing: 0) {
                 Text("\(time.span.asSex(padding: 3))")
                     .transition(.verticalSlide)
                     .id("SexTimeView.SPAN-\(time.span)")

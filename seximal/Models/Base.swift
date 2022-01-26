@@ -29,8 +29,6 @@ enum Base: Int, CaseIterable, Identifiable {
         case .doz: return "Dozenal"
         case .hex: return "Hexadecimal"
         case .nif: return "Niftimal"
-        @unknown default:
-            return "??"
         }
     }
 
@@ -43,8 +41,6 @@ enum Base: Int, CaseIterable, Identifiable {
         case .doz: return "doz"
         case .hex: return "hex"
         case .nif: return "nif"
-        default:
-            return "??"
         }
     }
 }

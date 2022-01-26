@@ -7,28 +7,26 @@
 
 import Foundation
 
-extension Double {
-    func asSexInt(padding: Int = 0) -> String {
-        Int(self).asSex(padding: padding)
-    }
-}
-
 extension Int {
-    func convert(to radix: Int, padding: Int = 0) -> String {
+    func convert(to radix: Int, padding: Int = 0, grouping: Int? = nil) -> String {
         var result = String(self, radix: radix)
         let missing = Swift.max(0, padding - result.count)
         result = String(repeating: "0", count: missing) + result
+        if let grouping = grouping, result.count >= grouping, let seperator = Locale.current.groupingSeparator {
+            result = result.split(by: grouping).joined(separator: seperator)
+        }
+
         return result
     }
 
     /// interprets the number as a seximal integer written in decimal
     func asSex(padding: Int = 0) -> String {
-        convert(to: 6, padding: padding)
+        convert(to: 6, padding: padding, grouping: 4)
     }
 
     /// interprets the number as a niftimal integer written in decimal
     func asNif(padding: Int = 0) -> String {
-        convert(to: 36, padding: padding).uppercased()
+        convert(to: 36, padding: padding, grouping: 4).uppercased()
     }
 }
 
@@ -104,8 +102,8 @@ extension String {
         }
 
         var int = String(iValue, radix: radix, uppercase: uppercase)
-        if let grouping = grouping, int.count >= grouping {
-            int = int.split(by: grouping).joined(separator: Locale.current.groupingSeparator ?? "")
+        if let grouping = grouping, int.count >= grouping, let seperator = Locale.current.groupingSeparator {
+            int = int.split(by: grouping).joined(separator: seperator)
         }
 
         self.init(sign + int + fractalPart)
