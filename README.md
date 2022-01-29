@@ -15,4 +15,5 @@ For more information, see [seximal.net](http://seximal.net/).
 ## Beta Testing
 If you'd like to help out in beta testing the app and upcoming features, feel free to join the beta program via TestFlight.
 Note that beta versions will only provided while there is active development on the app. 
-[Join Beta](https://testflight.apple.com/join/75szQxYP).
+
+[Join Beta](https://testflight.apple.com/join/75szQxYP)
