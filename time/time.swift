@@ -9,7 +9,7 @@ import WidgetKit
 import SwiftUI
 
 @main
-struct timeWidgets: WidgetBundle {
+struct TimeWidgets: WidgetBundle {
     var body: some Widget {
         WatchWidget()
         WeekdayWidget()

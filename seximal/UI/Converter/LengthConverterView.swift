@@ -8,26 +8,26 @@
 import SwiftUI
 
 struct LengthConverterView: View {
-    
+
     let allUnits: [UnitLength] = [
         .grandstick, .fetastick, .sticks, .niftistick, .untistick,
         .kilometers, .meters, .centimeters, .millimeters,
         .inches, .feet, .yards, .miles,
         .nauticalMiles
     ]
-    
+
     let customUnits = [UnitLength.grandstick, .fetastick, .sticks, .niftistick, .untistick]
-    
+
     let unitFormatter: MeasurementFormatter = {
         let formatter = MeasurementFormatter()
         formatter.unitStyle = .long
         formatter.unitOptions = .providedUnit
         return formatter
     }()
-    
+
     @State var unitA: UnitLength = .sticks
     @State var unitB: UnitLength = .meters
-    
+
     @State var converterText = ""
 
     let measureFormatter: MeasurementFormatter = {
@@ -35,21 +35,21 @@ struct LengthConverterView: View {
         formatter.unitOptions = .providedUnit
         return formatter
     }()
-    
+
     let numberFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.allowsFloats = true
         return formatter
     }()
-    
+
     var convertedMeasurement: Measurement<UnitLength>? {
         guard let value = Double(converterText, radix: radix(for: unitA)) else {
             return nil
         }
-        
+
         let measureA = Measurement(value: value, unit: unitA)
         var result = measureA.converted(to: unitB)
-        
+
         if customUnits.contains(unitB) {
             let newStr = String(result.value, radix: 6)
             guard let newVal = Double(newStr, radix: 6) else {
@@ -59,19 +59,19 @@ struct LengthConverterView: View {
         }
         return result
     }
-        
+
     var body: some View {
         VStack {
             Text("A stick is exactly 0\(Locale.current.decimalSeparator ?? ".")9572 meter or 1\(Locale.current.decimalSeparator ?? ".")05 yards. Sticks are counted in seximal.")
                 .font(.headline)
-            
+
             Picker("Converter unit: \(unitFormatter.customString(from: unitA))", selection: $unitA) {
                 ForEach(allUnits, id: \.self) { unit in
                     Text(unitFormatter.customString(from: unit))
                 }
             }
             .pickerStyle(MenuPickerStyle())
-            TextField(unitA.symbol, text: $converterText) { (didChange) in
+            TextField(unitA.symbol, text: $converterText) { (_) in
 //                print(didChange)
             }
             .padding(6)
@@ -106,9 +106,9 @@ struct LengthConverterView: View {
         }
         .padding()
         .navigationTitle("Lengths in Seximal")
-        
+
     }
-    
+
     func radix(for unit: UnitLength) -> Int {
         return customUnits.contains(unit) ? 6: 10
     }

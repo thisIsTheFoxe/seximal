@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CalcButtonStyle: ButtonStyle {
     var type: Calculator.Action
-    
+
     var minHeight: CGFloat {
         #if !os(watchOS)
         return 60
@@ -17,7 +17,7 @@ struct CalcButtonStyle: ButtonStyle {
         return 22
         #endif
     }
-    
+
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
             .frame(maxWidth: .infinity, minHeight: minHeight, maxHeight: .infinity)
@@ -31,9 +31,9 @@ struct CalculatorButton: View {
     var type: Calculator.Action
     var font: Font?
     @EnvironmentObject var model: Calculator
-    
+
     @State var isTapped = false
-    
+
     var body: some View {
         #if !os(watchOS)
         if let key = type.keyboardShortcut {
@@ -46,7 +46,7 @@ struct CalculatorButton: View {
         content
         #endif
     }
-    
+
     var content: some View {
         Button(action: {
             model.apply(type)
