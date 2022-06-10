@@ -16,7 +16,7 @@ struct ClockMarks: View {
     let highlightedColorDivider: Int
     let highlightedColor: Color
     let normalColor: Color
-    
+
     var body: some View {
         ZStack {
             ForEach(0..<self.count) { index in
@@ -33,24 +33,24 @@ struct ClockMarks: View {
 }
 
 struct TickShape: Shape {
-    
+
     let tickHeight: CGFloat
-    
+
     func path(in rect: CGRect) -> Path {
         var path = Path()
         path.move(to: CGPoint(x: rect.midX, y: rect.minY))
         path.addLine(to: CGPoint(x: rect.midX, y: rect.minY + self.tickHeight))
         return path
     }
-    
+
 }
 
 struct NumberView: View {
-    
+
     let numbers: [Int]
     let textColor: Color
     let font: Font
-    
+
     var body: some View {
         ZStack {
             ForEach(0..<self.numbers.count) { index in
@@ -68,35 +68,32 @@ struct NumberView: View {
             }
         }
     }
-    
+
 }
 
 struct ClockHand: Shape {
     let angle: CGFloat
     let length: CGFloat
     var backstroke: CGFloat = 0
-    
+
     func path(in rect: CGRect) -> Path {
         var path = Path()
         let length = (rect.width / 2) * self.length
         let backstroke = (rect.width / 2) * self.backstroke
         let hoursAngle = CGFloat.pi / 2 - .pi * 2 * angle
-        
+
         let dX = cos(hoursAngle)
         let dY = -sin(hoursAngle)
         let start = CGPoint(x: rect.midX - dX * backstroke, y: rect.midY - dY * backstroke)
 
         path.move(to: start)
-        
-        
+
         path.addLine(to: CGPoint(
             x: rect.midX + dX * length,
             y: rect.midY + dY * length))
         return path
     }
 }
-
-
 
 struct Clock_Previews: PreviewProvider {
     static var previews: some View {
@@ -109,7 +106,7 @@ struct Clock_Previews: PreviewProvider {
                             lineWidth: 4,
                             lineCap: .round,
                             lineJoin: .round))
-                
+
                 ClockHand(angle: 0.8, length: 0.8, backstroke: 0.125)
                 .stroke(Color.red,
                         style: StrokeStyle(

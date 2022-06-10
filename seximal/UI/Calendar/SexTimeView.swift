@@ -9,38 +9,54 @@ import SwiftUI
 import Combine
 
 struct SexTimeView: View {
-    
+
     var columns = { Array(repeating: GridItem(spacing: 6), count: 2) }()
-    
+
     @ObservedObject var time = SexTime()
-    
+    var timeString: String {
+        "\(time.lapse.asSex()) lapse(s), \(time.lull.asSex()) lull(s), \(time.moment.asSex()) moment(s), \(time.snap.asSex()) snap(s)"
+    }
     var body: some View {
         ScrollView {
             Text("Current universal time:")
                 .font(.title)
             Text("(there are no time zones in seximal)")
                 .font(.caption)
-            
+
             Text("\(time.lapse.asSex(padding: 2)):\(time.lull.asSex(padding: 2)):\(time.moment.asSex(padding: 2)).\(time.snap)")
-                .font(.title2)
+                .font(.title2.monospacedDigit())
                 .padding(.top)
-            Text("\(time.lapse.asSex()) lapse, \(time.lull.asSex()) lull, \(time.moment.asSex()) moment(s), \(time.snap.asSex()) snap(s)")
+            Text(timeString)
+                .font(.caption.monospacedDigit())
                 .padding(4)
             Text("or")
                 .padding(12)
-            Text("\(time.span.asSex(padding: 3)) span(s)")
-                .font(.title2)
+            HStack(spacing: 0) {
+                Text("\(time.span.asSex(padding: 3))")
+                    .transition(.verticalSlide)
+                    .id("SexTimeView.SPAN-\(time.span)")
+                Text(" span(s)")
+            }
+            .font(.title3)
             Text("1 Span is a little less than 11 (DEC7) minutes")
                 .font(.subheadline)
                 .padding(4)
-            
+
             Text("Check the number converter for how to pronounce seximal numbers.")
                 .font(.footnote)
                 .padding()
             Divider()
+                .padding()
             VStack {
-                Text("Today is \(time.weekday), the \(time.ordDay) of \(time.month) ")
-                    .padding()
+                Text("Today is \(time.weekday), the \(time.ordDay) of \(time.month)")
+                    .padding(.bottom)
+                HStack {
+                    Text("Year ")
+                    Text(time.year.asNif()).bold()
+                        .transition(AnyTransition.opacity.combined(with: .scale(scale: 10)))
+                        .id("SexTimeView.YEAR-\(time.year)")
+                }
+                .font(.title2)
                 LazyVGrid(columns: columns, spacing: 36, content: {
                     ForEach(0..<time.allMonths.count - 1) { monthIx in
                         let monthDay = time.dayOfYear - monthIx * 36

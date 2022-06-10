@@ -20,7 +20,7 @@ enum Base: Int, CaseIterable, Identifiable {
         }
     }
 
-    var baseName : String {
+    var baseName: String {
         switch self {
         case .bin: return "Binary"
         case .sex: return "Seximal"
@@ -41,6 +41,7 @@ enum Base: Int, CaseIterable, Identifiable {
         case .nif: return "nif"
         case .doz: return "doz"
         case .hex: return "hex"
+        case .nif: return "nif"
         }
     }
 }

@@ -12,7 +12,7 @@ struct ClockFace: View {
     var config: WatchIntent
     var time: SexTime
     @Environment(\.widgetFamily) var family: WidgetFamily
-    
+
     var textFont: Font {
         switch family {
         case .systemSmall:
@@ -22,7 +22,7 @@ struct ClockFace: View {
         default: return .body
         }
     }
-    
+
     var titleFont: Font {
         switch family {
         case .systemSmall:
@@ -32,7 +32,7 @@ struct ClockFace: View {
         default: return .title
         }
     }
-    
+
     var body: some View {
         ClockView(
             isSmall: family == .systemSmall,
@@ -46,7 +46,7 @@ struct ClockFace: View {
     }
 }
 
-struct ClockFace_Preview: PreviewProvider {
+struct ClockFace_Previews: PreviewProvider {
     static var previews: some View {
         ClockFace(config: .preview, time: SexTime(date: Date().addingTimeInterval(60*370)))
             .previewContext(WidgetPreviewContext(family: .systemLarge))

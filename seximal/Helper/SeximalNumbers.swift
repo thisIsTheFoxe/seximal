@@ -7,21 +7,26 @@
 
 import Foundation
 
-extension Double {
-    func asSexInt(padding: Int = 0) -> String {
-        Int(self).asSex(padding: padding)
-    }
-}
-
 extension Int {
+    func convert(to radix: Int, padding: Int = 0, grouping: Int? = nil) -> String {
+        var result = String(self, radix: radix)
+        let missing = Swift.max(0, padding - result.count)
+        result = String(repeating: "0", count: missing) + result
+        if let grouping = grouping, result.count >= grouping, let seperator = Locale.current.groupingSeparator {
+            result = result.split(by: grouping).joined(separator: seperator)
+        }
+
+        return result
+    }
+
     /// interprets the number as a seximal integer written in decimal
     func asSex(padding: Int = 0) -> String {
-        var result = String(self, radix: 6)
-        let missing = Swift.max(0, padding - result.count)
-        for _ in 0..<missing {
-            result = "0" + result
-        }
-        return result
+        convert(to: 6, padding: padding, grouping: 4)
+    }
+
+    /// interprets the number as a niftimal integer written in decimal
+    func asNif(padding: Int = 0) -> String {
+        convert(to: 36, padding: padding, grouping: 4).uppercased()
     }
 }
 
@@ -39,7 +44,7 @@ extension String {
             results.append(self[startIx..<endIx])
             endIx = startIx
         }
-        
+
         return results.reversed().map { String($0) }
     }
 }
@@ -60,74 +65,74 @@ extension UInt64 {
 }
 
 extension String {
-    public init<T>(_ value: T, radix: Int = 10, grouping: Int? = nil, uppercase: Bool = false) where T : BinaryFloatingPoint {
+    public init<T>(_ value: T, radix: Int = 10, grouping: Int? = nil, uppercase: Bool = false) where T: BinaryFloatingPoint {
         let sign = value < 0 ? "-" : ""
         let dValue = Double(abs(value))
-        
-        //fixme: don't use int.... eh, it's fine..
+
+        // fixme: don't use int.... eh, it's fine..
         var iValue = UInt64(safely: dValue)
         let roundPlaces: Double = 16
-        
+
         var remainder = dValue - floor(dValue)
         remainder *= pow(6, roundPlaces)
         remainder.round()
         remainder /= pow(6, roundPlaces)
-        
+
         if remainder >= 1 {
             iValue += UInt64(floor(remainder))
             remainder -= floor(remainder)
         }
-        
+
         var fractalPart = ""
-        //FIXME: use UInt64 (or probaly 32 is enough) also for fractal and scale it down..?
+        // FIXME: use UInt64 (or probaly 32 is enough) also for fractal and scale it down..?
         for ix in 1...16 {
             guard remainder != 0 else { break }
             let pwr = Double(truncating: NSDecimalNumber(decimal: pow(Decimal(radix), ix)))
-            let newValue = UInt64(safely: remainder * pwr) //truncation needed, to use default String call
+            let newValue = UInt64(safely: remainder * pwr) // truncation needed, to use default String call
             let divident =  Double(truncating: NSDecimalNumber(decimal: pow(Decimal(radix), ix)))
             let ratio = Double(newValue) / divident
             remainder -= ratio
             fractalPart += String(newValue, radix: radix, uppercase: uppercase)
         }
-        
+
         fractalPart = fractalPart.replacingOccurrences(of: "0*$", with: "", options: .regularExpression)
-        
+
         if !fractalPart.isEmpty {
             fractalPart = (Locale.current.decimalSeparator ?? "") + fractalPart
         }
-        
+
         var int = String(iValue, radix: radix, uppercase: uppercase)
-        if let grouping = grouping, int.count >= grouping {
-            int = int.split(by: grouping).joined(separator: Locale.current.groupingSeparator ?? "")
+        if let grouping = grouping, int.count >= grouping, let seperator = Locale.current.groupingSeparator {
+            int = int.split(by: grouping).joined(separator: seperator)
         }
-        
+
         self.init(sign + int + fractalPart)
     }
 }
 
 extension BinaryFloatingPoint {
-    public init?<S>(_ text: S, radix: Int = 10) where S : StringProtocol {
+    public init?<S>(_ text: S, radix: Int = 10) where S: StringProtocol {
         let comp = text.components(separatedBy: Locale.current.decimalSeparator ?? "")
         guard comp.count <= 2, comp.count > 0 else {
             return nil
         }
-        
+
         var intPart = comp[0]
         var isNegative = false
-        
+
         if intPart.first == "-" {
             _ = intPart.removeFirst()
             isNegative = true
         }
-        
+
         if let groupSeparator = Locale.current.groupingSeparator {
             intPart = intPart.replacingOccurrences(of: groupSeparator, with: "")
         }
-        
+
         guard let int = UInt64(intPart, radix: radix) else {
             return nil
         }
-        
+
         var fractal = 0.0
         if comp.count == 2 {
             let fractalPart = comp[1]
@@ -138,12 +143,12 @@ extension BinaryFloatingPoint {
                 fractal += Double(charAsInt) * (1.0 / bPart)
             }
         }
-        
+
         var result = Double(int) + fractal
         if isNegative {
             result.negate()
         }
-        
+
         self.init(result)
     }
 }

@@ -28,45 +28,44 @@ struct WatchEntry: TimelineEntry {
 }
 
 struct WatchProvider: IntentTimelineProvider {
-    
+
     func placeholder(in context: Context) -> WatchEntry {
         WatchEntry(date: Date(), configuration: WatchIntent())
     }
 
-    func getSnapshot(for configuration: WatchIntent, in context: Context, completion: @escaping (WatchEntry) -> ()) {
+    func getSnapshot(for configuration: WatchIntent, in context: Context, completion: @escaping (WatchEntry) -> Void) {
         let entry = WatchEntry(date: Date(), configuration: configuration)
         completion(entry)
     }
 
-    func getTimeline(for configuration: WatchIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+    func getTimeline(for configuration: WatchIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> Void) {
         print(#function)
-        
+
         let secondsInAMoment = ((60.0 * 60.0 * 24.0) / (36.0 * 36.0 * 36.0))
         let secondsInALapse = secondsInAMoment * 36
         let date = Date()
-        
+
         let secondsSinceDay = Int(date.timeIntervalSince(Calendar.utc.startOfDay(for: date)))
         let momentsSinceDay = Double(secondsSinceDay) / secondsInAMoment
-        
+
         //: start from current lull, to avoid unneccisary waiting / loading
         let lullsSinceDay = Int(momentsSinceDay / 36)
         let nextLullInSec = Double(lullsSinceDay) * 36 * secondsInAMoment + 0.25
-        
+
         let now = Calendar.utc.startOfDay(for: date).addingTimeInterval(nextLullInSec)
-        
-        
+
         var entries = [WatchEntry(date: now.addingTimeInterval(-secondsInALapse), configuration: WatchIntent())]
-        
-        for i in 0..<(36 * 6) {
-            entries.append(WatchEntry(date: now.addingTimeInterval(TimeInterval(Double(i) * secondsInALapse)), configuration: configuration))
+
+        for sec in 0..<(36 * 6) {
+            entries.append(WatchEntry(date: now.addingTimeInterval(TimeInterval(Double(sec) * secondsInALapse)), configuration: configuration))
         }
         completion(Timeline(entries: entries, policy: .atEnd))
     }
 }
 
-struct WatchEntryView : View {
+struct WatchEntryView: View {
     var entry: WatchProvider.Entry
-    
+
     var body: some View {
         ClockFace(config: entry.configuration, time: SexTime(date: entry.date))
             .widgetURL(AppState.url(for: .convert, converterType: .time))
@@ -82,13 +81,12 @@ struct Watch_Previews: PreviewProvider {
     }
 }
 
-
 extension WatchIntent {
     static var preview: WatchIntent = {
-        let i = WatchIntent()
-        i.showDate = true
-        i.showDigitally = true
-        i.useTwoHourHands = true
-        return i
+        let intent = WatchIntent()
+        intent.showDate = true
+        intent.showDigitally = true
+        intent.useTwoHourHands = true
+        return intent
     }()
 }

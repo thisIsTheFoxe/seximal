@@ -21,7 +21,7 @@ struct NumberConverterView: View {
         } else { text = converterText }
         return Double(text, radix: baseA.rawValue)
     }
-    
+
     var convertedText: String {
         guard let number = number else {
             return baseB.abbreviatedName
@@ -32,7 +32,7 @@ struct NumberConverterView: View {
             .replacingOccurrences(of: "A", with: "X")
             .replacingOccurrences(of: "B", with: "E")
     }
-    
+
     var body: some View {
         VStack {
             Picker("Converter base: \(baseA.baseName)", selection: $baseA) {
@@ -40,7 +40,7 @@ struct NumberConverterView: View {
                     Text(base.baseName)
                 }
             }
-            TextField(baseA.abbreviatedName, text: $converterText) { (didChange) in
+            TextField(baseA.abbreviatedName, text: $converterText) { (_) in
 //                print(didChange)
             }
             .padding(6)
