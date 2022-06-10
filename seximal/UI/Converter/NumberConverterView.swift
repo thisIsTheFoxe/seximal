@@ -13,14 +13,24 @@ struct NumberConverterView: View {
     @State var converterText: String = ""
 
     var number: Double? {
-        Double(converterText, radix: baseA.rawValue)
+        let text: String
+        if baseA == .doz {
+            text = converterText
+                .replacingOccurrences(of: "X", with: "A", options: .caseInsensitive)
+                .replacingOccurrences(of: "E", with: "B", options: .caseInsensitive)
+        } else { text = converterText }
+        return Double(text, radix: baseA.rawValue)
     }
     
     var convertedText: String {
         guard let number = number else {
             return baseB.abbreviatedName
         }
-        return String(number, radix: baseB.rawValue, grouping: baseB.grouping)
+        let result = String(number, radix: baseB.rawValue, grouping: baseB.grouping).uppercased()
+        guard baseB == .doz else { return result }
+        return result
+            .replacingOccurrences(of: "A", with: "X")
+            .replacingOccurrences(of: "B", with: "E")
     }
     
     var body: some View {

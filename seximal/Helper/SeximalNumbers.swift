@@ -14,7 +14,7 @@ extension Double {
 }
 
 extension Int {
-    ///interprets the number as a seximal integer written in decimal
+    /// interprets the number as a seximal integer written in decimal
     func asSex(padding: Int = 0) -> String {
         var result = String(self, radix: 6)
         let missing = Swift.max(0, padding - result.count)
