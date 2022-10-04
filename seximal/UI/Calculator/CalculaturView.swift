@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CalculatorView: View {
 
-    @EnvironmentObject var model: Calculator
+    @ObservedObject var model: Calculator = Calculator()
 
     let columns: [GridItem] = [
         GridItem(spacing: 10, alignment: .trailing),
@@ -62,6 +62,5 @@ struct CalculatorView: View {
 struct CalculatorView_Previews: PreviewProvider {
     static var previews: some View {
         CalculatorView()
-            .environmentObject(Calculator())
     }
 }

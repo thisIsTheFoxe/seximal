@@ -19,7 +19,6 @@ struct ContentView: View {
                 }
                 .tag(AppState.Tab.convert)
             CalculatorView()
-                .environmentObject(Calculator())
                 .tabItem {
                     Image(systemName: "number.square.fill")
                 Text("Calculator")

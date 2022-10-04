@@ -19,7 +19,7 @@ struct WatchContentView: View {
             NavigationLink(destination: WatchCalendarView(time: time), label: {
                 Label("Calendar", systemImage: "calendar")
             })
-            NavigationLink(destination: WatchCalculatorView().environmentObject(Calculator()), label: {
+            NavigationLink(destination: WatchCalculatorView(), label: {
                 Label("Calculator", systemImage: "number.square")
             })
         }
