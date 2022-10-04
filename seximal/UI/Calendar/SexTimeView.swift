@@ -9,8 +9,11 @@ import SwiftUI
 import Combine
 
 struct SexTimeView: View {
-
+#if os(tvOS)
+    var columns = { Array(repeating: GridItem(spacing: 6), count: 5) }()
+#else
     var columns = { Array(repeating: GridItem(spacing: 6), count: 2) }()
+#endif
 
     @ObservedObject var time = SexTime()
     var timeString: String {
@@ -64,6 +67,7 @@ struct SexTimeView: View {
                             title: Text(time.allMonths[monthIx]).font(.headline),
                             currentDay: monthDay,
                             isLast: false)
+                        .focusable()
                     }
                 })
                 .padding(6)
@@ -73,6 +77,7 @@ struct SexTimeView: View {
                     currentDay: time.dayOfYear - 360,
                     isLast: true)
                     .padding(.horizontal, 75)
+                    .focusable()
             }
             .padding(.bottom)
         }

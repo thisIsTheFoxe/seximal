@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CalcButtonStyle: ButtonStyle {
     var type: Calculator.Action
+//    @Environment(\.isFocused) var isFocused
 
     var minHeight: CGFloat {
         #if !os(watchOS)
@@ -24,18 +25,19 @@ struct CalcButtonStyle: ButtonStyle {
             .background(type.backgroundColor)
             .foregroundColor(type.foregroundColor)
             .opacity(configuration.isPressed ? 0.5 : 1)
+            .hoverEffect(.automatic)
     }
 }
 
 struct CalculatorButton: View {
     var type: Calculator.Action
     var font: Font?
-    @EnvironmentObject var model: Calculator
-
+    @ObservedObject var model: Calculator
+    @Environment(\.isFocused) var isFocused
     @State var isTapped = false
 
     var body: some View {
-        #if !os(watchOS)
+        #if !os(watchOS) && !os(tvOS)
         if let key = type.keyboardShortcut {
             content
                 .keyboardShortcut(key, modifiers: [])

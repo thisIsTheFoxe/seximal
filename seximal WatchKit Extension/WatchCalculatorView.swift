@@ -10,7 +10,10 @@ import SwiftUI
 struct WatchCalculatorView: View {
     @ObservedObject var model: Calculator = Calculator()
 
-    let columns: [GridItem] = [GridItem(spacing: 6, alignment: .trailing), GridItem(spacing: 6, alignment: .center), GridItem(spacing: 6, alignment: .center)]
+    let columns: [GridItem] = [
+        GridItem(spacing: Constraint.calcPadding, alignment: .trailing),
+        GridItem(spacing: Constraint.calcPadding, alignment: .center),
+        GridItem(spacing: Constraint.calcPadding, alignment: .center)]
 
     var body: some View {
         VStack {
@@ -28,7 +31,7 @@ struct WatchCalculatorView: View {
                 }
             }
             Divider()
-            LazyVGrid(columns: columns, spacing: 6, content: {
+            LazyVGrid(columns: columns, spacing: Constraint.calcPadding, content: {
                 ForEach(Calculator.Action.allCases) { op in
                     CalculatorButton(type: op, font: .body.bold())
                         .cornerRadius(6)

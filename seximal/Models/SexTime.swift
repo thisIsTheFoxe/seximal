@@ -10,6 +10,12 @@ import Combine
 import Intents
 import SwiftUI
 
+#if os(tvOS)
+enum TextConfig {
+    case all, month, monthDay, weekday
+}
+#endif
+
 extension Calendar {
     static let utc: Calendar = {
         var cal = Calendar.current

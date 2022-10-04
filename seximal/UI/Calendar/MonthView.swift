@@ -18,6 +18,8 @@ struct MonthView: View {
             count: isLast ? daysInMonth : 6)
     }
 
+    @Environment(\.isFocused) var isFocused
+
     var spacing: CGFloat?
     var columns: [GridItem]!
     var title: Text
@@ -44,8 +46,7 @@ struct MonthView: View {
                         .scaledToFill()
                 }
             })
-
-            .border(borderColor, width: 1)
+            .border(isFocused ? .red : borderColor, width: 1)
         }
     }
 }
@@ -55,7 +56,7 @@ struct DayText: View {
     let isCurrentDay: Bool
 
     var foreground: Color {
-        #if !os(watchOS)
+        #if !os(watchOS) && !os(tvOS)
         return isCurrentDay ? Color(UIColor.systemBackground) : Color(UIColor.label)
         #else
         return isCurrentDay ? .black : .white
@@ -63,7 +64,7 @@ struct DayText: View {
     }
 
     var background: Color {
-        #if !os(watchOS)
+        #if !os(watchOS) && !os(tvOS)
         isCurrentDay ? Color(UIColor.label):  Color(UIColor.systemBackground)
         #else
         isCurrentDay ? Color.white:  Color.black

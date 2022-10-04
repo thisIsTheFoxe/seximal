@@ -7,14 +7,20 @@
 
 import SwiftUI
 
+#if os(tvOS)
+extension UIColor {
+    static let secondarySystemBackground = UIColor.gray
+}
+#endif
+
 struct CalculatorView: View {
 
     @ObservedObject var model: Calculator = Calculator()
 
     let columns: [GridItem] = [
-        GridItem(spacing: 10, alignment: .trailing),
-        GridItem(spacing: 10, alignment: .center),
-        GridItem(spacing: 10, alignment: .leading)]
+        GridItem(spacing: Constraint.calcPadding, alignment: .trailing),
+        GridItem(spacing: Constraint.calcPadding, alignment: .center),
+        GridItem(spacing: Constraint.calcPadding, alignment: .leading)]
 
     var body: some View {
         NavigationView {
@@ -35,17 +41,20 @@ struct CalculatorView: View {
             }
             .frame(maxHeight: 100)
             .padding(.bottom)
+#if !os(tvOS)
             .contextMenu(ContextMenu(menuItems: {
                 Button("Copy", action: {
                     UIPasteboard.general.string = model.logic.output
                 })
             }))
-
+#endif
             LazyVGrid(columns: columns, spacing: 10, content: {
                 ForEach(Calculator.Action.allCases) { op in
-                    CalculatorButton(type: op)
+                    CalculatorButton(type: op, model: model)
                 }
             })
+#if !os(tvOS)
+
                 .toolbar(content: {
                     Menu("Memory") {
                         ForEach(Calculator.MemoryAction.allCases) { action in
@@ -53,6 +62,7 @@ struct CalculatorView: View {
                         }
                     }
                 })
+#endif
         }
         .padding()
         .navigationTitle("Calculator")
