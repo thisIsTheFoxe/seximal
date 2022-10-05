@@ -1,10 +1,12 @@
 {
   "images" : [
     {
+      "filename" : "AppStore_Back.png",
       "idiom" : "tv",
       "scale" : "1x"
     },
     {
+      "filename" : "AppStore_Back@2x 1.png",
       "idiom" : "tv",
       "scale" : "2x"
     }
