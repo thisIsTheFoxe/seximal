@@ -23,23 +23,31 @@ struct RowView: View {
 
 struct ContentView: View {
     var time: SexTime = SexTime()
-    @FocusState var focusedIx: Int?
+    @State var activeTab: Int = 2 {
+        willSet {
+            if newValue < 0 && activeTab > 0 {
+                time.startTimer()
+            } else if newValue > 0 && activeTab < 0 {
+                time.stopTimer()
+            }
+        }
+    }
 
     var body: some View {
         NavigationView {
-            TabView {
+            TabView(selection: $activeTab) {
                 SexTimeView(time: time)
                     .tabItem { Label("Time", systemImage: "calendar") }
+                    .tag(-2)
                 TVClockView(time: time)
                     .tabItem { Label("Clock", systemImage: "clock") }
+                    .tag(-1)
                 CalculatorView()
                     .tabItem { Label("Calc", systemImage: "number.square.fill") }
-                    .onAppear {
-                        time.stopTimer()
-                    }
-                    .onDisappear {
-                        time.startTimer()
-                    }
+                    .tag(1)
+                AboutView()
+                    .tabItem { Label("About", systemImage: "questionmark.circle") }
+                    .tag(2)
             }
         }
         .onAppear {
@@ -50,6 +58,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(activeTab: 0)
     }
 }
