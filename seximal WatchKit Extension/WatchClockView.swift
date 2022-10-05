@@ -14,10 +14,10 @@ struct WatchClockView: View {
         VStack {
             ClockView(
                 isSmall: true,
-                showDate: false,
-                useTwoHourHands: false,
-                showDigitally: false,
-                showSecondsHand: true,
+                showDate: .constant(false),
+                useTwoHourHands: .constant(false),
+                showDigitally: .constant(false),
+                showSecondsHand: .constant(true),
                 titleFont: .caption,
                 textFont: .body, // don't need it
                 time: time)

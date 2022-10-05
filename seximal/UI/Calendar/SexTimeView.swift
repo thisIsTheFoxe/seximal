@@ -20,7 +20,7 @@ struct SexTimeView: View {
         "\(time.lapse.asSex()) lapse(s), \(time.lull.asSex()) lull(s), \(time.moment.asSex()) moment(s), \(time.snap.asSex()) snap(s)"
     }
 
-    @FocusState var focusedMonth: String?
+    @FocusState var focusedMonthIx: Int?
 
     var body: some View {
         ScrollView {
@@ -67,24 +67,28 @@ struct SexTimeView: View {
                     ForEach(0..<time.allMonths.count - 1) { monthIx in
                         let monthDay = time.dayOfYear - monthIx * 36
                         MonthView(
-                            focusedMonth: $focusedMonth,
-                            title: time.allMonths[monthIx],
+                            focusedMonth: $focusedMonthIx, monthIx: monthIx,
+                            title: Text(time.allMonths[monthIx]).font(.headline),
                             currentDay: monthDay,
                             isLast: false)
+                        #if os(tvOS)
                         .focusable()
-                        .focused($focusedMonth, equals: time.allMonths[monthIx])
+                        .focused($focusedMonthIx, equals: monthIx)
+                        #endif
                     }
                 })
                 .padding(6)
                 .padding(.bottom)
                 MonthView(
-                    focusedMonth: $focusedMonth,
-                    title: time.allMonths.last!,
+                    focusedMonth: $focusedMonthIx, monthIx: time.allMonths.count,
+                    title: Text(time.allMonths.last!).font(.headline),
                     currentDay: time.dayOfYear - 360,
                     isLast: true)
                     .padding(.horizontal, 75)
+#if os(tvOS)
                     .focusable()
-                    .focused($focusedMonth, equals: time.allMonths.last!)
+                    .focused($focusedMonthIx, equals: time.allMonths.count)
+#endif
             }
             .padding(.bottom)
         }

@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct MonthView: View {
-    internal init(focusedMonth: FocusState<String?>.Binding, title: String, spacing: CGFloat? = nil, currentDay: Int, isLast: Bool) {
+    internal init(focusedMonth: FocusState<Int?>.Binding, monthIx: Int, title: Text, spacing: CGFloat? = nil, currentDay: Int, isLast: Bool) {
         self.focusedMonth = focusedMonth
+        self.monthIx = monthIx
         self.title = title
         self.currentDay = currentDay
         self.isLast = isLast
@@ -19,12 +20,13 @@ struct MonthView: View {
             count: isLast ? daysInMonth : 6)
     }
 
-    var focusedMonth: FocusState<String?>.Binding
-    var isFocused: Bool { title == focusedMonth.wrappedValue }
+    var focusedMonth: FocusState<Int?>.Binding
+    var monthIx: Int
+    var isFocused: Bool { monthIx == focusedMonth.wrappedValue }
 
     var spacing: CGFloat?
     var columns: [GridItem]!
-    var title: String
+    var title: Text
     var currentDay: Int
     var isLast: Bool
     var daysInMonth: Int {
@@ -41,7 +43,7 @@ struct MonthView: View {
 
     var body: some View {
         VStack(spacing: spacing) {
-            Text(title).font(.headline)
+            title
             LazyVGrid(columns: columns, alignment: .trailing, spacing: 3, content: {
                 ForEach(1...daysInMonth, id: \.self) { day in
                     DayText(text: day.asSex(), isCurrentDay: day == currentDay)

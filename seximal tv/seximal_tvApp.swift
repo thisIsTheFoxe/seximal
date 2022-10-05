@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct seximal_tvApp: App {
+struct SeximaltvApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()

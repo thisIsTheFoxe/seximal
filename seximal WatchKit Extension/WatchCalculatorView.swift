@@ -33,7 +33,7 @@ struct WatchCalculatorView: View {
             Divider()
             LazyVGrid(columns: columns, spacing: Constraint.calcPadding, content: {
                 ForEach(Calculator.Action.allCases) { op in
-                    CalculatorButton(type: op, font: .body.bold())
+                    CalculatorButton(type: op, font: .body.bold(), model: model)
                         .cornerRadius(6)
 //                                            .padding(.top, 5)
                 }

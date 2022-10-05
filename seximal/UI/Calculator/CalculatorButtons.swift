@@ -25,7 +25,9 @@ struct CalcButtonStyle: ButtonStyle {
             .background(type.backgroundColor)
             .foregroundColor(type.foregroundColor)
             .opacity(configuration.isPressed ? 0.5 : 1)
+#if !os(watchOS)
             .hoverEffect(.automatic)
+#endif
     }
 }
 
