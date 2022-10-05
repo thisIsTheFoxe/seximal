@@ -26,8 +26,8 @@ struct WatchClockView: View {
                 .font(.system(size: 10).bold())
                 .padding(.bottom, 1)
         }.ignoresSafeArea()
-//            .onAppear { time.startTimer() }
-//            .onDisappear { time.stopTimer() }
+            .onAppear { time.startTimer() }
+            .onDisappear { time.stopTimer() }
     }
 }
 

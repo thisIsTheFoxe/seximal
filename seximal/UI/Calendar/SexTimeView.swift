@@ -19,6 +19,9 @@ struct SexTimeView: View {
     var timeString: String {
         "\(time.lapse.asSex()) lapse(s), \(time.lull.asSex()) lull(s), \(time.moment.asSex()) moment(s), \(time.snap.asSex()) snap(s)"
     }
+
+    @FocusState var focusedMonth: String?
+
     var body: some View {
         ScrollView {
             Text("Current universal time:")
@@ -64,26 +67,32 @@ struct SexTimeView: View {
                     ForEach(0..<time.allMonths.count - 1) { monthIx in
                         let monthDay = time.dayOfYear - monthIx * 36
                         MonthView(
-                            title: Text(time.allMonths[monthIx]).font(.headline),
+                            focusedMonth: $focusedMonth,
+                            title: time.allMonths[monthIx],
                             currentDay: monthDay,
                             isLast: false)
                         .focusable()
+                        .focused($focusedMonth, equals: time.allMonths[monthIx])
                     }
                 })
                 .padding(6)
                 .padding(.bottom)
                 MonthView(
-                    title: Text(time.allMonths.last!).font(.headline),
+                    focusedMonth: $focusedMonth,
+                    title: time.allMonths.last!,
                     currentDay: time.dayOfYear - 360,
                     isLast: true)
                     .padding(.horizontal, 75)
                     .focusable()
+                    .focused($focusedMonth, equals: time.allMonths.last!)
             }
             .padding(.bottom)
         }
         .navigationTitle("Time in Seximal")
+#if !os(tvOS)
         .onAppear { self.time.startTimer() }
         .onDisappear { self.time.stopTimer() }
+#endif
     }
 }
 

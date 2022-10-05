@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct MonthView: View {
-    internal init(title: Text, spacing: CGFloat? = nil, currentDay: Int, isLast: Bool) {
+    internal init(focusedMonth: FocusState<String?>.Binding, title: String, spacing: CGFloat? = nil, currentDay: Int, isLast: Bool) {
+        self.focusedMonth = focusedMonth
         self.title = title
         self.currentDay = currentDay
         self.isLast = isLast
@@ -18,11 +19,12 @@ struct MonthView: View {
             count: isLast ? daysInMonth : 6)
     }
 
-    @Environment(\.isFocused) var isFocused
+    var focusedMonth: FocusState<String?>.Binding
+    var isFocused: Bool { title == focusedMonth.wrappedValue }
 
     var spacing: CGFloat?
     var columns: [GridItem]!
-    var title: Text
+    var title: String
     var currentDay: Int
     var isLast: Bool
     var daysInMonth: Int {
@@ -39,14 +41,14 @@ struct MonthView: View {
 
     var body: some View {
         VStack(spacing: spacing) {
-            title
+            Text(title).font(.headline)
             LazyVGrid(columns: columns, alignment: .trailing, spacing: 3, content: {
                 ForEach(1...daysInMonth, id: \.self) { day in
                     DayText(text: day.asSex(), isCurrentDay: day == currentDay)
                         .scaledToFill()
                 }
             })
-            .border(isFocused ? .red : borderColor, width: 1)
+            .border(isFocused ? .red : borderColor, width: isFocused ? 5 : 1)
         }
     }
 }
@@ -85,12 +87,13 @@ struct DayText: View {
     }
 }
 
+/*
 struct MonthView_Previews: PreviewProvider {
     static var previews: some View {
-
         LazyVGrid(columns: [GridItem(), GridItem()], content: {
-            MonthView(title: Text("January").font(.headline), currentDay: 2, isLast: true)
-            MonthView(title: Text("Februray").font(.headline), currentDay: 2, isLast: false)
+            MonthView(focusedMonth: <#FocusState<String?>.Binding#>, title: "January", currentDay: 2, isLast: true)
+            MonthView(focusedMonth: <#FocusState<String?>.Binding#>, title: "Februray", currentDay: 2, isLast: false)
         })
     }
 }
+*/

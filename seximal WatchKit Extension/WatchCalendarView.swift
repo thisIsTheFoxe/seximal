@@ -12,7 +12,7 @@ struct WatchCalendarView: View {
 
     var body: some View {
         ScrollView {
-            MonthView(title: Text(time.month).font(.headline), spacing: 6, currentDay: time.dayOfMonth, isLast: time.monthIx == time.allMonths.count - 1)
+            MonthView(title: time.month, spacing: 6, currentDay: time.dayOfMonth, isLast: time.monthIx == time.allMonths.count - 1)
             Text(time.format(for: .all)!)
                 .padding()
         }

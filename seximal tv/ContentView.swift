@@ -7,8 +7,23 @@
 
 import SwiftUI
 
+/*
+struct RowView: View {
+    var ix: Int
+    @FocusState var focusedIx: Int?
+    
+    var isFocused: Bool { ix == focusedIx }
+    
+    var body: some View {
+        Text("Row Index: \(ix)")
+            .foregroundColor(isFocused ? .red : .blue)
+    }
+}
+*/
+
 struct ContentView: View {
     var time: SexTime = SexTime()
+    @FocusState var focusedIx: Int?
 
     var body: some View {
         NavigationView {
@@ -16,10 +31,19 @@ struct ContentView: View {
                 SexTimeView(time: time)
                     .tabItem { Label("Time", systemImage: "calendar") }
                 TVClockView(time: time)
-                .tabItem { Label("Clock", systemImage: "clock") }
+                    .tabItem { Label("Clock", systemImage: "clock") }
                 CalculatorView()
                     .tabItem { Label("Calc", systemImage: "number.square.fill") }
+                    .onAppear {
+                        time.stopTimer()
+                    }
+                    .onDisappear {
+                        time.startTimer()
+                    }
             }
+        }
+        .onAppear {
+            time.startTimer()
         }
     }
 }
