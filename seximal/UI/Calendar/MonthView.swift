@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct MonthView: View {
-    internal init(title: Text, spacing: CGFloat? = nil, currentDay: Int, isLast: Bool) {
+    internal init(focusedMonth: FocusState<Int?>.Binding, monthIx: Int, title: Text, spacing: CGFloat? = nil, currentDay: Int, isLast: Bool) {
+        self.focusedMonth = focusedMonth
+        self.monthIx = monthIx
         self.title = title
         self.currentDay = currentDay
         self.isLast = isLast
@@ -17,6 +19,10 @@ struct MonthView: View {
             repeating: GridItem(.flexible(), spacing: 3, alignment: .trailing),
             count: isLast ? daysInMonth : 6)
     }
+
+    var focusedMonth: FocusState<Int?>.Binding
+    var monthIx: Int
+    var isFocused: Bool { monthIx == focusedMonth.wrappedValue }
 
     var spacing: CGFloat?
     var columns: [GridItem]!
@@ -44,8 +50,7 @@ struct MonthView: View {
                         .scaledToFill()
                 }
             })
-
-            .border(borderColor, width: 1)
+            .border(isFocused ? .red : borderColor, width: isFocused ? 5 : 1)
         }
     }
 }
@@ -55,7 +60,7 @@ struct DayText: View {
     let isCurrentDay: Bool
 
     var foreground: Color {
-        #if !os(watchOS)
+        #if !os(watchOS) && !os(tvOS)
         return isCurrentDay ? Color(UIColor.systemBackground) : Color(UIColor.label)
         #else
         return isCurrentDay ? .black : .white
@@ -63,7 +68,7 @@ struct DayText: View {
     }
 
     var background: Color {
-        #if !os(watchOS)
+        #if !os(watchOS) && !os(tvOS)
         isCurrentDay ? Color(UIColor.label):  Color(UIColor.systemBackground)
         #else
         isCurrentDay ? Color.white:  Color.black
@@ -84,12 +89,13 @@ struct DayText: View {
     }
 }
 
+/*
 struct MonthView_Previews: PreviewProvider {
     static var previews: some View {
-
         LazyVGrid(columns: [GridItem(), GridItem()], content: {
-            MonthView(title: Text("January").font(.headline), currentDay: 2, isLast: true)
-            MonthView(title: Text("Februray").font(.headline), currentDay: 2, isLast: false)
+            MonthView(focusedMonth: <#FocusState<String?>.Binding#>, title: "January", currentDay: 2, isLast: true)
+            MonthView(focusedMonth: <#FocusState<String?>.Binding#>, title: "Februray", currentDay: 2, isLast: false)
         })
     }
 }
+*/

@@ -36,10 +36,10 @@ struct ClockFace: View {
     var body: some View {
         ClockView(
             isSmall: family == .systemSmall,
-            showDate: config.showDate == true,
-            useTwoHourHands: config.useTwoHourHands == true,
-            showDigitally: config.showDigitally == true,
-            showSecondsHand: false,
+            showDate: .constant(config.showDate == true),
+            useTwoHourHands: .constant(config.useTwoHourHands == true),
+            showDigitally: .constant(config.showDigitally == true),
+            showSecondsHand: .constant(false),
             titleFont: titleFont,
             textFont: textFont,
             time: time)

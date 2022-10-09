@@ -9,13 +9,19 @@ import SwiftUI
 import Combine
 
 struct SexTimeView: View {
-
+#if os(tvOS)
+    var columns = { Array(repeating: GridItem(spacing: 6), count: 5) }()
+#else
     var columns = { Array(repeating: GridItem(spacing: 6), count: 2) }()
+#endif
 
     @ObservedObject var time = SexTime()
     var timeString: String {
         "\(time.lapse.asSex()) lapse(s), \(time.lull.asSex()) lull(s), \(time.moment.asSex()) moment(s), \(time.snap.asSex()) snap(s)"
     }
+
+    @FocusState var focusedMonthIx: Int?
+
     var body: some View {
         ScrollView {
             Text("Current universal time:")
@@ -61,24 +67,36 @@ struct SexTimeView: View {
                     ForEach(0..<time.allMonths.count - 1) { monthIx in
                         let monthDay = time.dayOfYear - monthIx * 36
                         MonthView(
+                            focusedMonth: $focusedMonthIx, monthIx: monthIx,
                             title: Text(time.allMonths[monthIx]).font(.headline),
                             currentDay: monthDay,
                             isLast: false)
+                        #if os(tvOS)
+                        .focusable()
+                        .focused($focusedMonthIx, equals: monthIx)
+                        #endif
                     }
                 })
                 .padding(6)
                 .padding(.bottom)
                 MonthView(
+                    focusedMonth: $focusedMonthIx, monthIx: time.allMonths.count,
                     title: Text(time.allMonths.last!).font(.headline),
                     currentDay: time.dayOfYear - 360,
                     isLast: true)
                     .padding(.horizontal, 75)
+#if os(tvOS)
+                    .focusable()
+                    .focused($focusedMonthIx, equals: time.allMonths.count)
+#endif
             }
             .padding(.bottom)
         }
         .navigationTitle("Time in Seximal")
+#if !os(tvOS)
         .onAppear { self.time.startTimer() }
         .onDisappear { self.time.stopTimer() }
+#endif
     }
 }
 

@@ -9,10 +9,10 @@ import SwiftUI
 
 struct ClockView: View {
     var isSmall: Bool
-    var showDate: Bool
-    var useTwoHourHands: Bool
-    var showDigitally: Bool
-    var showSecondsHand: Bool
+    @Binding var showDate: Bool
+    @Binding var useTwoHourHands: Bool
+    @Binding var showDigitally: Bool
+    @Binding var showSecondsHand: Bool
 
     var strokeScalar: CGFloat { isSmall ? 1 : 1.5 }
 
@@ -117,7 +117,7 @@ struct ClockView: View {
                 .padding(.top, Constraint.marginTop)
 
                 if showDigitally {
-                    Text("\(time.lapse.asSex(padding: 2)):\(time.lull.asSex(padding: 2))")
+                    Text("\(time.lapse.asSex(padding: 2)):\(time.lull.asSex(padding: 2))\(showSecondsHand ? ":" + time.moment.asSex(padding: 2) : "")")
                         .font(textFont)
                         .padding(.top, 2 * strokeScalar)
                 }

@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct WatchCalculatorView: View {
-    @EnvironmentObject var model: Calculator
+    @ObservedObject var model: Calculator = Calculator()
 
-    let columns: [GridItem] = [GridItem(spacing: 6, alignment: .trailing), GridItem(spacing: 6, alignment: .center), GridItem(spacing: 6, alignment: .center)]
+    let columns: [GridItem] = [
+        GridItem(spacing: Constraint.calcPadding, alignment: .trailing),
+        GridItem(spacing: Constraint.calcPadding, alignment: .center),
+        GridItem(spacing: Constraint.calcPadding, alignment: .center)]
 
     var body: some View {
         VStack {
@@ -28,9 +31,9 @@ struct WatchCalculatorView: View {
                 }
             }
             Divider()
-            LazyVGrid(columns: columns, spacing: 6, content: {
+            LazyVGrid(columns: columns, spacing: Constraint.calcPadding, content: {
                 ForEach(Calculator.Action.allCases) { op in
-                    CalculatorButton(type: op, font: .body.bold())
+                    CalculatorButton(type: op, font: .body.bold(), model: model)
                         .cornerRadius(6)
 //                                            .padding(.top, 5)
                 }
@@ -42,6 +45,5 @@ struct WatchCalculatorView: View {
 struct CalculatorView_Previews: PreviewProvider {
     static var previews: some View {
         WatchCalculatorView()
-            .environmentObject(Calculator())
     }
 }

@@ -73,6 +73,8 @@ struct CalendarEntryView: View {
         }
     }
 
+    @FocusState var focusedMonth: Int?
+
     var emptyIntent: CalendarIntent = {
         let emptyIntent = CalendarIntent()
         emptyIntent.showText = TextConfig.none
@@ -84,7 +86,7 @@ struct CalendarEntryView: View {
             Color(.systemBackground).ignoresSafeArea()
             HStack {
                 VStack(spacing: 2) {
-                    MonthView(title: Text("\(time.month) \(time.year.asNif())").font(titleFont).bold(),
+                    MonthView(focusedMonth: $focusedMonth, monthIx: time.monthIx, title: Text("\(time.month) \(time.year.asNif())").font(titleFont).bold(),
                               spacing: 4,
                               currentDay: time.dayOfMonth,
                               isLast: time.month == time.allMonths.last!

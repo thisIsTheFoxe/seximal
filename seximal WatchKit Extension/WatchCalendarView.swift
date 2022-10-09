@@ -10,9 +10,10 @@ import SwiftUI
 struct WatchCalendarView: View {
     var time: SexTime
 
+    @FocusState var monthIx: Int?
     var body: some View {
         ScrollView {
-            MonthView(title: Text(time.month).font(.headline), spacing: 6, currentDay: time.dayOfMonth, isLast: time.monthIx == time.allMonths.count - 1)
+            MonthView(focusedMonth: $monthIx, monthIx: time.monthIx, title: Text(time.month).font(.headline), spacing: 6, currentDay: time.dayOfMonth, isLast: time.monthIx == time.allMonths.count - 1)
             Text(time.format(for: .all)!)
                 .padding()
         }

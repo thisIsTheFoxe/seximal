@@ -48,18 +48,21 @@ struct AboutView: View {
         ScrollView {
             seximalIntro
             Divider().padding().padding(.horizontal, 36)
+                .focusable()
             VStack(alignment: .leading) {
                 Text("Seximal has a smaller base than decimal, making simple arithmetic easier. It also has the prime factors two and three, which means that halves and thirds and any combination of them have terminating fractions. Additionally, each human can normally show zero to five fingers on one hand, making it possible to count up to thirty six (or nif) using both hands.")
                 Text("However, since most measurements and units are based on the decimal system, if someone were to use seximal it would be quite confusing to keep using the same units with a different numbering system. Therefore, it makes sense to redefine common units for the use in seximal.")
             }
-            .padding(.horizontal)
+            .focusable()
             Divider().padding().padding(.horizontal, 36)
+                .focusable()
             VStack(alignment: .leading) {
                 Text("Having a smaller base also means that seximal needs (generally) more digits than decimal to display the same number. This means that big numbers can get really long.")
                 Text("A similar problem exists when dealing with binary (base-2). In order to make it easier to transport or display larger numbers like that we often compress binary to hex (base-16). Similary, seximal can be compressed to niftimal using all arabic digits 0-9 and the 26 letters of the alphabet. In this app e.g. the current year (\(year.asSex())) is displayed as niftimal \(year.asNif()).")
             }
             .padding(.horizontal)
             Spacer(minLength: 36)
+#if !os(tvOS)
             Group {
                 Text("Resources")
                     .font(.headline)
@@ -70,6 +73,7 @@ struct AboutView: View {
                 Link("seximal on GitHub", destination: URL(string: "https://github.com/thisIsTheFoxe/seximal")!)
                     .padding(6)
             }
+#endif
             Spacer(minLength: 36)
                 .navigationTitle("About Seximal")
                 .padding(6)

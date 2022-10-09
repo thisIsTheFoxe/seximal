@@ -45,6 +45,27 @@
 		D59717BE2688D16400A84BA9 /* WatchCalculatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59717BD2688D16400A84BA9 /* WatchCalculatorView.swift */; };
 		D59717C02688DACC00A84BA9 /* WatchClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59717BF2688DACC00A84BA9 /* WatchClockView.swift */; };
 		D599104725C32F3500A8C571 /* CalculatorAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D599104625C32F3500A8C571 /* CalculatorAction.swift */; };
+		D59DAA3E28ECCEDD00289A8F /* seximal_tvApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59DAA3D28ECCEDD00289A8F /* seximal_tvApp.swift */; };
+		D59DAA4028ECCEDD00289A8F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59DAA3F28ECCEDD00289A8F /* ContentView.swift */; };
+		D59DAA4228ECCEE200289A8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D59DAA4128ECCEE200289A8F /* Assets.xcassets */; };
+		D59DAA4528ECCEE300289A8F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D59DAA4428ECCEE300289A8F /* Preview Assets.xcassets */; };
+		D59DAA4928ECCFEF00289A8F /* SexTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D572F54C25BF7FE000BD3CE8 /* SexTimeView.swift */; };
+		D59DAA4A28ECCFEF00289A8F /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B51590268769F600079B31 /* ClockView.swift */; };
+		D59DAA4B28ECCFEF00289A8F /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8BE5525BF1A620066CF30 /* AboutView.swift */; };
+		D59DAA4C28ECCFEF00289A8F /* Calculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D542ABDB25C1929E0090E4AA /* Calculator.swift */; };
+		D59DAA4D28ECCFEF00289A8F /* CalculatorAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D599104625C32F3500A8C571 /* CalculatorAction.swift */; };
+		D59DAA4E28ECCFEF00289A8F /* CalculatorButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52CD64D2617134F00A2FF81 /* CalculatorButtons.swift */; };
+		D59DAA4F28ECCFEF00289A8F /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F6BE6025C0396600E37D72 /* MonthView.swift */; };
+		D59DAA5028ECCFEF00289A8F /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8BE5C25BF1C3A0066CF30 /* Base.swift */; };
+		D59DAA5228ECCFEF00289A8F /* SexTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = D587590C268720950010D441 /* SexTime.swift */; };
+		D59DAA5328ECCFEF00289A8F /* ClockMarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DA825826848E0C00ACAAB7 /* ClockMarks.swift */; };
+		D59DAA5428ECCFEF00289A8F /* CalculaturView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8BE5225BF1A4C0066CF30 /* CalculaturView.swift */; };
+		D59DAA5528ECD6A500289A8F /* SeximalNumbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52CD64426170F8E00A2FF81 /* SeximalNumbers.swift */; };
+		D59DAA5628ECD75500289A8F /* Optional+Ternary.swift in Sources */ = {isa = PBXBuildFile; fileRef = D542ABD425C17F9F0090E4AA /* Optional+Ternary.swift */; };
+		D59DAA5728ECD77F00289A8F /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DB3210268DEC2C003E7D35 /* UI.swift */; };
+		D59DAA5828ECD78F00289A8F /* Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DA825C2684978400ACAAB7 /* Constraint.swift */; };
+		D59DAA5928ECD8A200289A8F /* LengthUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B5725725C058C7003087FA /* LengthUnit.swift */; };
+		D59DAA5B28ECE98700289A8F /* TVClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59DAA5A28ECE98700289A8F /* TVClockView.swift */; };
 		D59EC2742684AA1900BB13EF /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F6BE6025C0396600E37D72 /* MonthView.swift */; };
 		D59EC2752684ABBD00BB13EF /* LengthUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B5725725C058C7003087FA /* LengthUnit.swift */; };
 		D5B51591268769F600079B31 /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B51590268769F600079B31 /* ClockView.swift */; };
@@ -171,6 +192,12 @@
 		D59717BF2688DACC00A84BA9 /* WatchClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchClockView.swift; sourceTree = "<group>"; };
 		D599104625C32F3500A8C571 /* CalculatorAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorAction.swift; sourceTree = "<group>"; };
 		D599104925C3326900A8C571 /* seximal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = seximal.entitlements; sourceTree = "<group>"; };
+		D59DAA3B28ECCEDB00289A8F /* seximal tv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "seximal tv.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D59DAA3D28ECCEDD00289A8F /* seximal_tvApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = seximal_tvApp.swift; sourceTree = "<group>"; };
+		D59DAA3F28ECCEDD00289A8F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		D59DAA4128ECCEE200289A8F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D59DAA4428ECCEE300289A8F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D59DAA5A28ECE98700289A8F /* TVClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVClockView.swift; sourceTree = "<group>"; };
 		D5B51590268769F600079B31 /* ClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
 		D5B5725425C05709003087FA /* LengthConverterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LengthConverterView.swift; sourceTree = "<group>"; };
 		D5B5725725C058C7003087FA /* LengthUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LengthUnit.swift; sourceTree = "<group>"; };
@@ -206,6 +233,13 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		D597178B2688C63D00A84BA9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D59DAA3828ECCEDB00289A8F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -343,6 +377,26 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		D59DAA3C28ECCEDD00289A8F /* seximal tv */ = {
+			isa = PBXGroup;
+			children = (
+				D59DAA3D28ECCEDD00289A8F /* seximal_tvApp.swift */,
+				D59DAA3F28ECCEDD00289A8F /* ContentView.swift */,
+				D59DAA5A28ECE98700289A8F /* TVClockView.swift */,
+				D59DAA4128ECCEE200289A8F /* Assets.xcassets */,
+				D59DAA4328ECCEE200289A8F /* Preview Content */,
+			);
+			path = "seximal tv";
+			sourceTree = "<group>";
+		};
+		D59DAA4328ECCEE200289A8F /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				D59DAA4428ECCEE300289A8F /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
 		D5D8BE3325BF18F20066CF30 = {
 			isa = PBXGroup;
 			children = (
@@ -351,6 +405,7 @@
 				D5DA82472684887800ACAAB7 /* time */,
 				D59717872688C63A00A84BA9 /* seximal WatchKit App */,
 				D59717922688C63D00A84BA9 /* seximal WatchKit Extension */,
+				D59DAA3C28ECCEDD00289A8F /* seximal tv */,
 				D5DA82222684628C00ACAAB7 /* Frameworks */,
 				D5D8BE3D25BF18F20066CF30 /* Products */,
 			);
@@ -363,6 +418,7 @@
 				D5DA82442684887800ACAAB7 /* timeExtension.appex */,
 				D59717832688C63A00A84BA9 /* seximal WatchKit App.app */,
 				D597178E2688C63D00A84BA9 /* seximal WatchKit Extension.appex */,
+				D59DAA3B28ECCEDB00289A8F /* seximal tv.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -451,6 +507,23 @@
 			productReference = D597178E2688C63D00A84BA9 /* seximal WatchKit Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
+		D59DAA3A28ECCEDB00289A8F /* seximal tv */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D59DAA4828ECCEE300289A8F /* Build configuration list for PBXNativeTarget "seximal tv" */;
+			buildPhases = (
+				D59DAA3728ECCEDB00289A8F /* Sources */,
+				D59DAA3828ECCEDB00289A8F /* Frameworks */,
+				D59DAA3928ECCEDB00289A8F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "seximal tv";
+			productName = "seximal tv";
+			productReference = D59DAA3B28ECCEDB00289A8F /* seximal tv.app */;
+			productType = "com.apple.product-type.application";
+		};
 		D5D8BE3B25BF18F20066CF30 /* seximal */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D5D8BE4B25BF18F30066CF30 /* Build configuration list for PBXNativeTarget "seximal" */;
@@ -496,7 +569,7 @@
 		D5D8BE3425BF18F20066CF30 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1250;
+				LastSwiftUpdateCheck = 1400;
 				LastUpgradeCheck = 1230;
 				TargetAttributes = {
 					D59717822688C63A00A84BA9 = {
@@ -504,6 +577,9 @@
 					};
 					D597178D2688C63D00A84BA9 = {
 						CreatedOnToolsVersion = 13.0;
+					};
+					D59DAA3A28ECCEDB00289A8F = {
+						CreatedOnToolsVersion = 14.0;
 					};
 					D5D8BE3B25BF18F20066CF30 = {
 						CreatedOnToolsVersion = 12.3;
@@ -530,6 +606,7 @@
 				D5DA82432684887800ACAAB7 /* timeExtension */,
 				D59717822688C63A00A84BA9 /* seximal WatchKit App */,
 				D597178D2688C63D00A84BA9 /* seximal WatchKit Extension */,
+				D59DAA3A28ECCEDB00289A8F /* seximal tv */,
 			);
 		};
 /* End PBXProject section */
@@ -549,6 +626,15 @@
 			files = (
 				D5DB3215268DF3A8003E7D35 /* Assets.xcassets in Resources */,
 				D597179D2688C63F00A84BA9 /* Preview Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D59DAA3928ECCEDB00289A8F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D59DAA4528ECCEE300289A8F /* Preview Assets.xcassets in Resources */,
+				D59DAA4228ECCEE200289A8F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -620,6 +706,32 @@
 				D5DB3212268DEC30003E7D35 /* UI.swift in Sources */,
 				D59717BE2688D16400A84BA9 /* WatchCalculatorView.swift in Sources */,
 				D59717982688C63D00A84BA9 /* ComplicationController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D59DAA3728ECCEDB00289A8F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D59DAA4928ECCFEF00289A8F /* SexTimeView.swift in Sources */,
+				D59DAA5728ECD77F00289A8F /* UI.swift in Sources */,
+				D59DAA5828ECD78F00289A8F /* Constraint.swift in Sources */,
+				D59DAA5928ECD8A200289A8F /* LengthUnit.swift in Sources */,
+				D59DAA4A28ECCFEF00289A8F /* ClockView.swift in Sources */,
+				D59DAA5028ECCFEF00289A8F /* Base.swift in Sources */,
+				D59DAA5228ECCFEF00289A8F /* SexTime.swift in Sources */,
+				D59DAA5528ECD6A500289A8F /* SeximalNumbers.swift in Sources */,
+				D59DAA4028ECCEDD00289A8F /* ContentView.swift in Sources */,
+				D59DAA5628ECD75500289A8F /* Optional+Ternary.swift in Sources */,
+				D59DAA4E28ECCFEF00289A8F /* CalculatorButtons.swift in Sources */,
+				D59DAA5428ECCFEF00289A8F /* CalculaturView.swift in Sources */,
+				D59DAA3E28ECCEDD00289A8F /* seximal_tvApp.swift in Sources */,
+				D59DAA5328ECCFEF00289A8F /* ClockMarks.swift in Sources */,
+				D59DAA5B28ECE98700289A8F /* TVClockView.swift in Sources */,
+				D59DAA4B28ECCFEF00289A8F /* AboutView.swift in Sources */,
+				D59DAA4C28ECCFEF00289A8F /* Calculator.swift in Sources */,
+				D59DAA4F28ECCFEF00289A8F /* MonthView.swift in Sources */,
+				D59DAA4D28ECCFEF00289A8F /* CalculatorAction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -722,7 +834,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.1;
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
 			};
 			name = Debug;
 		};
@@ -747,7 +859,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.1;
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
 			};
 			name = Release;
 		};
@@ -780,7 +892,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.1;
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
 			};
 			name = Debug;
 		};
@@ -813,7 +925,73 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.1;
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+			};
+			name = Release;
+		};
+		D59DAA4628ECCEE300289A8F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_ASSET_PATHS = "\"seximal tv/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=appletvos*]" = E3BNAMEWTS;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = seximal;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = me.thisIsTheFoxe.seximal;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=appletvos*]" = "seximal TV";
+				SDKROOT = appletvos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 16.0;
+			};
+			name = Debug;
+		};
+		D59DAA4728ECCEE300289A8F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_ASSET_PATHS = "\"seximal tv/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=appletvos*]" = E3BNAMEWTS;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = seximal;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = me.thisIsTheFoxe.seximal;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=appletvos*]" = "seximal TV";
+				SDKROOT = appletvos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 16.0;
 			};
 			name = Release;
 		};
@@ -870,7 +1048,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
-				MARKETING_VERSION = 2.1;
+				MARKETING_VERSION = 3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -927,7 +1105,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
-				MARKETING_VERSION = 2.1;
+				MARKETING_VERSION = 3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -950,7 +1128,7 @@
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = NO;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = seximal/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -977,7 +1155,7 @@
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = NO;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = seximal/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1006,7 +1184,7 @@
 				INFOPLIST_KEY_CFBundleName = timeExtension;
 				INFOPLIST_KEY_CFBundleVersion = 11;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1037,7 +1215,7 @@
 				INFOPLIST_KEY_CFBundleName = timeExtension;
 				INFOPLIST_KEY_CFBundleVersion = 11;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1070,6 +1248,15 @@
 			buildConfigurations = (
 				D59717A22688C63F00A84BA9 /* Debug */,
 				D59717A32688C63F00A84BA9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D59DAA4828ECCEE300289A8F /* Build configuration list for PBXNativeTarget "seximal tv" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D59DAA4628ECCEE300289A8F /* Debug */,
+				D59DAA4728ECCEE300289A8F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

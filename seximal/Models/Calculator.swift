@@ -63,6 +63,7 @@ class Calculator: ObservableObject {
         }
 
         @available(watchOS, unavailable)
+        @available(tvOS, unavailable)
         var keyboardShortcut: KeyEquivalent? {
             switch self {
             case .mod(let mod):
@@ -99,7 +100,7 @@ class Calculator: ObservableObject {
         var foregroundColor: Color? {
             switch self {
             case .op, .equal:
-                #if !os(watchOS)
+                #if !os(watchOS) && !os(tvOS)
                 return Color(UIColor.systemBackground)
                 #else
                 return .white
