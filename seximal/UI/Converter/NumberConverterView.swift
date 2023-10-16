@@ -68,8 +68,8 @@ struct NumberConverterView: View {
             Text("Pronunciation in Seximal:")
                 .font(.headline)
             if let num = number,
-               num > Double(Int.min), num < Double(Int.max), let iNum = Int(num) {
-                Text(iNum.spellInSex())
+               num > Double(Int.min), num < Double(Int.max) {
+                Text(Int(num).spellInSex())
                     .padding()
             } else {
                 Text("...")

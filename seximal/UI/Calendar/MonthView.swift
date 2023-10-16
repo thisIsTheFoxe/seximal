@@ -60,7 +60,7 @@ struct DayText: View {
     let isCurrentDay: Bool
 
     var foreground: Color {
-        #if !os(watchOS) && !os(tvOS)
+        #if !os(watchOS) && !os(tvOS) && !os(xrOS)
         return isCurrentDay ? Color(UIColor.systemBackground) : Color(UIColor.label)
         #else
         return isCurrentDay ? .black : .white

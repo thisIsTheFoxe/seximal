@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -90,7 +90,7 @@
 		D5DA82492684887800ACAAB7 /* time.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DA82482684887800ACAAB7 /* time.swift */; };
 		D5DA824E2684887B00ACAAB7 /* time.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = D5DA824A2684887800ACAAB7 /* time.intentdefinition */; };
 		D5DA824F2684887B00ACAAB7 /* time.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = D5DA824A2684887800ACAAB7 /* time.intentdefinition */; };
-		D5DA82522684887B00ACAAB7 /* timeExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D5DA82442684887800ACAAB7 /* timeExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D5DA82522684887B00ACAAB7 /* timeExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D5DA82442684887800ACAAB7 /* timeExtension.appex */; platformFilters = (ios, maccatalyst, ); settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D5DA82572684899F00ACAAB7 /* ClockFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DA823E268483FD00ACAAB7 /* ClockFace.swift */; };
 		D5DA825A26848E1000ACAAB7 /* ClockMarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DA825826848E0C00ACAAB7 /* ClockMarks.swift */; };
 		D5DA825D2684978400ACAAB7 /* Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DA825C2684978400ACAAB7 /* Constraint.swift */; };
@@ -801,6 +801,10 @@
 		};
 		D5DA82512684887B00ACAAB7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilters = (
+				ios,
+				maccatalyst,
+			);
 			target = D5DA82432684887800ACAAB7 /* timeExtension */;
 			targetProxy = D5DA82502684887B00ACAAB7 /* PBXContainerItemProxy */;
 		};
@@ -1135,10 +1139,12 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = me.thisIsTheFoxe.seximal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,6";
+				TARGETED_DEVICE_FAMILY = "1,2,6,7";
 			};
 			name = Debug;
 		};
@@ -1162,10 +1168,12 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = me.thisIsTheFoxe.seximal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,6";
+				TARGETED_DEVICE_FAMILY = "1,2,6,7";
 			};
 			name = Release;
 		};

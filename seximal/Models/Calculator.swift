@@ -100,7 +100,7 @@ class Calculator: ObservableObject {
         var foregroundColor: Color? {
             switch self {
             case .op, .equal:
-                #if !os(watchOS) && !os(tvOS)
+                #if !os(watchOS) && !os(tvOS) && !os(xrOS)
                 return Color(UIColor.systemBackground)
                 #else
                 return .white
